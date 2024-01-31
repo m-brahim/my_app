@@ -20,7 +20,7 @@ st.set_page_config("Suivi des ventes de la société", page_icon="", layout="wid
 url = "Exemple - Hypermarché_Achats.csv"
 
 #charger le fichier CSS
-with open("pages/style.css") as f:
+with open("style.css") as f:
     css_code = f.read()
 
 st.markdown(f"<style>{css_code}</style>", unsafe_allow_html=True)
@@ -397,7 +397,7 @@ clients_by_country = df.drop_duplicates(subset=['ID client', 'Pays/Région']).gr
 merged_data = pd.merge(data_f, clients_by_country, how='left', on='Pays/Région')
 
 # icône personnalisée pour représenter un client (ici l'exemple c'est Kiloutou)
-icon_path = 'pages/Kiloutou_logo.jpg'
+icon_path = 'Kiloutou_logo.jpg'
 client_icon = folium.CustomIcon(icon_image=icon_path, icon_size=(30, 30))
 
 # affiche une carte qui indique le nombre de clients par pays
