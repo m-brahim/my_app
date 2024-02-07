@@ -61,7 +61,6 @@ with st.sidebar:
     icons=['house', 'cloud-upload', "list-task", 'gear'], 
     menu_icon="cast", default_index=0,
     styles={
-        "container": {"padding": "0!important", "background-color": "rgba(243,189,29,0.8)", "border": "1px solid #CCC", "border-left": "0.5rem solid #000000", "border-radius": "5px", "box-shadow": "0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15)", "text-align": "center"},
         "icon": {"color": "black", "font-size": "16px"}, 
         "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#f7e98e"},
         "nav-link-selected": {"background-color": "#f7e98e"},
