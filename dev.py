@@ -169,6 +169,7 @@ if selection_effectuee:
             mode="gauge+number",
             value=somme_remises_client,
             number={'suffix': '%'},
+            domain={'x': [0, 1], 'y': [0, 1]},
             title={'text': "Cumul des remises accordées"},
             gauge={'axis': {'range': [0, 200]},
                    'steps': [
