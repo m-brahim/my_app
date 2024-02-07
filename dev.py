@@ -138,7 +138,7 @@ if selection_effectuee:
             height=30))
     ])
     
-    fig.update_layout(height=400, margin=dict(t=0, b=0))
+    fig.update_layout(height=400, margin=dict(t=0, b=30))
     
     st.plotly_chart(fig, use_container_width=True)
 
