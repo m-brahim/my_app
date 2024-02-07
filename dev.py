@@ -120,7 +120,7 @@ if selection_effectuee:
     # Afficher un graphique (vous pouvez ajuster le style selon vos préférences)
     fig = go.Figure(data=[go.Table(
         columnorder=list(range(len(selected_columns_table))),
-        columnwidth=[120, 150, 120, 120, 150, 120, 120, 180, 150, 120, 120, 120],
+        columnwidth=[120, 150, 120, 120, 150, 120, 120, 180, 180, 120, 120, 120],
         header=dict(
             values=selected_columns_table,
             font=dict(size=14, color='white'),
