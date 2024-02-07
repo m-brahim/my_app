@@ -1,3 +1,4 @@
 [theme]
 base="light"
-backgroundColor="#716d6d"
+primaryColor="#fcc200"
+font="serif"
