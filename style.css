@@ -1,19 +1,12 @@
 /* style.css */
 
 
-/* titres */
+/* config */
 
 [class="st-emotion-cache-10trblm e1nzilvr1"] {
     margin-left: 0px;
 }
 
-[class="st-emotion-cache-1629p8f e1nzilvr2"] {
-    border: solid;
-    border-color: #354d64;
-    text-align: center;
-    margin-bottom: 20px;
-    background-color : white;
-}
 
 [class="st-emotion-cache-eczf16 e1nzilvr3"] {
     position: relative;
@@ -27,44 +20,96 @@
     margin-bottom: 10px;
 }
 
+
+[class="st-emotion-cache-1kyxreq e115fcil2"]{
+    width : 80px !important;
+}
+
+
+
+/* sidebar */
+
+.nav-link.active[data-v-5af006b8] {
+    color: black !important;
+}
+
+
+
 /* title */
 
 [id="8e6af571"]{
-    text-align : center;
-    background-color : white;
+    text-align : left;
+    background : rgb(243,189,29,0.8);
     font-family : "Roboto Condensed";
     padding: 10px 0px 10px 10px;
-    font-weight : 200;
+    font-weight : 200 bold;
+    border: 1px solid #CCC;
+    border-left: 0.5rem solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
 }
 
+
+
+/* img */
+
+[class="element-container st-emotion-cache-1mkvjbz e1f1d6gn4"] {
+    width: 73px !important;
+}
+
+
+
+
+
+
+    
 /* header */
 
 [id="1-analyse-client"]{
-    text-align : center;
-    background-color : white;
+    text-align : left;
+    background : rgb(243,189,29,0.8);
     font-family : "Roboto Condensed";
     padding: 10px 0px 10px 10px;
-    font-weight : 200;
+    font-weight : 200 bold;
+    border: 1px solid #CCC;
+    border-left: 0.5rem solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
 }
 
 [id="2-analyses-temporelles"]{
-    text-align : center;
-    background-color : white;
+    text-align : left;
+    background : rgb(243,189,29,0.8);
     font-family : "Roboto Condensed";
     padding: 10px 0px 10px 10px;
-    font-weight : 200;
+    font-weight : 200 bold;
+    border: 1px solid #CCC;
+    border-left: 0.5rem solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
 }
 
 
 [id="5c5bb660"]{
-    text-align : center;
-    background-color : white;
+    text-align : left;
+    background : rgb(243,189,29,0.8);
     font-family : "Roboto Condensed";
     padding: 10px 0px 10px 10px;
-    font-weight : 200;
+    font-weight : 200 bold;
+    border: 1px solid #CCC;
+    border-left: 0.5rem solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
 }
 
 
+
+
+
+    
+/* texte */
+
+    
 em {
         font-size : 25px;
         border-bottom : 2px solid black;
@@ -80,48 +125,28 @@ p{
     margin-top : 30px;
     margin-bottom : 0px;
 }
+
+
+
+
+        
         
 /* tableau */
-
-[data-testid="stTableStyledTable"]{
-    background-color : white;
-}
 
 [class^="col_heading level0 col"] {
     font-weight : bold;
     text-align: center !important;
-    background-color : #7b98b7;
-    color : white;
+    background-color : #fcc200;
+    color : black;
 }
 
 [class="blank st-emotion-cache-a51556 e1q9reml1"]{
-    background-color : #7b98b7;
+    background-color : #fcc200;
 }
 
 td[class^="st-emotion-cache-gdzsw5"] {
     text-align: center !important;
 }
-
-/* multi select */
-
-[class="st-av st-d6 st-ax st-d2 st-az st-b0 st-bt st-d7 st-d8 st-bd st-be st-bf st-bg st-d9 st-da st-db st-dc st-an st-ao st-ap st-aq st-b1 st-dd st-de st-df st-b7 st-dg st-dh st-ca st-di st-dj st-dk st-d4 st-dl st-c7  st-dm"]{
-    background-color: #7b98b7;
-}
-
-
-
-/* graphiques */
-
-.slicetext {
-            font-size: 20px !important;
-        }
-
-[class="plot-container plotly"]{
-    border: solid;
-    border-color: #354d64;
-    border-width : 3px;
-}
-
 
 /* Style pour la table de Streamlit */
 div[data-testid="stTable"] {
@@ -131,12 +156,62 @@ div[data-testid="stTable"] {
 
 /* Style pour les cellules du tableau */
 div[data-testid="stTable"] td, div[data-testid="stTable"] th {
-    border: 2px solid #44566f; /* Couleur du trait de bordure des cellules */
-    padding: 8px; /* Espace à l'intérieur des cellules */
+    border: 2px solid #44566f;
+    padding: 8px;
     text-align: left;
 }
 
 
+        
+/* multi select */
 
+[class="st-av st-d6 st-ax st-d2 st-az st-b0 st-bt st-d7 st-d8 st-bd st-be st-bf st-bg st-d9 st-da st-db st-dc st-an st-ao st-ap st-aq st-b1 st-dd st-de st-df st-b7 st-dg st-dh st-ca st-di st-dj st-dk st-d4 st-dl st-c7  st-dm"]{
+    background-color: #fcc200;
+}
+
+
+
+
+/* metric */
+
+.withScreencast .main [data-testid="stMetric"] {
+    border-left-color: #fcc200 !important;
+}
+
+        
+
+
+/* graphiques */
+
+.slicetext {
+            font-size: 20px !important;
+        }
+
+
+
+[class="user-select-none svg-container"]{
+    background-color : black;
+}
+
+
+[class="float-child"]{
+    width : 800px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
     
