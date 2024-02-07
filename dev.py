@@ -20,7 +20,7 @@ st.set_page_config("Suivi des ventes de la société", page_icon="", layout="wid
 url = "Exemple - Hypermarché_Achats.csv"
 
 #charger le fichier CSS
-with open("pages/style.css") as f:
+with open("style.css") as f:
     css_code = f.read()
 
 st.markdown(f"<style>{css_code}</style>", unsafe_allow_html=True)
