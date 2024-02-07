@@ -210,7 +210,7 @@ if selection_effectuee:
                 mode="gauge+number",
                 value=somme_quantites_client,
                 domain={'x': [0, 1], 'y': [0, 1]},
-                title={'text': "Nombre d'articles vendues"},
+                title={'text': "Nombre d'articles vendus"},
                 gauge={'axis': {'range': [0, 100]},
                        'steps': [
                            {'range': [0, 25], 'color': "#faf1b7"},
