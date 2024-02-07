@@ -146,14 +146,17 @@ div[data-testid="stTable"] td, div[data-testid="stTable"] th {
 
 
 
-
 /* metric */
 
 .withScreencast .main [data-testid="stMetric"] {
     border-left-color: #fcc200 !important;
 }
 
-        
+.st-emotion-cache-6va68f {
+    width: 230px;
+}
+
+
 
 
 /* graphiques */
@@ -174,9 +177,6 @@ div[data-testid="stTable"] td, div[data-testid="stTable"] th {
 }
 
 
-.st-emotion-cache-6va68f {
-    width: 250px;
-}
 
 
 
