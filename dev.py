@@ -170,7 +170,7 @@ if selection_effectuee:
             value=somme_remises_client,
             number={'suffix': '%'},
             domain={'x': [0, 1], 'y': [0, 1]},
-            title={'text': "Total des remises accordées"},
+            title={'text': "Cumul des remises accordées"},
             gauge={'axis': {'range': [0, 200]},
                    'steps': [
                        {'range': [0, 50], 'color': "#faf1b7"},
