@@ -173,10 +173,11 @@ if selection_effectuee:
             title={'text': "Total des remises accordées"},
             gauge={'axis': {'range': [0, 200]},
                    'steps': [
-                       {'range': [0, 50], 'color': "#faf1b7"},
-                       {'range': [50, 100], 'color': "#f7e888"},
-                       {'range': [100, 150], 'color': "#ffd54d"},
-                       {'range': [150, 200], 'color': "#fcc200"}],
+                       {'range': [0, 25], 'color': "#faf1b7"},
+                       {'range': [25, 50], 'color': "#f7e888"},
+                       {'range': [50, 75], 'color': "#ffd54d"},
+                       {'range': [75, 100], 'color': "#fcc200"}],
+                       {'range': [100, 125], 'color': "#fcc200"}],
                    'threshold': {'line': {'color': "black", 'width': 4}, 'thickness': 0.75, 'value': somme_remises_client}
                    }
         ))
