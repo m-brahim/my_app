@@ -11,3 +11,4 @@ mitosheet
 matplotlib
 seaborn
 numpy
+streamlit-aggrid
