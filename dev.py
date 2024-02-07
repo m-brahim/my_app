@@ -186,7 +186,7 @@ if selection_effectuee:
         fig_gauge.update_layout(
             height=200,
             font=dict(size=16),
-            margin=dict(l=10, r=10, t=60, b=10, pad=8),
+            margin=dict(t=60),
         )
 
         # Affichage de la jauge sous le tableau existant
