@@ -656,7 +656,49 @@ if selected3 == "Import" :
     fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
     st.plotly_chart(fig, use_container_width = True)
 
+    def plot_metric(label, value, prefix="", suffix="", show_graph=False, color_graph=""):
+        fig = go.Figure()
     
+        fig.add_trace(
+            go.Indicator(
+                value=value,
+                gauge={"axis": {"visible": False}},
+                number={
+                    "prefix": prefix,
+                    "suffix": suffix,
+                    "font.size": 28,
+                },
+                title={
+                    "text": label,
+                    "font": {"size": 24},
+                },
+            )
+        )
+    
+        if show_graph:
+            fig.add_trace(
+                go.Scatter(
+                    y=random.sample(range(0, 101), 30),
+                    hoverinfo="skip",
+                    fill="tozeroy",
+                    fillcolor=color_graph,
+                    line={
+                        "color": color_graph,
+                    },
+                )
+            )
+    
+        fig.update_xaxes(visible=False, fixedrange=True)
+        fig.update_yaxes(visible=False, fixedrange=True)
+        fig.update_layout(
+            # paper_bgcolor="lightgrey",
+            margin=dict(t=30, b=0),
+            showlegend=False,
+            plot_bgcolor="white",
+            height=100,
+        )
+    
+        st.plotly_chart(fig, use_container_width=True)
     
 
 
