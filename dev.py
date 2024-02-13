@@ -630,8 +630,6 @@ if selected3 == "Import" :
     # PAGE SETUP
     #######################################
     
-    st.set_page_config(page_title="Sales Dashboard", page_icon=":bar_chart:", layout="wide")
-    
     st.title("Sales Streamlit Dashboard")
     st.markdown("_Prototype v0.4.1_")
     
