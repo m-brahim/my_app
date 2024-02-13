@@ -11,8 +11,10 @@ from plotly.subplots import make_subplots
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-import duckdb
 from streamlit_option_menu import option_menu
+import random
+import duckdb
+
 
 #config du titre de la page
 st.set_page_config("Suivi des ventes de la société", page_icon="", layout="wide")
