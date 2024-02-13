@@ -636,17 +636,20 @@ if selected3 == "Import" :
     if uploaded_file is None:
         st.info("Veuillez choisir un fichier à importer")
         st.stop()
-
-    dfo['Ventes'] = dfo['Ventes'].str.replace('[^\d]', '', regex=True)
-    dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
     
-    df = load_data(uploaded_file)
+    dfo = load_data(uploaded_file)
     st.dataframe(df, 
                  width=1426,
                  column_config={
                     "ID ligne" : st.column_config.NumberColumn(format="%d"),
                  },
                 )
+
+    dfo['Ventes'] = dfo['Ventes'].str.replace('[^\d]', '', regex=True)
+    dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
+    
+    chiffre_affaires = dfo['Ventes'].sum()
+    st.metric(label="Chiffre d'affaires", value=f"{chiffre_affaires:.2f} €")
     
     st.subheader("")
     
