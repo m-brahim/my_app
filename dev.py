@@ -651,17 +651,25 @@ if selected3 == "Import" :
     dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
     
     chiffre_affaires = dfo['Ventes'].sum()
-    st.metric(label="Chiffre d'affaires", value=f"{chiffre_affaires:.2f} €")
+    
+    # Ajout du graphique en arrière-plan
+    plot_metric(
+        "Chiffre d'affaires", 
+        chiffre_affaires, 
+        prefix="€", 
+        show_graph=True, 
+        color_graph="rgba(0, 104, 201, 0.2)"
+    )
     
     st.subheader("")
     
     fig = px.bar(
-        df,
+        dfo,
         x="Pays/Région",
         y="Quantité",
         color="Pays/Région",
     )
     fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
-    st.plotly_chart(fig, use_container_width = True)
+    st.plotly_chart(fig, use_container_width=True)
 
     
