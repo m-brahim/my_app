@@ -642,6 +642,7 @@ if selected3 == "Import" :
                  width=1426,
                  column_config={
                     "ID ligne" : st.column_config.NumberColumn(format="%d"),
+                    "Ventes": st.column_config.NumberColumn(format="%,.2f"),
                  },
                 )
     
