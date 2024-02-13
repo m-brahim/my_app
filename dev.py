@@ -635,9 +635,8 @@ if selected3 == "Import" :
     st.title("Sales Streamlit Dashboard")
     st.markdown("_Prototype v0.4.1_")
     
-    with st.sidebar:
-        st.header("Configuration")
-        uploaded_file = st.file_uploader("Choose a file")
+    st.header("Configuration")
+    uploaded_file = st.file_uploader("Choose a file")
     
     if uploaded_file is None:
         st.info(" Upload a file through config", icon="ℹ️")
