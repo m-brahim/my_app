@@ -631,7 +631,7 @@ if selected3 == "Import" :
         df = pd.read_excel(file)
         return df
 
-    uploaded_file = st.filed_uploader("Choose a file")
+    uploaded_file = st.file_uploader("Choose a file")
 
     if uploaded_file is None:
         df = load_data(uploaded_file)
