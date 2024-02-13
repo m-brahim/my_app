@@ -627,7 +627,7 @@ if selected3 == "Accueil" :
 
 
 
-if selected3 == "Import" :
+if selected3 == "Import":
     @st.cache_data
     def load_data(file):
         dfo = pd.read_csv(file, delimiter=";")
@@ -640,7 +640,8 @@ if selected3 == "Import" :
         st.stop()
     
     dfo = load_data(uploaded_file)
-    st.dataframe(df, 
+    
+    st.dataframe(dfo, 
                  width=1426,
                  column_config={
                     "ID ligne" : st.column_config.NumberColumn(format="%d"),
@@ -671,5 +672,4 @@ if selected3 == "Import" :
     )
     fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
     st.plotly_chart(fig, use_container_width=True)
-
     
