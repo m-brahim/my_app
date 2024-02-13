@@ -641,7 +641,7 @@ if selected3 == "Import" :
     st.dataframe(df, 
                  width=1426,
                  column_config={
-                    "ID Ligne" : st.column_config.NumberColumn(formart="%d")},
+                    "ID Ligne" : st.column_config.NumberColumn(format="%d")},
                 )
     
     st.subheader("")
