@@ -621,3 +621,34 @@ if selected3 == "Accueil" :
     
     
     #new_dfs, code = spreadsheet(url)
+
+
+
+
+if selected3 == "Import" :
+    @st.cache_data
+    def load_data(file):
+        df = pd.read_excel(file)
+        return df
+
+    uploaded_file = st.filed_uploader("Choose a file")
+
+    if uploaded_file is None:
+        df = load_data(uploaded_file)
+        st.dataframe(df)
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
