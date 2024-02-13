@@ -640,6 +640,8 @@ if selected3 == "Import" :
     df = load_data(uploaded_file)
     st.dataframe(df, width=1426)
 
+    st.subheader("")
+    
     fig = px.bar(
         df,
         x="Pays/Région",
