@@ -671,7 +671,7 @@ if selected3 == "Import":
             if show_graph:
                 fig.add_trace(
                     go.Scatter(
-                        y=random.sample(range(0, 101), 30),
+                        y=random.sample(range(0, 50), 10),
                         hoverinfo="skip",
                         fill="tozeroy",
                         fillcolor=color_graph,
