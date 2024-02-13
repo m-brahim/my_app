@@ -638,7 +638,7 @@ if selected3 == "Import" :
         st.stop()
     
     df = load_data(uploaded_file)
-    st.dataframe(df, width=1000)
+    st.dataframe(df, width=1426)
 
 
     
