@@ -43,24 +43,21 @@ sorted_years = sorted(df['Année'].unique())
 sorted_years_2 = sorted(df['Année'].unique())
 
 
-    
+#création de colonnes
+col_title, col_logo = st.columns([3, 0.5])
 
+#une colonne pour le titre & une pour les listes déroulantes
 
-
-sidebar_container = st.sidebar.beta_container(full_height=True)
-
-col_title, col_logo = sidebar_container.beta_columns([1, 2])
 
 with col_title:
     st.title("Suivi des ventes de la société")
-
+        
+        
 with col_logo:
     logo = "Kiloutou_logo.jpg"
     st.image(logo, width=73)
 
-col_menu = sidebar_container.beta_columns([1, 2])
-
-with col_menu:
+with st.sidebar:
     selected3 = option_menu("Menu", ["Accueil", "Import",  "Tâches", 'Paramètres'], 
     icons=['house', 'cloud-upload', "list-task", 'gear'], 
     menu_icon="cast", default_index=0,
@@ -72,11 +69,6 @@ with col_menu:
         "nav-link.active" : {"color": "black"}
     }
 )
-
-
-
-
-
 
 
 
