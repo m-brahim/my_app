@@ -646,7 +646,7 @@ if selected3 == "Import" :
         y="Quantité",
         color="Pays/Région",
     )
-    fig.update_layout(title="Quantités vendues par pays",title_x=0.2)
+    fig.update_layout(title="Quantités vendues par pays",title_x=0.5)
     st.plotly_chart(fig, use_container_width = True)
 
     
