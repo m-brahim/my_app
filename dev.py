@@ -48,15 +48,6 @@ col_title, col_logo = st.columns([3, 0.5])
 
 #une colonne pour le titre & une pour les listes déroulantes
 
-
-with col_title:
-    st.title("Suivi des ventes de la société")
-        
-        
-with col_logo:
-    logo = "Kiloutou_logo.jpg"
-    st.image(logo, width=73)
-
 with st.sidebar:
     selected3 = option_menu("Menu", ["Accueil", "Import",  "Tâches", 'Paramètres'], 
     icons=['house', 'cloud-upload', "list-task", 'gear'], 
@@ -90,7 +81,14 @@ with st.sidebar:
 
 if selected3 == "Accueil" :
     #1) analyse client
-    
+    with col_title:
+        st.title("Suivi des ventes de la société")
+        
+        
+    with col_logo:
+        logo = "Kiloutou_logo.jpg"
+        st.image(logo, width=73)
+
     
     st.header("1. Analyse client")
     
