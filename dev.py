@@ -534,7 +534,7 @@ with col_class:
         # Trier par quantité croissante et sélectionner les 5 premiers produits
         top_products = top_products.sort_values(by='Quantité', ascending=True).tail(5)
 
-        target_value = top_products.mean()
+        target_value = top_products['Quantité'].mean()
         
         colors = ['#faf1b7', '#f7e888', '#ffdd1a', '#ffd54d', '#fcc200']
 
