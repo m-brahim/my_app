@@ -638,8 +638,12 @@ if selected3 == "Import" :
         st.stop()
     
     df = load_data(uploaded_file)
-    st.dataframe(df, width=1426)
-
+    st.dataframe(df, 
+                 width=1426,
+                 column_config={
+                    "ID Ligne" : st.column_config.NumberColumn(formart="%d")},
+                )
+    
     st.subheader("")
     
     fig = px.bar(
