@@ -628,7 +628,7 @@ if selected3 == "Accueil" :
 if selected3 == "Import" :
     @st.cache_data
     def load_data(file):
-        df = pd.read_excel(file)
+        df = pd.read_csv(file)
         return df
 
     uploaded_file = st.file_uploader("Choose a file")
