@@ -628,10 +628,10 @@ if selected3 == "Accueil" :
 if selected3 == "Import" :
     @st.cache_data
     def load_data(file):
-        df = pd.read_csv(file, delimiter=";")
-        return df
+        dfo = pd.read_csv(file, delimiter=";")
+        return dfo
 
-    uploaded_file = st.file_uploader("Choose a file")
+    uploaded_file = st.file_uploader("Choisir un fichier")
 
     if uploaded_file is None:
         st.info("Veuillez choisir un fichier à importer", icon ="i")
@@ -640,7 +640,15 @@ if selected3 == "Import" :
     df = load_data(uploaded_file)
     st.dataframe(df, width=1426)
 
+    fig = px.bar(
+        df,
+        x="Pays/Région",
+        y="Quantité",
+        color="Pays/Région",
+    )
+    st.plotly_chart(fig, use_container_width = True)
 
+    
     
 
 
