@@ -634,8 +634,11 @@ if selected3 == "Import" :
     uploaded_file = st.file_uploader("Choose a file")
 
     if uploaded_file is None:
-        df = load_data(uploaded_file)
-        st.dataframe(df)
+        st.info("Veuillez choisir un fichier à importer", icon ="i")
+        st.stop()
+    
+    df = load_data(uploaded_file)
+    st.dataframe(df)
 
 
     
