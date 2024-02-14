@@ -707,11 +707,11 @@ if selected3 == "Import":
             color_graph="rgba(0, 104, 201, 0.2)"
         )
         
-
+        
 
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('€', '')
-    
-        dfo['Prévision des ventes'] = pd.to_numeric(dfo['Prévision des ventes'])
+
+
 
         st.write(dfo['Prévision des ventes'])
 
