@@ -720,7 +720,9 @@ if selected3 == "Import":
             st.plotly_chart(fig, use_container_width=True)
 
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('€ ', '')
+        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('€', '')
 
+        
         st.write(dfo['Prévision des ventes'])
 
 
