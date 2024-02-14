@@ -710,6 +710,31 @@ if selected3 == "Import":
         )
 
 
+        col_gauge1, col_gauge2 = st.columns([1,1])
+
+        with col_gauge1 :
+            # Calcul du nombre de clients (count distinct de ID client)
+            nombre_clients = dfo['ID client'].nunique()
+            plot_metric(
+                "Nombre de clients", 
+                nombre_clients, 
+                show_graph=False
+            )
+
+        with col_gauge2:
+            # Calcul du montant des profits (somme de Profit)
+            dfo['Profit'] = dfo['Profit'].str.replace('[^\d]', '', regex=True)
+            dfo['Profit'] = pd.to_numeric(dfo['Profit'], errors='coerce', downcast='integer')
+            montant_profits = dfo['Profit'].sum()
+            plot_metric(
+                "Montant des profits", 
+                montant_profits, 
+                suffix="€", 
+                show_graph=False
+            )
+
+
+
     with col_bar :
         fig = px.bar(
             dfo,
