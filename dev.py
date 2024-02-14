@@ -723,6 +723,9 @@ if selected3 == "Import":
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('€', '')
 
         dfa = dfo['Prévision des ventes'].max()
+
+        dfo['Prévision des ventes'] = pd.to_numeric(dfo['Prévision des ventes'])
+        
         
         st.write(dfo['Prévision des ventes'])
         st.write(dfa)
