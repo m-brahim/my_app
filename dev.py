@@ -719,7 +719,8 @@ if selected3 == "Import":
             fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
             st.plotly_chart(fig, use_container_width=True)
 
-        dfo['Ventes'] = dfo['Ventes'].str.replace(' €', '')
+        if dfo['Ventes'].dtype == 'object':
+            dfo['Ventes'] = dfo['Ventes'].str.replace(' €', '')
 
         st.write(dfo['Ventes'])
 
