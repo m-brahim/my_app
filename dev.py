@@ -724,24 +724,25 @@ if selected3 == "Import":
             color_graph="rgba(0, 104, 201, 0.2)"
         )
         
+
+        with col_bar:
+            fig = px.bar(
+                dfo,
+                x="Pays/Région",
+                y="Quantité",
+                color="Pays/Région",
+                text="Quantité",
+            )
         
-        fig = px.bar(
-            dfo,
-            x="Pays/Région",
-            y="Quantité",
-            color="Pays/Région",
-            text="Quantité",  # Ajout de cette ligne pour afficher les valeurs lors du survol
-        )
-    
-        # Personnalisation du texte affiché lors du survol
-        fig.update_traces(texttemplate='%{text}', textposition='outside')
-        
-        # Configuration du texte lors du survol
-        fig.update_layout(
-            hoverlabel=dict(bgcolor="white", font_size=12, font_family="Arial")
-        )
-        
-        fig.show()
+            # Personnalisation du texte affiché lors du survol
+            fig.update_traces(texttemplate='%{text}', textposition='outside')
+            
+            # Configuration du texte lors du survol
+            fig.update_layout(
+                hoverlabel=dict(bgcolor="white", font_size=12, font_family="Arial")
+            )
+            
+            fig.show()
 
 
 
