@@ -726,22 +726,13 @@ if selected3 == "Import":
         
 
         with col_bar:
-            fig = px.bar(
-                dfo,
-                x="Pays/Région",
-                y="Quantité",
-                color="Pays/Région",
-                text="Quantité",
-            )
-        
-            # Personnalisation du texte affiché lors du survol
-            fig.update_traces(texttemplate='%{text}', textposition='outside')
-            
-            # Configuration du texte lors du survol
-            fig.update_layout(
-                hoverlabel=dict(bgcolor="white", font_size=12, font_family="Arial")
-            )
-            
+            # Agréger les quantités par pays
+            df_agg = dfo.groupby('Pays/Région').sum().reset_index()
+
+            # Créer un graphique à barres avec Plotly
+            fig = px.bar(df_agg, x='Pays/Région', y='Quantité', title='Quantités vendues par pays')
+
+            # Afficher le graphique dans l'application Streamlit
             st.plotly_chart(fig, use_container_width=True)
 
 
