@@ -742,7 +742,7 @@ if selected3 == "Import":
                 hoverlabel=dict(bgcolor="white", font_size=12, font_family="Arial")
             )
             
-            fig.show()
+            st.plotly_chart(fig, use_container_width=True)
 
 
 
