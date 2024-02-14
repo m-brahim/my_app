@@ -715,4 +715,16 @@ if selected3 == "Import":
         st.write(dfo['Prévision des ventes'])
         st.write(max_sales)
         
+        data = {'Prévision des ventes': ['€100', '€200', '€1 176', '€300', '€1 313']}
+        dfi = pd.DataFrame(data)
         
+        # Supprimer le symbole "€" et les espaces insécables, puis convertir en nombres
+        dfi['Prévision des ventes'] = df['Prévision des ventes'].str.replace('€', '').str.replace('\u202f', '').astype(int)
+        
+        # Trouver la valeur maximale
+        max_saless = dfi['Prévision des ventes'].max()
+
+        st.write(dfi)
+        st.write(max_saless)
+
+
