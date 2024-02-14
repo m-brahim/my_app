@@ -710,28 +710,28 @@ if selected3 == "Import":
         col_gauge1, col_gauge2 = st.columns([1,1])
 
         with col_gauge1 :    
-            dfo['Ventes'] = dfo['Ventes'].astype(str)
-            dfo['Ventes'] = dfo['Ventes'].str.replace('[^\d]', '', regex=True)
+            dfo['Prévision des ventes'] = dfo['Prévision des ventes'].astype(str)
+            dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('[^\d]', '', regex=True)
             
             # Convertir la colonne 'Ventes' en type numérique
-            dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
+            dfo['Prévision des ventes'] = pd.to_numeric(dfo['Prévision des ventes'], errors='coerce', downcast='integer')
                 
-            somme_ventes_client = dfo['Ventes'].sum()
+            somme_prév = dfo['Prévision des ventes'].sum()
     
             couleur_jauge = "red" 
             
-            if somme_ventes_client > 2000 :
+            if somme_prév > 2000 :
                 couleur_jauge = "green"
                 
     
                 # Création d'une jauge dynamique avec Plotly
                 fig_gauge = go.Figure(go.Indicator(
                     mode="gauge+number",
-                    value=somme_ventes_client,
+                    value=somme_prév,
                     number={'suffix': '€'},
                     domain={'x': [0, 1], 'y': [0, 1]},
-                    title={'text': "Montant global des ventes"},
-                    gauge={'axis': {'range': [0, 8000]},
+                    title={'text': "Montant prévisionnel des ventes"},
+                    gauge={'axis': {'range': [4, 9760]},
                            'steps': [
                                {'range': [0, 2000], 'color': "#faf1b7"},
                                {'range': [2000, 4000], 'color': "#f7e888"},
