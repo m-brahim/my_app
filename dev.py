@@ -713,7 +713,7 @@ if selected3 == "Import":
 
         st.write(dfo['Prévision des ventes'])
         
-
-
+        st.write(dfo['Prévision des ventes'].sum())
+        
 
     
