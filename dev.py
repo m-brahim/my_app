@@ -710,13 +710,13 @@ if selected3 == "Import":
         col_gauge1, col_gauge2 = st.columns([1,1])
 
         with col_gauge1 :    
-            df_filtre['Ventes'] = df_filtre['Ventes'].astype(str)
-            df_filtre['Ventes'] = df_filtre['Ventes'].str.replace('[^\d]', '', regex=True)
+            dfo['Ventes'] = dfo['Ventes'].astype(str)
+            dfo['Ventes'] = dfo['Ventes'].str.replace('[^\d]', '', regex=True)
             
             # Convertir la colonne 'Ventes' en type numérique
-            df_filtre['Ventes'] = pd.to_numeric(df_filtre['Ventes'], errors='coerce', downcast='integer')
+            dfo['Ventes'] = pd.to_numeric(o['Ventes'], errors='coerce', downcast='integer')
                 
-            somme_ventes_client = df_filtre['Ventes'].sum()
+            somme_ventes_client = do['Ventes'].sum()
     
             couleur_jauge = "red" 
             
