@@ -710,8 +710,11 @@ if selected3 == "Import":
 
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].astype(str)
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('[^\d]', '', regex=True)
-        
+        dfo['Prévision des ventes'] = pd.to_numeric(dfo['Prévision des ventes'])
+
+        total_sales = dfo['Prévision des ventes'].sum()
+
         st.write(dfo['Prévision des ventes'])
-        
+        st.write(total_sales)
 
     
