@@ -722,6 +722,8 @@ if selected3 == "Import":
         if dfo['Ventes'].dtype == 'object':
             dfo['Ventes'] = dfo['Ventes'].str.replace(' €', '')
 
-        st.write(dfo['Ventes'])
+        df_sum = dfo['Ventes'].sum()
 
+        st.write(dfo['Ventes'])
+        st.write(df_sum)
         
