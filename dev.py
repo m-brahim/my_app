@@ -710,34 +710,35 @@ if selected3 == "Import":
             color_graph="rgba(0, 104, 201, 0.2)"
         )  
 
+    col_gauge1, col_gauge2 = st.columns([1,1])
 
-        def plot_gauge(label, value, max_value, color):
-            fig = go.Figure(go.Indicator(
-                mode = "gauge+number",
-                value = value,
-                domain = {'x': [0, 1], 'y': [0, 1]},
-                title = {'text': label},
-                gauge = {'axis': {'range': [None, max_value]},
-                         'bar': {'color': color},
-                         'steps' : [
-                             {'range': [0, max_value/3], 'color': "lightgray"},
-                             {'range': [max_value/3, 2*max_value/3], 'color': "lightgreen"},
-                             {'range': [2*max_value/3, max_value], 'color': "lightblue"}],
-                         'threshold' : {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': max_value}}))
+    def plot_gauge(label, value, max_value, color):
+        fig = go.Figure(go.Indicator(
+            mode = "gauge+number",
+            value = value,
+            domain = {'x': [0, 1], 'y': [0, 1]},
+            title = {'text': label},
+            gauge = {'axis': {'range': [None, max_value]},
+                     'bar': {'color': color},
+                     'steps' : [
+                         {'range': [0, max_value/3], 'color': "lightgray"},
+                         {'range': [max_value/3, 2*max_value/3], 'color': "lightgreen"},
+                         {'range': [2*max_value/3, max_value], 'color': "lightblue"}],
+                     'threshold' : {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': max_value}}))
 
-    
-         dfo['Profits'] = dfo['Profits'].str.replace('[^\d]', '', regex=True)
-         dfo['Profits'] = pd.to_numeric(dfo['Profits'], errors='coerce', downcast='integer')
-    
-        profits_total = dfo['Profits'].sum()
-        max_profit = dfo['Profits'].max()
+        with col_gauge1 :    
+            dfo['Profits'] = dfo['Profits'].str.replace('[^\d]', '', regex=True)
+            dfo['Profits'] = pd.to_numeric(dfo['Profits'], errors='coerce', downcast='integer')
         
-        plot_gauge("Profits", profits_total, max_profit, "rgba(255, 153, 51, 0.8)")
-    
-        nombre_clients = dfo['ID client'].nunique()
-        max_clients = dfo['ID client'].count()
-        
-        plot_gauge("Nombre de clients", nombre_clients, max_clients, "rgba(153, 204, 255, 0.8)")
+            profits_total = dfo['Profits'].sum()
+            max_profit = dfo['Profits'].max()
+            
+            plot_gauge("Profits", profits_total, max_profit, "rgba(255, 153, 51, 0.8)")
+
+        with col_gauge2:
+            nombre_clients = dfo['ID client'].nunique()
+            max_clients = dfo['ID client'].count()
+            plot_gauge("Nombre de clients", nombre_clients, max_clients, "rgba(153, 204, 255, 0.8)")
         
 
 
