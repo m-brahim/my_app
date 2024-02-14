@@ -644,7 +644,7 @@ if selected3 == "Import":
     st.dataframe(dfo, 
                  width=1426,
                  column_config={
-                    "ID ligne" : st.column_config.NumberColumn(format="%d"),
+                    "ID ligne" : st.column_config.NumberColumn(format="%d")
                  },
                 )
 
@@ -706,50 +706,13 @@ if selected3 == "Import":
             show_graph=True, 
             color_graph="rgba(0, 104, 201, 0.2)"
         )
+        
 
-        col_gauge1, col_gauge2 = st.columns([1,1])
+        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].astype(str)
+        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('[^\d]', '', regex=True)
 
-        with col_gauge1 :    
-            dfo['Prévision des ventes'] = dfo['Prévision des ventes'].astype(str)
-            dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('[^\d]', '', regex=True)
-            
-            # Convertir la colonne 'Ventes' en type numérique
-            dfo['Prévision des ventes'] = pd.to_numeric(dfo['Prévision des ventes'], errors='coerce', downcast='integer')
-                
-            somme_prév = dfo['Prévision des ventes'].sum()
-    
-            couleur_jauge = "red" 
-            
-            if somme_prév > 2000 :
-                couleur_jauge = "green"
-                
-    
-                # Création d'une jauge dynamique avec Plotly
-                fig_gauge = go.Figure(go.Indicator(
-                    mode="gauge+number",
-                    value=somme_prév,
-                    number={'suffix': '€'},
-                    domain={'x': [0, 1], 'y': [0, 1]},
-                    title={'text': "Montant prévisionnel des ventes"},
-                    gauge={'axis': {'range': [4, 9760]},
-                           'steps': [
-                               {'range': [0, 2000], 'color': "#faf1b7"},
-                               {'range': [2000, 4000], 'color': "#f7e888"},
-                               {'range': [4000, 6000], 'color': "#ffd54d"},
-                               {'range': [6000, 8000], 'color': "#fcc200"}],
-                           'threshold': {'line': {'color': "black", 'width': 4}, 'thickness': 0.75, 'value': somme_prév}
-                           }
-                ))
-    
-                fig_gauge.update_traces(gauge=dict(bar=dict(color=couleur_jauge)))
-                
-                fig_gauge.update_layout(
-                    height=200,
-                    font=dict(size=16),
-                    margin=dict(l=10, r=10, t=60, b=10, pad=8),
-                )
-
-                st.plotly_chart(fig_gauge, use_container_width=True)
+        st.write(dfo['Prévision des ventes'])
+        
 
 
 
