@@ -711,6 +711,9 @@ if selected3 == "Import":
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace(r'\s+', '', regex=True)
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('€', '')
 
+        format_fn = lambda x: "{:,.0f}".format(float(x))
+        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].apply(format_fn)
+
         st.write(dfo['Prévision des ventes'])
 
 
