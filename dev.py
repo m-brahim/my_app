@@ -735,11 +735,9 @@ if selected3 == "Import":
             data = data.sort_values(by='Quantité', ascending=False)
 
             # Créer le graphique en barres avec Plotly
-            fig = px.bar(data, x='Pays/Région', y='Quantité', color='Quantité', color_continuous_scale=['#ffe680', '#fcc200'], labels={'Quantité': 'Quantité vendue', 'Pays/Région': 'Pays'})
+            fig = px.bar(data, x='Pays/Région', y='Quantité', title='Quantités vendues par pays', title_x=0.4, color='Quantité', color_continuous_scale=['#ffe680', '#fcc200'], labels={'Quantité': 'Quantité vendue', 'Pays/Région': 'Pays'})
 
             fig.update_layout(yaxis_tickformat='%d')
-
-            
             
             # Afficher le graphique avec Streamlit
             st.plotly_chart(fig)
