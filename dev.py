@@ -713,8 +713,9 @@ if selected3 == "Import":
             return pd.to_numeric(colonne.str.replace('[^\d-]', '', regex=True), errors='coerce')
 
         dfo['Prévision des ventes'] = str_to_numeric(dfo['Prévision des ventes'])
+        sum_sales = dfo['Prévision des ventes'].sum()
         st.write(dfo['Prévision des ventes'])
-
+        st.write(sum_sales)
 
 
 
