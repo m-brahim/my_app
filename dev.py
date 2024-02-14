@@ -708,11 +708,9 @@ if selected3 == "Import":
         )
         
 
-        df['Prévision des ventes'] = df['Prévision des ventes'].str.replace('€', '').str.replace('\u202f', '').astype(float)
-
-        total_sales = dfo['Prévision des ventes'].sum()
+        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('[^\d]', '', regex=True)
 
         st.write(dfo['Prévision des ventes'])
-        st.write(total_sales)
+
 
     
