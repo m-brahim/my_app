@@ -725,16 +725,23 @@ if selected3 == "Import":
         )
         
         
-        with col_bar : 
-            fig = px.bar(
+        fig = px.bar(
             dfo,
             x="Pays/Région",
             y="Quantité",
             color="Pays/Région",
-            )
+            text="Quantité",  # Ajout de cette ligne pour afficher les valeurs lors du survol
+        )
+    
+        # Personnalisation du texte affiché lors du survol
+        fig.update_traces(texttemplate='%{text}', textposition='outside')
         
-            fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
-            st.plotly_chart(fig, use_container_width=True)
+        # Configuration du texte lors du survol
+        fig.update_layout(
+            hoverlabel=dict(bgcolor="white", font_size=12, font_family="Arial")
+        )
+        
+        fig.show()
 
 
 
