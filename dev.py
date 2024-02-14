@@ -648,55 +648,52 @@ if selected3 == "Import":
                  },
                 )
 
-
     col_metric, col_bar = st.columns([1,1])
     with col_metric:
         
         def plot_metric(label, value, prefix="", suffix="", show_graph=False, color_graph=""):
-                fig = go.Figure()
-            
+            fig = go.Figure()
+        
+            fig.add_trace(
+                go.Indicator(
+                    value=value,
+                    gauge={"axis": {"visible": False}},
+                    number={
+                        "prefix": prefix,
+                        "suffix": suffix,
+                        "font.size": 28,
+                    },
+                    title={
+                        "text": label,
+                        "font": {"size": 24},
+                    },
+                )
+            )
+        
+            if show_graph:
                 fig.add_trace(
-                    go.Indicator(
-                        value=value,
-                        gauge={"axis": {"visible": False}},
-                        number={
-                            "prefix": prefix,
-                            "suffix": suffix,
-                            "font.size": 28,
-                        },
-                        title={
-                            "text": label,
-                            "font": {"size": 24},
+                    go.Scatter(
+                        y=random.sample(range(0, 101), 50),
+                        hoverinfo="skip",
+                        fill="tozeroy",
+                        fillcolor=color_graph,
+                        line={
+                            "color": color_graph,
                         },
                     )
                 )
-            
-                if show_graph:
-                    fig.add_trace(
-                        go.Scatter(
-                            y=random.sample(range(0, 101), 50),
-                            hoverinfo="skip",
-                            fill="tozeroy",
-                            fillcolor=color_graph,
-                            line={
-                                "color": color_graph,
-                            },
-                        )
-                    )
-            
-                fig.update_xaxes(visible=False, fixedrange=True)
-                fig.update_yaxes(visible=False, fixedrange=True)
-                fig.update_layout(
-                    margin=dict(t=30, b=0),
-                    showlegend=False,
-                    plot_bgcolor="white",
-                    height=100,
-                )
-            
-                st.plotly_chart(fig, use_container_width=True)
+        
+            fig.update_xaxes(visible=False, fixedrange=True)
+            fig.update_yaxes(visible=False, fixedrange=True)
+            fig.update_layout(
+                margin=dict(t=30, b=0),
+                showlegend=False,
+                plot_bgcolor="white",
+                height=100,
+            )
+        
+            st.plotly_chart(fig, use_container_width=True)
 
-
-          
         dfo['Ventes'] = dfo['Ventes'].str.replace('[^\d]', '', regex=True)
         dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
         
@@ -708,41 +705,40 @@ if selected3 == "Import":
             suffix="€", 
             show_graph=True, 
             color_graph="rgba(0, 104, 201, 0.2)"
-        )  
+        )
 
-    col_gauge1, col_gauge2 = st.columns([1,1])
+        col_gauge1, col_gauge2 = st.columns([1,1])
 
-    def plot_gauge(label, value, max_value, color):
-        fig = go.Figure(go.Indicator(
-            mode = "gauge+number",
-            value = value,
-            domain = {'x': [0, 1], 'y': [0, 1]},
-            title = {'text': label},
-            gauge = {'axis': {'range': [None, max_value]},
-                     'bar': {'color': color},
-                     'steps' : [
-                         {'range': [0, max_value/3], 'color': "lightgray"},
-                         {'range': [max_value/3, 2*max_value/3], 'color': "lightgreen"},
-                         {'range': [2*max_value/3, max_value], 'color': "lightblue"}],
-                     'threshold' : {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': max_value}}))
+        def plot_gauge(label, value, max_value, color):
+            fig = go.Figure(go.Indicator(
+                mode = "gauge+number",
+                value = value,
+                domain = {'x': [0, 1], 'y': [0, 1]},
+                title = {'text': label},
+                gauge = {'axis': {'range': [None, max_value]},
+                         'bar': {'color': color},
+                         'steps' : [
+                             {'range': [0, max_value/3], 'color': "lightgray"},
+                             {'range': [max_value/3, 2*max_value/3], 'color': "lightgreen"},
+                             {'range': [2*max_value/3, max_value], 'color': "lightblue"}],
+                         'threshold' : {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': max_value}}))
 
-        with col_gauge1 :    
-            dfo['Profits'] = dfo['Profits'].str.replace('[^\d]', '', regex=True)
-            dfo['Profits'] = pd.to_numeric(dfo['Profits'], errors='coerce', downcast='integer')
-        
-            profits_total = dfo['Profits'].sum()
-            max_profit = dfo['Profits'].max()
+            with col_gauge1 :    
+                dfo['Profits'] = dfo['Profits'].str.replace('[^\d]', '', regex=True)
+                dfo['Profits'] = pd.to_numeric(dfo['Profits'], errors='coerce', downcast='integer')
             
-            plot_gauge("Profits", profits_total, max_profit, "rgba(255, 153, 51, 0.8)")
+                profits_total = dfo['Profits'].sum()
+                max_profit = dfo['Profits'].max()
+                
+                plot_gauge("Profits", profits_total, max_profit, "rgba(255, 153, 51, 0.8)")
 
-        with col_gauge2:
-            nombre_clients = dfo['ID client'].nunique()
-            max_clients = dfo['ID client'].count()
-            plot_gauge("Nombre de clients", nombre_clients, max_clients, "rgba(153, 204, 255, 0.8)")
-        
+            with col_gauge2:
+                nombre_clients = dfo['ID client'].nunique()
+                max_clients = dfo['ID client'].count()
+                plot_gauge("Nombre de clients", nombre_clients, max_clients, "rgba(153, 204, 255, 0.8)")
+    
 
-
-    with col_bar :
+    with col_bar:
         fig = px.bar(
             dfo,
             x="Pays/Région",
@@ -751,4 +747,5 @@ if selected3 == "Import":
         )
         fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
         st.plotly_chart(fig, use_container_width=True)
+
     
