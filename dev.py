@@ -719,13 +719,8 @@ if selected3 == "Import":
             fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
             st.plotly_chart(fig, use_container_width=True)
 
-        if dfo['Ventes'].dtype == 'object':
-            dfo['Ventes'] = dfo['Ventes'].str.replace(' €', '')
-            dfo['Ventes'] = dfo['Ventes'].str.replace('.', '')
-
         df_sum = dfo['Ventes'].sum()
-
-        st.write(dfo['Ventes'])
+        
         st.write(df_sum)
         
         
