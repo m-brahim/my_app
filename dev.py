@@ -710,6 +710,9 @@ if selected3 == "Import":
             show_graph=True, 
             color_graph="rgba(0, 104, 201, 0.2)"
         )
+
+        st.subheader("")
+        st.subheader("")
         
         plot_metric(
             "Chiffre d'affaires prévisionnel", 
