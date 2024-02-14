@@ -710,9 +710,11 @@ if selected3 == "Import":
 
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('€', '').str.replace('\u202f', '').astype(int)
         max_sales = dfo['Prévision des ventes'].max()
+        sum_sales = dfo['Prévision des ventes'].sum()
         
         st.write(dfo['Prévision des ventes'])
         st.write(max_sales)
+        st.write(sum_sales)
         
 
 
