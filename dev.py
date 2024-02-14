@@ -709,7 +709,7 @@ if selected3 == "Import":
         
     
 
-        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('€', '').str.strip().astype(int)
+        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('€', '').str.replace(r'\D', '', regex=True).str.strip().astype(int)
 
         max_sales = dfo['Prévision des ventes'].max()
         sum_sales = dfo['Prévision des ventes'].sum()
