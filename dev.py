@@ -648,7 +648,8 @@ if selected3 == "Import":
                  },
                 )
 
-    col_metric, col_bar = st.columns([1,1])
+    col_metric, col_space, col_bar = st.columns([1,0.2,1])
+    
     with col_metric:
         
         def plot_metric(label, value, prefix="", suffix="", show_graph=False, color_graph=""):
