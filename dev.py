@@ -711,7 +711,9 @@ if selected3 == "Import":
             color_graph="rgba(0, 104, 201, 0.2)"
         )
 
-
+        
+        st.subheader("")
+        
         plot_metric(
             "Chiffre d'affaires prévisionnel", 
             chiffre_affaires_prév, 
@@ -732,12 +734,7 @@ if selected3 == "Import":
             fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
             st.plotly_chart(fig, use_container_width=True)
 
-        
-        datav = dfo['Ventes'].dtype
-        datapv = dfo['Prévision des ventes'].dtype
-        
-        st.write(datav)
-        st.write(datapv)
+
 
         
 
