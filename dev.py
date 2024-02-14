@@ -727,14 +727,14 @@ if selected3 == "Import":
 
         with col_bar:
             # Grouper les quantités vendues par pays
-            data = dfo.groupby('Pays/Région')['Quantité'].sum()
+            data = dfo.groupby('Pays/Région')['Quantité'].sum().reset_index()
             
-            # Convertir en DataFrame
+            # Créer le graphique en barres avec Plotly
             fig = px.bar(data, x='Pays/Région', y='Quantité', labels={'Quantité': 'Quantité vendue', 'Pays/Région': 'Pays/Région'})
             
-            # Afficher le graphique en barres
+            # Afficher le graphique avec Streamlit
             st.plotly_chart(fig)
-        
+                    
 
 
 
