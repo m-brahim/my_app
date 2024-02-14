@@ -702,6 +702,7 @@ if selected3 == "Import":
         chiffre_affaires = dfo['Ventes'].sum()
         chiffre_affaires_prév = dfo['Prévision des ventes'].sum()
 
+        st.subheader("")
         
         plot_metric(
             "Chiffre d'affaires réel", 
