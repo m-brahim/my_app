@@ -714,7 +714,8 @@ if selected3 == "Import":
 
         st.subheader("")
         st.subheader("")
-        
+        st.subheader("")
+
         plot_metric(
             "Chiffre d'affaires prévisionnel", 
             chiffre_affaires_prév, 
