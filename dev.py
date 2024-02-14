@@ -738,7 +738,7 @@ if selected3 == "Import":
             fig = px.bar(data, x='Pays/Région', y='Quantité', color='Quantité', color_continuous_scale=['#ffe680', '#fcc200'], labels={'Quantité': 'Quantité vendue', 'Pays/Région': 'Pays'})
 
             fig.update_layout(yaxis_tickformat='%d')
-            fig.update_layout(title='Quantités vendues par pays')
+            fig.update_layout(title='Quantités vendues par pays', title_x = 0.4)
             
             # Afficher le graphique avec Streamlit
             st.plotly_chart(fig)
