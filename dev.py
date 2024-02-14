@@ -722,8 +722,11 @@ if selected3 == "Import":
         if dfo['Ventes'].dtype == 'object':
             dfo['Ventes'] = dfo['Ventes'].str.replace(' €', '')
 
+        dfo['Ventes'] = dfo['Ventes'].str.replace(',', '')
+
         df_sum = dfo['Ventes'].sum()
 
         st.write(dfo['Ventes'])
         st.write(df_sum)
+        
         
