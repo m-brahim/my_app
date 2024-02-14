@@ -669,7 +669,7 @@ if selected3 == "Import":
                     },
                 )
             )
-        
+            
             if show_graph:
                 fig.add_trace(
                     go.Scatter(
@@ -709,19 +709,17 @@ if selected3 == "Import":
         
         
         dfi = dfo.copy()
-
+        
         
         def str_to_numeric(colonne):
             return pd.to_numeric(colonne.str.replace('[^\d-]', '', regex=True), errors='coerce')
 
-        dfo['Prévision des ventes'] = str_to_numeric(dfo['Prévision des ventes'])
-        sum_sales = dfo['Prévision des ventes'].sum()
-
-        sum_sales2 = dfo['Prévision des ventes'].sum()
+        dfo['Ventes'] = str_to_numeric(dfo['Ventes'])
+        sum_sales = dfo['Ventes'].sum()
         
-        st.write(dfo['Prévision des ventes'])
+        st.write(dfo['Ventes'])
         st.write(sum_sales)
-        st.write(sum_sales2)
+
         
 
 
