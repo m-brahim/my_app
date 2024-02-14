@@ -726,14 +726,16 @@ if selected3 == "Import":
         
 
         with col_bar:
-            # Grouper les quantités vendues par pays
-            data = dfo.groupby('Pays/Région')['Quantité'].sum().reset_index()
-            
+            # Trier les données par quantité décroissante
             dfo = dfo.sort_values(by=['Quantité'], ascending=False)
-            
+
+            # Grouper les quantités vendues par pays et trier en ordre décroissant
+            data = dfo.groupby('Pays/Région')['Quantité'].sum().reset_index()
+            data = data.sort_values(by='Quantité', ascending=False)
+
             # Créer le graphique en barres avec Plotly
             fig = px.bar(data, x='Pays/Région', y='Quantité', labels={'Quantité': 'Quantité vendue', 'Pays/Région': 'Pays/Région'})
-            
+
             # Afficher le graphique avec Streamlit
             st.plotly_chart(fig)
                     
