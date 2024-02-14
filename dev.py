@@ -716,7 +716,7 @@ if selected3 == "Import":
             # Convertir la colonne 'Ventes' en type numérique
             dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
                 
-            somme_ventes_client = do['Ventes'].sum()
+            somme_ventes_client = dfo['Ventes'].sum()
     
             couleur_jauge = "red" 
             
