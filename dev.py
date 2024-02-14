@@ -650,7 +650,7 @@ if selected3 == "Import":
 
 
     col_metric, col_bar = st.columns([1,1])
-        with col_metric:
+    with col_metric:
         
         def plot_metric(label, value, prefix="", suffix="", show_graph=False, color_graph=""):
                 fig = go.Figure()
