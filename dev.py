@@ -652,53 +652,38 @@ if selected3 == "Import":
     col_metric, col_bar = st.columns([1,1])
     with col_metric:
         
-        def plot_metric(label, value, prefix="", suffix="", show_graph=False, color_graph=""):
-                fig = go.Figure()
-            
-                fig.add_trace(
-                    go.Indicator(
-                        value=value,
-                        gauge={"axis": {"visible": False}},
-                        number={
-                            "prefix": prefix,
-                            "suffix": suffix,
-                            "font.size": 28,
-                        },
-                        title={
-                            "text": label,
-                            "font": {"size": 24},
-                        },
-                    )
-                )
-            
-                if show_graph:
-                    fig.add_trace(
-                        go.Scatter(
-                            y=random.sample(range(0, 101), 50),
-                            hoverinfo="skip",
-                            fill="tozeroy",
-                            fillcolor=color_graph,
-                            line={
-                                "color": color_graph,
-                            },
-                        )
-                    )
-            
-                fig.update_xaxes(visible=False, fixedrange=True)
-                fig.update_yaxes(visible=False, fixedrange=True)
-                fig.update_layout(
-                    margin=dict(t=30, b=0),
-                    showlegend=False,
-                    plot_bgcolor="white",
-                    height=100,
-                )
-            
-                st.plotly_chart(fig, use_container_width=True)
-    
+        def plot_gauge_and_number(label, value, prefix="", suffix="", max_value=None):
+            # Créer une jauge
+            gauge_fig = go.Figure(go.Indicator(
+                mode = "gauge+number",
+                value = value,
+                domain = {'x': [0, 1], 'y': [0, 1]},
+                title = {'text': label},
+                gauge = {'axis': {'range': [None, max_value] if max_value else [None, max(value, 100)]}}
+            ))
+
+            st.plotly_chart(gauge_fig, use_container_width=True)
         
-        dfo['Ventes'] = dfo['Ventes'].str.replace('[^\d]', '', regex=True)
-        dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
+            # Afficher le nombre
+            st.write(f"{prefix}{value}{suffix}")
+
+        # Calcul du nombre de clients (count distinct de ID client)
+        nombre_clients = dfo['ID client'].nunique()
+        plot_gauge_and_number(
+            "Nombre de clients", 
+            nombre_clients
+        )
         
+        # Calcul du montant des profits (somme de Profit)
+        dfo['Profit'] = dfo['Profit'].str.replace('[^\d]', '', regex=True)
+        dfo['Profit'] = pd.to_numeric(dfo['Profit'], errors='coerce', downcast='integer')
+        montant_profits = dfo['Profit'].sum()
+        plot_gauge_and_number(
+            "Montant des profits", 
+            montant_profits, 
+            suffix="€"
+        )
+
         chiffre_affaires = dfo['Ventes'].sum()
         
         plot_metric(
@@ -710,31 +695,6 @@ if selected3 == "Import":
         )
 
 
-        col_gauge1, col_gauge2 = st.columns([1,1])
-
-        with col_gauge1 :
-            # Calcul du nombre de clients (count distinct de ID client)
-            nombre_clients = dfo['ID client'].nunique()
-            plot_metric(
-                "Nombre de clients", 
-                nombre_clients, 
-                show_graph=False
-            )
-
-        with col_gauge2:
-            # Calcul du montant des profits (somme de Profit)
-            dfo['Profit'] = dfo['Profit'].str.replace('[^\d]', '', regex=True)
-            dfo['Profit'] = pd.to_numeric(dfo['Profit'], errors='coerce', downcast='integer')
-            montant_profits = dfo['Profit'].sum()
-            plot_metric(
-                "Montant des profits", 
-                montant_profits, 
-                suffix="€", 
-                show_graph=False
-            )
-
-
-
     with col_bar :
         fig = px.bar(
             dfo,
@@ -744,4 +704,5 @@ if selected3 == "Import":
         )
         fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
         st.plotly_chart(fig, use_container_width=True)
+
     
