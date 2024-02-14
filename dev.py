@@ -710,7 +710,7 @@ if selected3 == "Import":
 
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace(' ', '')
 
-        
+        st.write(dfo['Prévision des ventes'])
 
 
 
