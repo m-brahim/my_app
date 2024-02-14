@@ -707,8 +707,10 @@ if selected3 == "Import":
             color_graph="rgba(0, 104, 201, 0.2)"
         )
         
+    
 
-        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('€', '').str.replace('\u202f', '').astype(int)
+        
+
         max_sales = dfo['Prévision des ventes'].max()
         sum_sales = dfo['Prévision des ventes'].sum()
         
