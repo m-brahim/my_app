@@ -709,36 +709,48 @@ if selected3 == "Import":
 
         col_gauge1, col_gauge2 = st.columns([1,1])
 
-        def plot_gauge(label, value, max_value, color):
-            fig = go.Figure(go.Indicator(
-                mode = "gauge+number",
-                value = value,
-                domain = {'x': [0, 1], 'y': [0, 1]},
-                title = {'text': label},
-                gauge = {'axis': {'range': [None, max_value]},
-                         'bar': {'color': color},
-                         'steps' : [
-                             {'range': [0, max_value/3], 'color': "lightgray"},
-                             {'range': [max_value/3, 2*max_value/3], 'color': "lightgreen"},
-                             {'range': [2*max_value/3, max_value], 'color': "lightblue"}],
-                         'threshold' : {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': max_value}}))
-
-            return fig
-
         with col_gauge1 :    
-            dfo['Profit'] = dfo['Profit'].str.replace('[^\d]', '', regex=True)
-            dfo['Profit'] = pd.to_numeric(dfo['Profit'], errors='coerce', downcast='integer')
-        
-            profit_total = dfo['Profit'].sum()
-            max_profit = dfo['Profit'].max()
+            df_filtre['Ventes'] = df_filtre['Ventes'].astype(str)
+            df_filtre['Ventes'] = df_filtre['Ventes'].str.replace('[^\d]', '', regex=True)
             
-            gauge1 = plot_gauge("Profit", profit_total, max_profit, "rgba(255, 153, 51, 0.8)")
-            st.plotly_chart(gauge1, use_container_width=True)
+            # Convertir la colonne 'Ventes' en type numérique
+            df_filtre['Ventes'] = pd.to_numeric(df_filtre['Ventes'], errors='coerce', downcast='integer')
+                
+            somme_ventes_client = df_filtre['Ventes'].sum()
+    
+            couleur_jauge = "red" 
+            
+            if somme_ventes_client > 2000 :
+                couleur_jauge = "green"
+                
+    
+                # Création d'une jauge dynamique avec Plotly
+                fig_gauge = go.Figure(go.Indicator(
+                    mode="gauge+number",
+                    value=somme_ventes_client,
+                    number={'suffix': '€'},
+                    domain={'x': [0, 1], 'y': [0, 1]},
+                    title={'text': "Montant global des ventes"},
+                    gauge={'axis': {'range': [0, 8000]},
+                           'steps': [
+                               {'range': [0, 2000], 'color': "#faf1b7"},
+                               {'range': [2000, 4000], 'color': "#f7e888"},
+                               {'range': [4000, 6000], 'color': "#ffd54d"},
+                               {'range': [6000, 8000], 'color': "#fcc200"}],
+                           'threshold': {'line': {'color': "black", 'width': 4}, 'thickness': 0.75, 'value': somme_ventes_client}
+                           }
+                ))
+    
+                fig_gauge.update_traces(gauge=dict(bar=dict(color=couleur_jauge)))
+                
+                fig_gauge.update_layout(
+                    height=200,
+                    font=dict(size=16),
+                    margin=dict(l=10, r=10, t=60, b=10, pad=8),
+                )
 
-        with col_gauge2:
-            nombre_clients = dfo['ID client'].nunique()
-            max_clients = dfo['ID client'].count()
-            gauge2 = plot_gauge("Nombre de clients", nombre_clients, max_clients, "rgba(153, 204, 255, 0.8)")
-            st.plotly_chart(gauge2, use_container_width=True)
+                st.plotly_chart(fig_gauge, use_container_width=True)
+
+
 
     
