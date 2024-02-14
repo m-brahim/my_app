@@ -709,8 +709,10 @@ if selected3 == "Import":
         
 
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('[^\d]', '', regex=True)
-
+        max_sales = dfo['Prévision des ventes'].max()
+        
+        
         st.write(dfo['Prévision des ventes'])
-
-
-    
+        st.write(max_sales)
+        
+        
