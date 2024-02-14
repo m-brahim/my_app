@@ -710,7 +710,7 @@ if selected3 == "Import":
             chiffre_affaires, 
             suffix="€", 
             show_graph=True, 
-            color_graph="rgba(243,189,29,0.6)"
+            color_graph="rgba(252, 194, 0, 0.6)"
         )
 
         st.subheader("")
@@ -722,7 +722,7 @@ if selected3 == "Import":
             chiffre_affaires_prév, 
             suffix="€", 
             show_graph=True, 
-            color_graph="rgba(243,189,29,0.6)"
+            color_graph="rgba(252, 194, 0, 0.6)"
         )
         
 
@@ -738,7 +738,8 @@ if selected3 == "Import":
             fig = px.bar(data, x='Pays/Région', y='Quantité', color='Quantité', color_continuous_scale=['#ffe680', '#fcc200'], labels={'Quantité': 'Quantité vendue', 'Pays/Région': 'Pays'})
 
             fig.update_layout(yaxis_tickformat='%d')
-            fig.update_traces(hovertemplate='%{y:,d}')
+
+            
             
             # Afficher le graphique avec Streamlit
             st.plotly_chart(fig)
