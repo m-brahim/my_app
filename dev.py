@@ -709,9 +709,11 @@ if selected3 == "Import":
         
         
 
-        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('\u202f', '')
-        dfo['Prévision des ventes'] = pd.to_numeric(dfo['Prévision des ventes'], errors='coerce')
+        def str_to_numeric(colonne):
+            return pd.to_numeric(colonne.str.replace('[^\d-]', '', regex=True), errors='coerce')
 
+        str_to_numeric(Prévision des ventes)
+        
         st.write(dfo['Prévision des ventes'])
 
 
