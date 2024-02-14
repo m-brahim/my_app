@@ -709,7 +709,7 @@ if selected3 == "Import":
             chiffre_affaires, 
             suffix="€", 
             show_graph=True, 
-            color_graph="rgba(0, 104, 201, 0.2)"
+            color_graph="rgba(243,189,29,0.8)"
         )
 
         st.subheader("")
@@ -721,7 +721,7 @@ if selected3 == "Import":
             chiffre_affaires_prév, 
             suffix="€", 
             show_graph=True, 
-            color_graph="rgba(0, 104, 201, 0.2)"
+            color_graph="rgba(243,189,29,0.8)"
         )
         
 
