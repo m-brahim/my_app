@@ -737,7 +737,7 @@ if selected3 == "Import":
                                {'range': [2000, 4000], 'color': "#f7e888"},
                                {'range': [4000, 6000], 'color': "#ffd54d"},
                                {'range': [6000, 8000], 'color': "#fcc200"}],
-                           'threshold': {'line': {'color': "black", 'width': 4}, 'thickness': 0.75, 'value': somme_ventes_client}
+                           'threshold': {'line': {'color': "black", 'width': 4}, 'thickness': 0.75, 'value': somme_prév}
                            }
                 ))
     
