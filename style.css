@@ -165,8 +165,8 @@ div[data-testid="stTable"] td, div[data-testid="stTable"] th {
 /* page 2 */
 
 [class="user-select-none svg-container"]{
-    margin-top : 50 px;
-    margin-bottom : 50 px;
+    margin-top : 50 px !important;
+    margin-bottom : 50 px !important;
 }
         
 
