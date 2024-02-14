@@ -720,10 +720,12 @@ if selected3 == "Import":
             st.plotly_chart(fig, use_container_width=True)
 
         df_sum = dfo['Ventes'].sum()
-
+        df_max = dfo['Ventes'].max()
+        
         type_de_donnees = dfo['Ventes'].dtype
         
         
         st.write(df_sum)
         st.write(type_de_donnees)
+        st.write(df_max)
         
