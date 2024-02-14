@@ -708,19 +708,16 @@ if selected3 == "Import":
         )
         
         
-        dfi = dfo.copy()
+        with col_bar : 
+            fig = px.bar(
+            dfo,
+            x="Pays/Région",
+            y="Quantité",
+            color="Pays/Région",
+            )
         
-        
-        def str_to_numeric(colonne):
-            return pd.to_numeric(colonne.str.replace('[^\d-]', '', regex=True), errors='coerce')
-
-        dfo['Ventes'] = str_to_numeric(dfo['Ventes'])
-        sum_sales = dfo['Ventes'].sum()
-        
-        st.write(dfo['Ventes'])
-        st.write(sum_sales)
-
-        
+            fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
+            st.plotly_chart(fig, use_container_width=True)
 
 
 
