@@ -711,19 +711,19 @@ if selected3 == "Import":
         )  
 
 
-            def plot_gauge(label, value, max_value, color):
-                fig = go.Figure(go.Indicator(
-                    mode = "gauge+number",
-                    value = value,
-                    domain = {'x': [0, 1], 'y': [0, 1]},
-                    title = {'text': label},
-                    gauge = {'axis': {'range': [None, max_value]},
-                             'bar': {'color': color},
-                             'steps' : [
-                                 {'range': [0, max_value/3], 'color': "lightgray"},
-                                 {'range': [max_value/3, 2*max_value/3], 'color': "lightgreen"},
-                                 {'range': [2*max_value/3, max_value], 'color': "lightblue"}],
-                             'threshold' : {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': max_value}}))
+        def plot_gauge(label, value, max_value, color):
+            fig = go.Figure(go.Indicator(
+                mode = "gauge+number",
+                value = value,
+                domain = {'x': [0, 1], 'y': [0, 1]},
+                title = {'text': label},
+                gauge = {'axis': {'range': [None, max_value]},
+                         'bar': {'color': color},
+                         'steps' : [
+                             {'range': [0, max_value/3], 'color': "lightgray"},
+                             {'range': [max_value/3, 2*max_value/3], 'color': "lightgreen"},
+                             {'range': [2*max_value/3, max_value], 'color': "lightblue"}],
+                         'threshold' : {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': max_value}}))
 
     
          dfo['Profits'] = dfo['Profits'].str.replace('[^\d]', '', regex=True)
