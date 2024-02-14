@@ -164,5 +164,7 @@ div[data-testid="stTable"] td, div[data-testid="stTable"] th {
 
 /* page 2 */
 
-
+[class="indicatorlayer"]{
+    font-weight : bold;
+}
     
