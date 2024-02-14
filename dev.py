@@ -723,29 +723,22 @@ if selected3 == "Import":
                              {'range': [2*max_value/3, max_value], 'color': "lightblue"}],
                          'threshold' : {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': max_value}}))
 
-            with col_gauge1 :    
-                dfo['Profits'] = dfo['Profits'].str.replace('[^\d]', '', regex=True)
-                dfo['Profits'] = pd.to_numeric(dfo['Profits'], errors='coerce', downcast='integer')
+            return fig
+
+        with col_gauge1 :    
+            dfo['Profits'] = dfo['Profits'].str.replace('[^\d]', '', regex=True)
+            dfo['Profits'] = pd.to_numeric(dfo['Profits'], errors='coerce', downcast='integer')
+        
+            profits_total = dfo['Profits'].sum()
+            max_profit = dfo['Profits'].max()
             
-                profits_total = dfo['Profits'].sum()
-                max_profit = dfo['Profits'].max()
-                
-                plot_gauge("Profits", profits_total, max_profit, "rgba(255, 153, 51, 0.8)")
+            gauge1 = plot_gauge("Profits", profits_total, max_profit, "rgba(255, 153, 51, 0.8)")
+            st.plotly_chart(gauge1, use_container_width=True)
 
-            with col_gauge2:
-                nombre_clients = dfo['ID client'].nunique()
-                max_clients = dfo['ID client'].count()
-                plot_gauge("Nombre de clients", nombre_clients, max_clients, "rgba(153, 204, 255, 0.8)")
-    
-
-    with col_bar:
-        fig = px.bar(
-            dfo,
-            x="Pays/Région",
-            y="Quantité",
-            color="Pays/Région",
-        )
-        fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
-        st.plotly_chart(fig, use_container_width=True)
+        with col_gauge2:
+            nombre_clients = dfo['ID client'].nunique()
+            max_clients = dfo['ID client'].count()
+            gauge2 = plot_gauge("Nombre de clients", nombre_clients, max_clients, "rgba(153, 204, 255, 0.8)")
+            st.plotly_chart(gauge2, use_container_width=True)
 
     
