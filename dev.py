@@ -698,10 +698,21 @@ if selected3 == "Import":
         dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
         
         chiffre_affaires = dfo['Ventes'].sum()
+        chiffre_affaires_prév = dfo['Prévision des ventes'].sum()
+
         
         plot_metric(
-            "Chiffre d'affaires", 
+            "Chiffre d'affaires réel", 
             chiffre_affaires, 
+            suffix="€", 
+            show_graph=True, 
+            color_graph="rgba(0, 104, 201, 0.2)"
+        )
+
+
+        plot_metric(
+            "Chiffre d'affaires orévisionnel", 
+            chiffre_affaires_prév, 
             suffix="€", 
             show_graph=True, 
             color_graph="rgba(0, 104, 201, 0.2)"
@@ -725,4 +736,10 @@ if selected3 == "Import":
         
         st.write(datav)
         st.write(datapv)
+
         
+
+
+
+
+
