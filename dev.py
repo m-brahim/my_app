@@ -710,7 +710,7 @@ if selected3 == "Import":
 
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace(r'\s+', '', regex=True)
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('€', '')
-        dfo['Prévision des ventes'] = pd.to_numeric(dfo['Prévision des ventes'], errors='coerce', downcast='integer')
+        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].astype(int)
 
         sum_psales = dfo['Prévision des ventes'].sum()
 
