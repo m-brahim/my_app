@@ -726,13 +726,13 @@ if selected3 == "Import":
             return fig
 
         with col_gauge1 :    
-            dfo['Profits'] = dfo['Profits'].str.replace('[^\d]', '', regex=True)
-            dfo['Profits'] = pd.to_numeric(dfo['Profits'], errors='coerce', downcast='integer')
+            dfo['Profit'] = dfo['Profit'].str.replace('[^\d]', '', regex=True)
+            dfo['Profit'] = pd.to_numeric(dfo['Profit'], errors='coerce', downcast='integer')
         
-            profits_total = dfo['Profits'].sum()
-            max_profit = dfo['Profits'].max()
+            profit_total = dfo['Profit'].sum()
+            max_profit = dfo['Profit'].max()
             
-            gauge1 = plot_gauge("Profits", profits_total, max_profit, "rgba(255, 153, 51, 0.8)")
+            gauge1 = plot_gauge("Profit", profit_total, max_profit, "rgba(255, 153, 51, 0.8)")
             st.plotly_chart(gauge1, use_container_width=True)
 
         with col_gauge2:
