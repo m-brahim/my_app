@@ -712,8 +712,7 @@ if selected3 == "Import":
         def str_to_numeric(colonne):
             return pd.to_numeric(colonne.str.replace('[^\d-]', '', regex=True), errors='coerce')
 
-        str_to_numeric(Prévision des ventes)
-        
+        dfo['Prévision des ventes'] = str_to_numeric(dfo['Prévision des ventes'])
         st.write(dfo['Prévision des ventes'])
 
 
