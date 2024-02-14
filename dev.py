@@ -714,7 +714,7 @@ if selected3 == "Import":
             dfo['Ventes'] = dfo['Ventes'].str.replace('[^\d]', '', regex=True)
             
             # Convertir la colonne 'Ventes' en type numérique
-            dfo['Ventes'] = pd.to_numeric(o['Ventes'], errors='coerce', downcast='integer')
+            dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
                 
             somme_ventes_client = do['Ventes'].sum()
     
