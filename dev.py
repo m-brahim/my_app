@@ -719,13 +719,10 @@ if selected3 == "Import":
             fig.update_layout(title="Quantités vendues par pays",title_x=0.4)
             st.plotly_chart(fig, use_container_width=True)
 
-        df_sum = dfo['Ventes'].sum()
-        df_max = dfo['Ventes'].max()
         
-        type_de_donnees = dfo['Ventes'].dtype
+        datav = dfo['Ventes'].dtype
+        datapv = dfo['Prévision des ventes'].dtype
         
-        
-        st.write(df_sum)
-        st.write(type_de_donnees)
-        st.write(df_max)
+        st.write(datav)
+        st.write(datapv)
         
