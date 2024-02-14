@@ -696,6 +696,7 @@ if selected3 == "Import":
 
         dfo['Ventes'] = dfo['Ventes'].str.replace('[^\d]', '', regex=True)
         dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
+        dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('[^\d]', '', regex=True)
         dfo['Prévision des ventes'] = pd.to_numeric(dfo['Prévision des ventes'], errors='coerce', downcast='integer')
 
         chiffre_affaires = dfo['Ventes'].sum()
@@ -712,7 +713,7 @@ if selected3 == "Import":
 
 
         plot_metric(
-            "Chiffre d'affaires orévisionnel", 
+            "Chiffre d'affaires prévisionnel", 
             chiffre_affaires_prév, 
             suffix="€", 
             show_graph=True, 
