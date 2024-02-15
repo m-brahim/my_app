@@ -695,19 +695,22 @@ if selected3 == "Import":
         
             st.plotly_chart(fig, use_container_width=True)
 
+        
         dfo['Ventes'] = dfo['Ventes'].str.replace('[^\d]', '', regex=True)
         dfo['Ventes'] = pd.to_numeric(dfo['Ventes'], errors='coerce', downcast='integer')
         dfo['Prévision des ventes'] = dfo['Prévision des ventes'].str.replace('[^\d]', '', regex=True)
         dfo['Prévision des ventes'] = pd.to_numeric(dfo['Prévision des ventes'], errors='coerce', downcast='integer')
 
-        chiffre_affaires = dfo['Ventes'].sum()
-        chiffre_affaires_prév = dfo['Prévision des ventes'].sum()
+
+        df_2023 = dfo[pd.to_datetime(dfo['Date de commande'], format='%d/%m/%Y').dt.year == 2023]
+        chiffre_affaires_reel_2023 = df_2023['Ventes'].sum()
+        chiffre_affaires_previsionnel_2023 = df_2023['Prévision des ventes'].sum()
 
         st.subheader("")
         
         plot_metric(
             "Chiffre d'affaires réel", 
-            chiffre_affaires, 
+            chiffre_affaires_reel_2023, 
             suffix="€", 
             show_graph=True, 
             color_graph="rgba(252, 194, 0, 0.6)"
@@ -719,7 +722,7 @@ if selected3 == "Import":
 
         plot_metric(
             "Chiffre d'affaires prévisionnel", 
-            chiffre_affaires_prév, 
+            chiffre_affaires_previsionnel_2023, 
             suffix="€", 
             show_graph=True, 
             color_graph="rgba(252, 194, 0, 0.6)"
@@ -746,5 +749,5 @@ if selected3 == "Import":
 
 
 
-
+        
 
