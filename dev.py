@@ -761,8 +761,9 @@ if selected3 == "OpenAI":
 
 
     headers = {
-        authorization : st.secrets["OPENAI_API_KEY"],
-        authorization : st.secrets["OPENAI_ASSISTANT_ID"]
+        "authorization" : st.secrets["OPENAI_API_KEY"],
+        "authorization" : st.secrets["OPENAI_ASSISTANT_ID"]
+        "authorization" : st.secrets["MAPBOX_TOKEN"]
     }
     
     client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
