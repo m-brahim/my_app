@@ -750,18 +750,29 @@ if selected3 == "Import":
 
 
 
-if selected3 == "OpenAI":
-    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-    assistant_id = st.secrets["OPENAI_ASSISTANT_ID"]
 
-    assistant_state = "assistant"
-    thread_state = "thread"
-    conversation_state = "conversation"
-    last_openai_run_state = "last_openai_run"
-    map_state = "map"
-    markers_state = "markers"
+
+
+
+#######################################
+# PREREQUISITES
+#######################################
+
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+assistant_id = st.secrets["OPENAI_ASSISTANT_ID"]
+
+assistant_state = "assistant"
+thread_state = "thread"
+conversation_state = "conversation"
+last_openai_run_state = "last_openai_run"
+map_state = "map"
+markers_state = "markers"
+
+user_msg_input_key = "input_user_msg"
+
+if selected3 == "OpenAI":
     
-    user_msg_input_key = "input_user_msg"
     
     #######################################
     # SESSION STATE SETUP
