@@ -955,10 +955,3 @@ if selected3 == "OpenAI":
         args=(status_placeholder,),
     )
 
-
-    
-
-
-
-        
-
