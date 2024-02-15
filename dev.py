@@ -759,8 +759,8 @@ if selected3 == "OpenAI":
     # PREREQUISITES
     #######################################
 
-    client = st.secrets["OPENAI_API_KEY"]
-    
+    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
     assistant_id = st.secrets["OPENAI_ASSISTANT_ID"]
     
     assistant_state = "assistant"
