@@ -758,7 +758,7 @@ if selected3 == "Import":
 # PREREQUISITES
 #######################################
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="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")
 
 assistant_id = "asst_AAUXjO2r6idtVcIRejd6OkZb"
 
