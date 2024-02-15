@@ -13,3 +13,4 @@ seaborn
 numpy
 streamlit-aggrid
 duckdb
+openai
