@@ -753,31 +753,28 @@ if selected3 == "Import":
 
 
 
-
-#######################################
-# PREREQUISITES
-#######################################
-
-client = OpenAI(api_key=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)
-
-assistant_id = asst_AAUXjO2r6idtVcIRejd6OkZb
-
-assistant_state = "assistant"
-thread_state = "thread"
-conversation_state = "conversation"
-last_openai_run_state = "last_openai_run"
-map_state = "map"
-markers_state = "markers"
-
-user_msg_input_key = "input_user_msg"
-
 if selected3 == "OpenAI":
+    #######################################
+    # PREREQUISITES
+    #######################################
+
+    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
     
+    assistant_id = st.secrets["OPENAI_ASSISTANT_ID"]
     
+    assistant_state = "assistant"
+    thread_state = "thread"
+    conversation_state = "conversation"
+    last_openai_run_state = "last_openai_run"
+    map_state = "map"
+    markers_state = "markers"
+    
+    user_msg_input_key = "input_user_msg"
+
     #######################################
     # SESSION STATE SETUP
     #######################################
-    
+
     if (assistant_state not in st.session_state) or (thread_state not in st.session_state):
         st.session_state[assistant_state] = client.beta.assistants.retrieve(assistant_id)
         st.session_state[thread_state] = client.beta.threads.create()
@@ -801,7 +798,8 @@ if selected3 == "OpenAI":
     #######################################
     # TOOLS SETUP
     #######################################
-    
+
+
     def update_map_state(latitude, longitude, zoom):
         """OpenAI tool to update map in-app
         """
@@ -811,6 +809,7 @@ if selected3 == "OpenAI":
             "zoom": zoom,
         }
         return "Map updated"
+    
     
     def add_markers_state(latitudes, longitudes, labels):
         """OpenAI tool to update markers in-app
@@ -822,6 +821,7 @@ if selected3 == "OpenAI":
         }
         return "Markers added"
     
+    
     tool_to_function = {
         "update_map": update_map_state,
         "add_markers": add_markers_state,
@@ -831,14 +831,18 @@ if selected3 == "OpenAI":
     # HELPERS
     #######################################
 
+
     def get_assistant_id():
         return st.session_state[assistant_state].id
+    
     
     def get_thread_id():
         return st.session_state[thread_state].id
     
+    
     def get_run_id():
         return st.session_state[last_openai_run_state].id
+    
     
     def on_text_input(status_placeholder):
         """Callback method for any chat_input value change
@@ -904,25 +908,27 @@ if selected3 == "OpenAI":
             for m in client.beta.threads.messages.list(get_thread_id()).data
         ]
     
+    
     def on_reset_thread():
         client.beta.threads.delete(get_thread_id())
         st.session_state[thread_state] = client.beta.threads.create()
         st.session_state[conversation_state] = []
         st.session_state[last_openai_run_state] = None
-
+    
     #######################################
     # MAIN
     #######################################
-
+    
+    st.title("Wanderlust")
     left_col, right_col = st.columns(2)
-
+    
     with left_col:
         with st.container():
             for role, message in st.session_state[conversation_state]:
                 with st.chat_message(role):
                     st.write(message)
         status_placeholder = st.empty()
-
+    
     with right_col:
         fig = go.Figure(
             go.Scattermapbox(
@@ -958,7 +964,7 @@ if selected3 == "OpenAI":
         st.plotly_chart(
             fig, config={"displayModeBar": False}, use_container_width=True, key="plotly"
         )
-
+    
     st.chat_input(
         placeholder="Ask your question here",
         key=user_msg_input_key,
