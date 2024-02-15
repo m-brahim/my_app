@@ -975,7 +975,7 @@ if selected3 == "OpenAI":
         )
     
     st.chat_input(
-        placeholder="Ask your question here",
+        placeholder="Posez votre question ici",
         key=user_msg_input_key,
         on_submit=on_text_input,
         args=(status_placeholder,),
