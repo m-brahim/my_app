@@ -760,7 +760,7 @@ if selected3 == "OpenAI":
     #######################################
 
 
-    headers{
+    headers = {
         authorization : st.secrets["OPENAI_API_KEY"],
         authorization : st.secrets["OPENAI_ASSISTANT_ID"]
     }
