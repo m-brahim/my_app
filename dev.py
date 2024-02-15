@@ -14,7 +14,9 @@ import numpy as np
 from streamlit_option_menu import option_menu
 import random
 import duckdb
-
+from openai import OpenAI
+import time
+import json
 
 #config du titre de la page
 st.set_page_config("Suivi des ventes de la société", page_icon="", layout="wide")
@@ -52,8 +54,8 @@ col_title, col_logo = st.columns([3, 0.5])
 #une colonne pour le titre & une pour les listes déroulantes
 
 with st.sidebar:
-    selected3 = option_menu("Menu", ["Accueil", "Import",  "Tâches", 'Paramètres'], 
-    icons=['house', 'cloud-upload', "list-task", 'gear'], 
+    selected3 = option_menu("Menu", ["Accueil", "Import", "OpenAI", "Tâches", 'Paramètres'], 
+    icons=['house', 'cloud-upload', 'brain', 'list-task', 'gear'], 
     menu_icon="cast", default_index=0,
     styles={
         "container": {"border": "1px solid #CCC", "border-left": "0.5rem solid #000000", "border-radius": "5px", "box-shadow": "0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15)", "height" : "800px"},
@@ -746,6 +748,40 @@ if selected3 == "Import":
             # Afficher le graphique avec Streamlit
             st.plotly_chart(fig)
                     
+if selected3 == "OpenAI":
+    left_col, right_col = st.columns(2)
+
+    with left_col :
+        st.subheader("Conversation")
+
+
+    with right_col : 
+        fig = go.Figure(go.Scattermapbox())
+        fig.update_layout(
+            mapbox=dict(
+                accesstoken="pk.eyJ1IjoiYm1lZ2RvdWQiLCJhIjoiY2xuanpyd3l2MGljODJpcDJleWdzZGo0YyJ9.98itq-HdV3XiTvQ2_oP2rA",
+                center=go.layout.mapbox.Center(
+                    lat=45,
+                    lon=73
+                ),
+            ),
+            margin=dict(l=0,r=0,t=0,b=0),
+        )
+
+        st.plotly_chart(
+            fig,
+            config={"displayModeBar":False},
+            use_container_width=True,
+            key="plotly",
+        )
+
+st.chat_input(
+    placeholder = "Ask your question here",
+    key = "input_user_msg",
+)
+
+
+    
 
 
 
