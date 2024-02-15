@@ -791,7 +791,6 @@ if selected3 == "OpenAI":
     # TOOLS SETUP
     #######################################
     
-    
     def update_map_state(latitude, longitude, zoom):
         """OpenAI tool to update map in-app
         """
@@ -802,7 +801,6 @@ if selected3 == "OpenAI":
         }
         return "Map updated"
     
-    
     def add_markers_state(latitudes, longitudes, labels):
         """OpenAI tool to update markers in-app
         """
@@ -812,38 +810,6 @@ if selected3 == "OpenAI":
             "text": labels,
         }
         return "Markers added"
-    
-    
-    tool_to_function = {
-        "update_map": update_map_state,
-        "add_markers": add_markers_state,
-    }
-    
-    #######################################
-    # TOOLS SETUP
-    #######################################
-    
-    def update_map_state(latitude, longitude, zoom):
-        """OpenAI tool to update map in-app
-        """
-        st.session_state[map_state] = {
-            "latitude": latitude,
-            "longitude": longitude,
-            "zoom": zoom,
-        }
-        return "Map updated"
-    
-    
-    def add_markers_state(latitudes, longitudes, labels):
-        """OpenAI tool to update markers in-app
-        """
-        st.session_state[markers_state] = {
-            "lat": latitudes,
-            "lon": longitudes,
-            "text": labels,
-        }
-        return "Markers added"
-    
     
     tool_to_function = {
         "update_map": update_map_state,
@@ -857,14 +823,11 @@ if selected3 == "OpenAI":
     def get_assistant_id():
         return st.session_state[assistant_state].id
     
-    
     def get_thread_id():
         return st.session_state[thread_state].id
     
-    
     def get_run_id():
         return st.session_state[last_openai_run_state].id
-    
     
     def on_text_input(status_placeholder):
         """Callback method for any chat_input value change
@@ -930,7 +893,6 @@ if selected3 == "OpenAI":
             for m in client.beta.threads.messages.list(get_thread_id()).data
         ]
     
-    
     def on_reset_thread():
         client.beta.threads.delete(get_thread_id())
         st.session_state[thread_state] = client.beta.threads.create()
@@ -941,15 +903,14 @@ if selected3 == "OpenAI":
     # MAIN
     #######################################
 
-    
     left_col, right_col = st.columns(2)
 
     with left_col:
-    with st.container():
-        for role, message in st.session_state[conversation_state]:
-            with st.chat_message(role):
-                st.write(message)
-    status_placeholder = st.empty()
+        with st.container():
+            for role, message in st.session_state[conversation_state]:
+                with st.chat_message(role):
+                    st.write(message)
+        status_placeholder = st.empty()
 
     with right_col:
         fig = go.Figure(
@@ -987,12 +948,13 @@ if selected3 == "OpenAI":
             fig, config={"displayModeBar": False}, use_container_width=True, key="plotly"
         )
 
-st.chat_input(
-    placeholder="Ask your question here",
-    key=user_msg_input_key,
-    on_submit=on_text_input,
-    args=(status_placeholder,),
-)
+    st.chat_input(
+        placeholder="Ask your question here",
+        key=user_msg_input_key,
+        on_submit=on_text_input,
+        args=(status_placeholder,),
+    )
+
 
     
 
