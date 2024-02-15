@@ -758,9 +758,9 @@ if selected3 == "Import":
 # PREREQUISITES
 #######################################
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+client = OpenAI(api_key=st.secrets["AI"])
 
-assistant_id = st.secrets["OPENAI_ASSISTANT_ID"]
+assistant_id = st.secrets["ASSISTANT"]
 
 assistant_state = "assistant"
 thread_state = "thread"
