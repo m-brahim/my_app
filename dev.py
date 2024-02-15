@@ -759,6 +759,12 @@ if selected3 == "OpenAI":
     # PREREQUISITES
     #######################################
 
+
+    headers{
+        authorization : st.secrets["OPENAI_API_KEY"],
+        authorization : st.secrets["OPENAI_ASSISTANT_ID"]
+    }
+    
     client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
     assistant_id = st.secrets["OPENAI_ASSISTANT_ID"]
