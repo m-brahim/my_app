@@ -927,7 +927,7 @@ if selected3 == "OpenAI":
     # MAIN
     #######################################
 
-    st.title('Assistant OpenAI)
+    st.title('Assistant OpenAI')
     
     left_col, right_col = st.columns(2)
     
