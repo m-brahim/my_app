@@ -754,11 +754,12 @@ if selected3 == "Import":
 
 
 if selected3 == "OpenAI":
+    
     #######################################
     # PREREQUISITES
     #######################################
 
-    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+    client = st.secrets["OPENAI_API_KEY"]
     
     assistant_id = st.secrets["OPENAI_ASSISTANT_ID"]
     
