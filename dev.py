@@ -17,6 +17,7 @@ import duckdb
 from openai import OpenAI
 import time
 import json
+import os
 
 #config du titre de la page
 st.set_page_config("Suivi des ventes de la société", page_icon="", layout="wide")
@@ -984,11 +985,19 @@ if selected3 == "OpenAI":
 
 
 
-@st.cache
+
 def load_data():
-    return pd.DataFrame([
-        {"Tâches" : "Intégration des données","Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
-    ])
+    if os.path.exists("tasks_data.csv"):
+        return pd.read_csv("tasks_data.csv")
+    else:
+        return pd.DataFrame([
+            {"Tâches": "Intégration des données", "Personnes Assignées": "2", "Durée": "4h", "Etat": "en cours",
+             "Durée restante": "2h"},
+        ])
+
+# Fonction pour sauvegarder les données dans un fichier
+def save_data(data):
+    data.to_csv("tasks_data.csv", index=False)
 
 if "tasks_df" not in st.session_state:
     st.session_state.tasks_df = load_data()
@@ -998,4 +1007,6 @@ if selected3 == "Tâches":
     
     # Mettre à jour les données dans le cache après l'édition
     st.session_state.tasks_df = edited_df
-
+    
+    # Sauvegarder les données dans un fichier
+    save_data(edited_df)
