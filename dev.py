@@ -981,3 +981,71 @@ if selected3 == "OpenAI":
         args=(status_placeholder,),
     )
 
+
+
+
+def create_tasks_table():
+    # Créer un DataFrame avec des tâches fictives
+    data = {
+        'Titre de la tâche': ['Tâche 1', 'Tâche 2', 'Tâche 3'],
+        'Durée de la tâche (en heures)': [4, 3, 6],
+        'Statut': ['À faire', 'En cours', 'Finie'],
+        'Nombre de personnes': [2, 1, 3],
+        'Durée restante (en heures)': [4, 2, 0]  # Durée restante initiale
+    }
+    tasks_df = pd.DataFrame(data)
+
+    # Afficher le DataFrame dans un tableau interactif
+    st.dataframe(tasks_df, height=300)
+
+    # Modifier le statut, la durée restante et le nombre de personnes pour chaque tâche
+    for i, row in tasks_df.iterrows():
+        status = st.selectbox(f'Statut de {row["Titre de la tâche"]}', ['À faire', 'En cours', 'Finie'], index=['À faire', 'En cours', 'Finie'].index(row['Statut']))
+        remaining_hours = st.number_input(f'Durée restante de {row["Titre de la tâche"]} (en heures)', min_value=0, value=row['Durée restante (en heures)'])
+        num_people = st.number_input(f'Nombre de personnes sur {row["Titre de la tâche"]}', min_value=1, value=row['Nombre de personnes'])
+
+        tasks_df.at[i, 'Statut'] = status
+        tasks_df.at[i, 'Durée restante (en heures)'] = remaining_hours
+        tasks_df.at[i, 'Nombre de personnes'] = num_people
+
+    # Sauvegarder les modifications dans le DataFrame
+    st.session_state.tasks_df = tasks_df
+
+if selected3 == "Tâches":
+    st.title('Gestion des tâches')
+
+    # Vérifier si le DataFrame des tâches existe dans l'état de session
+    if 'tasks_df' not in st.session_state:
+        # Si non, créer le DataFrame initial
+        create_tasks_table()
+    else:
+        # Si oui, afficher le DataFrame existant
+        tasks_df = st.session_state.tasks_df
+        st.dataframe(tasks_df, height=300)
+
+        # Modifier les tâches existantes
+        for i, row in tasks_df.iterrows():
+            status = st.selectbox(f'Statut de {row["Titre de la tâche"]}', ['À faire', 'En cours', 'Finie'], index=['À faire', 'En cours', 'Finie'].index(row['Statut']))
+            remaining_hours = st.number_input(f'Durée restante de {row["Titre de la tâche"]} (en heures)', min_value=0, value=row['Durée restante (en heures)'])
+            num_people = st.number_input(f'Nombre de personnes sur {row["Titre de la tâche"]}', min_value=1, value=row['Nombre de personnes'])
+
+            tasks_df.at[i, 'Statut'] = status
+            tasks_df.at[i, 'Durée restante (en heures)'] = remaining_hours
+            tasks_df.at[i, 'Nombre de personnes'] = num_people
+
+        # Sauvegarder les modifications dans le DataFrame
+        st.session_state.tasks_df = tasks_df
+
+    # Ajouter une nouvelle tâche
+    if st.button('Ajouter une nouvelle tâche'):
+        # Créer un DataFrame vide pour la nouvelle tâche
+        new_task_df = pd.DataFrame(columns=['Titre de la tâche', 'Durée de la tâche (en heures)', 'Statut', 'Nombre de personnes', 'Durée restante (en heures)'])
+        # Ajouter la nouvelle tâche au DataFrame existant
+        tasks_df = pd.concat([tasks_df, new_task_df], ignore_index=True)
+        # Actualiser le DataFrame dans l'état de session
+        st.session_state.tasks_df = tasks_df
+
+
+
+
+
