@@ -995,4 +995,7 @@ if "tasks_df" not in st.session_state:
 
 if selected3 == "Tâches":
     edited_df = st.data_editor(st.session_state.tasks_df, width=1426, height=600, num_rows="dynamic")
+    
+    # Mettre à jour les données dans le cache après l'édition
+    st.session_state.tasks_df = edited_df
 
