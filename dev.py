@@ -990,7 +990,7 @@ if selected3 == "OpenAI":
 
 
 if selected3 == "Tâches":
-    # Création du DataFrame initial avec au moins 10 tâches
+  # Création du DataFrame initial avec au moins 10 tâches
     tasks_data = {
         'Tâche': [f'Tâche {i+1}' for i in range(10)],
         'Statut': ['À faire'] * 10,
@@ -1004,6 +1004,7 @@ if selected3 == "Tâches":
 
     # Affichage du DataFrame avec st.experimental_data_editor
     st.experimental_set_query_params(task_df=True)
-    st.experimental_data_editor(tasks_df)
-
+    with st.expander("Modifier les tâches"):
+        tasks_df['Personnes assignées'] = st.slider("Nombre de personnes assignées", 1, 5, tasks_df['Personnes assignées'])
+        st.experimental_data_editor(tasks_df, height=500)
 
