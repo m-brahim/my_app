@@ -1010,35 +1010,36 @@ if selected3 == "Tâches":
     # Sauvegarder les données dans un fichier
     save_data(edited_df)
 
-    # Calcul de l'effectif total
-    tot_effectif = 20
+    # Vérifier si les champs nécessaires sont remplis avant de calculer les métriques
+    if "Personnes Assignées" in edited_df.columns and "Etat" in edited_df.columns:
+        # Calcul de l'effectif total
+        tot_effectif = 20
+        
+        assigned_persons = edited_df["Personnes Assignées"].astype(int).sum()
+        
+        available_persons = tot_effectif - assigned_persons
     
-    assigned_persons = st.session_state.tasks_df["Personnes Assignées"].astype(int).sum()
+        col_1, col_space, col_2, col_3, col_space = st.columns([0.5,0.5,0.5,0.5,0.5])
     
-    available_persons = tot_effectif - assigned_persons
-
-    col_1, col_space, col_2, col_3, col_space = st.columns([0.5,0.5,0.5,0.5,0.5])
-
-    with col_1:
-        st.metric(label="Effectif total", value=tot_effectif)
-        st.metric(label="Personnes assignées à des tâches", value=assigned_persons)
-        st.metric(label="Personnes disponibles", value=available_persons)
-
-    style_metric_cards()
-
-
-
+        with col_1:
+            st.metric(label="Effectif total", value=tot_effectif)
+            st.metric(label="Personnes assignées à des tâches", value=assigned_persons)
+            st.metric(label="Personnes disponibles", value=available_persons)
     
-    total_tasks = st.session_state.tasks_df.shape[0]
-
-    completed_tasks = (st.session_state.tasks_df["Etat"] == "terminée").sum()
+        style_metric_cards()
     
-    remaining_tasks = total_tasks - completed_tasks
-
-    with col_2:
-        st.metric(label="Nombre total de tâches", value=total_tasks)
-        st.metric(label="Tâches terminées", value=completed_tasks)
-        st.metric(label="Tâches restantes", value=remaining_tasks)
-
-    style_metric_cards()
+        total_tasks = edited_df.shape[0]
+    
+        completed_tasks = (edited_df["Etat"] == "terminée").sum()
+        
+        remaining_tasks = total_tasks - completed_tasks
+    
+        with col_2:
+            st.metric(label="Nombre total de tâches", value=total_tasks)
+            st.metric(label="Tâches terminées", value=completed_tasks)
+            st.metric(label="Tâches restantes", value=remaining_tasks)
+    
+        style_metric_cards()
+    else:
+        st.warning("Remplissez les champs 'Personnes Assignées' et 'Etat' pour calculer les métriques.")
 
