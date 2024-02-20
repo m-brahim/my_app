@@ -984,13 +984,15 @@ if selected3 == "OpenAI":
 
 
 
-@st.cache_data
+@st.cache
 def load_data():
     return pd.DataFrame([
         {"Tâches" : "Intégration des données","Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
     ])
 
+if "tasks_df" not in st.session_state:
+    st.session_state.tasks_df = load_data()
+
 if selected3 == "Tâches":
-    tasks_df = load_data()
-    edited_df = st.data_editor(tasks_df, width=1426, height=600, num_rows="dynamic")
+    edited_df = st.data_editor(st.session_state.tasks_df, width=1426, height=600, num_rows="dynamic")
 
