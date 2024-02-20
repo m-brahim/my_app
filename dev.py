@@ -1004,15 +1004,10 @@ def create_tasks_table():
     st.dataframe(tasks_df, height=300)
 
     # Modifier les tâches directement dans le tableau
-    for i in range(len(tasks_df)):
-        tasks_df.at[i, 'Titre de la tâche'] = st.text_input(f'Titre de la tâche {i+1}', value=tasks_df.at[i, 'Titre de la tâche'])
-        tasks_df.at[i, 'Durée de la tâche (en heures)'] = st.number_input(f'Durée de la tâche (en heures) {i+1}', min_value=0, value=tasks_df.at[i, 'Durée de la tâche (en heures)'])
-        tasks_df.at[i, 'Statut'] = st.selectbox(f'Statut de la tâche {i+1}', ['À faire', 'En cours', 'Finie'], index=['À faire', 'En cours', 'Finie'].index(tasks_df.at[i, 'Statut']))
-        tasks_df.at[i, 'Nombre de personnes'] = st.number_input(f'Nombre de personnes sur la tâche {i+1}', min_value=1, value=tasks_df.at[i, 'Nombre de personnes'])
-        tasks_df.at[i, 'Durée restante (en heures)'] = st.number_input(f'Durée restante (en heures) sur la tâche {i+1}', min_value=0, value=tasks_df.at[i, 'Durée restante (en heures)'])
+    edited_tasks_df = st.dataframe(tasks_df, height=300, editable=True)
 
     # Sauvegarder les modifications dans le DataFrame
-    st.session_state.tasks_df = tasks_df
+    st.session_state.tasks_df = edited_tasks_df
 
 if selected3 == "Tâches":
     st.title('Gestion des tâches')
@@ -1024,18 +1019,10 @@ if selected3 == "Tâches":
     else:
         # Si oui, afficher le DataFrame existant
         tasks_df = st.session_state.tasks_df
-        st.dataframe(tasks_df, height=300)
-
-        # Modifier les tâches existantes
-        for i in range(len(tasks_df)):
-            tasks_df.at[i, 'Titre de la tâche'] = st.text_input(f'Titre de la tâche {i+1}', value=tasks_df.at[i, 'Titre de la tâche'])
-            tasks_df.at[i, 'Durée de la tâche (en heures)'] = st.number_input(f'Durée de la tâche (en heures) {i+1}', min_value=0, value=tasks_df.at[i, 'Durée de la tâche (en heures)'])
-            tasks_df.at[i, 'Statut'] = st.selectbox(f'Statut de la tâche {i+1}', ['À faire', 'En cours', 'Finie'], index=['À faire', 'En cours', 'Finie'].index(tasks_df.at[i, 'Statut']))
-            tasks_df.at[i, 'Nombre de personnes'] = st.number_input(f'Nombre de personnes sur la tâche {i+1}', min_value=1, value=tasks_df.at[i, 'Nombre de personnes'])
-            tasks_df.at[i, 'Durée restante (en heures)'] = st.number_input(f'Durée restante (en heures) sur la tâche {i+1}', min_value=0, value=tasks_df.at[i, 'Durée restante (en heures)'])
+        edited_tasks_df = st.dataframe(tasks_df, height=300, editable=True)
 
         # Sauvegarder les modifications dans le DataFrame
-        st.session_state.tasks_df = tasks_df
+        st.session_state.tasks_df = edited_tasks_df
 
     # Ajouter une nouvelle tâche
     if st.button('Ajouter une nouvelle tâche'):
@@ -1045,7 +1032,6 @@ if selected3 == "Tâches":
         tasks_df = pd.concat([tasks_df, new_task_df], ignore_index=True)
         # Actualiser le DataFrame dans l'état de session
         st.session_state.tasks_df = tasks_df
-
 
 
 
