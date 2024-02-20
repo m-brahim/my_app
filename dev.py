@@ -1003,7 +1003,7 @@ if selected3 == "Tâches" :
         st.session_state.tasks_df.loc[0] = ["", "", "", "", ""]
     
     # Affichez le DataFrame éditable
-    edited_df = st.dataframe(st.session_state.tasks_df, width=1426, height=600, editable=True)
+    edited_df = st.table(st.session_state.tasks_df)
     
     # Stockez les modifications dans l'état de session
     st.session_state.tasks_df = edited_df
