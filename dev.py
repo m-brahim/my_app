@@ -984,6 +984,11 @@ if selected3 == "OpenAI":
 
 
 
+
+
+
+
+
 def create_tasks_table():
     # Créer un DataFrame avec des tâches fictives
     data = {
@@ -998,15 +1003,13 @@ def create_tasks_table():
     # Afficher le DataFrame dans un tableau interactif
     st.dataframe(tasks_df, height=300)
 
-    # Modifier le statut, la durée restante et le nombre de personnes pour chaque tâche
-    for i, row in tasks_df.iterrows():
-        status = st.selectbox(f'Statut de {row["Titre de la tâche"]}', ['À faire', 'En cours', 'Finie'], index=['À faire', 'En cours', 'Finie'].index(row['Statut']))
-        remaining_hours = st.number_input(f'Durée restante de {row["Titre de la tâche"]} (en heures)', min_value=0, value=row['Durée restante (en heures)'])
-        num_people = st.number_input(f'Nombre de personnes sur {row["Titre de la tâche"]}', min_value=1, value=row['Nombre de personnes'])
-
-        tasks_df.at[i, 'Statut'] = status
-        tasks_df.at[i, 'Durée restante (en heures)'] = remaining_hours
-        tasks_df.at[i, 'Nombre de personnes'] = num_people
+    # Modifier les tâches directement dans le tableau
+    for i in range(len(tasks_df)):
+        tasks_df.at[i, 'Titre de la tâche'] = st.text_input(f'Titre de la tâche {i+1}', value=tasks_df.at[i, 'Titre de la tâche'])
+        tasks_df.at[i, 'Durée de la tâche (en heures)'] = st.number_input(f'Durée de la tâche (en heures) {i+1}', min_value=0, value=tasks_df.at[i, 'Durée de la tâche (en heures)'])
+        tasks_df.at[i, 'Statut'] = st.selectbox(f'Statut de la tâche {i+1}', ['À faire', 'En cours', 'Finie'], index=['À faire', 'En cours', 'Finie'].index(tasks_df.at[i, 'Statut']))
+        tasks_df.at[i, 'Nombre de personnes'] = st.number_input(f'Nombre de personnes sur la tâche {i+1}', min_value=1, value=tasks_df.at[i, 'Nombre de personnes'])
+        tasks_df.at[i, 'Durée restante (en heures)'] = st.number_input(f'Durée restante (en heures) sur la tâche {i+1}', min_value=0, value=tasks_df.at[i, 'Durée restante (en heures)'])
 
     # Sauvegarder les modifications dans le DataFrame
     st.session_state.tasks_df = tasks_df
@@ -1024,14 +1027,12 @@ if selected3 == "Tâches":
         st.dataframe(tasks_df, height=300)
 
         # Modifier les tâches existantes
-        for i, row in tasks_df.iterrows():
-            status = st.selectbox(f'Statut de {row["Titre de la tâche"]}', ['À faire', 'En cours', 'Finie'], index=['À faire', 'En cours', 'Finie'].index(row['Statut']))
-            remaining_hours = st.number_input(f'Durée restante de {row["Titre de la tâche"]} (en heures)', min_value=0, value=row['Durée restante (en heures)'])
-            num_people = st.number_input(f'Nombre de personnes sur {row["Titre de la tâche"]}', min_value=1, value=row['Nombre de personnes'])
-
-            tasks_df.at[i, 'Statut'] = status
-            tasks_df.at[i, 'Durée restante (en heures)'] = remaining_hours
-            tasks_df.at[i, 'Nombre de personnes'] = num_people
+        for i in range(len(tasks_df)):
+            tasks_df.at[i, 'Titre de la tâche'] = st.text_input(f'Titre de la tâche {i+1}', value=tasks_df.at[i, 'Titre de la tâche'])
+            tasks_df.at[i, 'Durée de la tâche (en heures)'] = st.number_input(f'Durée de la tâche (en heures) {i+1}', min_value=0, value=tasks_df.at[i, 'Durée de la tâche (en heures)'])
+            tasks_df.at[i, 'Statut'] = st.selectbox(f'Statut de la tâche {i+1}', ['À faire', 'En cours', 'Finie'], index=['À faire', 'En cours', 'Finie'].index(tasks_df.at[i, 'Statut']))
+            tasks_df.at[i, 'Nombre de personnes'] = st.number_input(f'Nombre de personnes sur la tâche {i+1}', min_value=1, value=tasks_df.at[i, 'Nombre de personnes'])
+            tasks_df.at[i, 'Durée restante (en heures)'] = st.number_input(f'Durée restante (en heures) sur la tâche {i+1}', min_value=0, value=tasks_df.at[i, 'Durée restante (en heures)'])
 
         # Sauvegarder les modifications dans le DataFrame
         st.session_state.tasks_df = tasks_df
