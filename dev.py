@@ -994,7 +994,7 @@ if selected3 == "Tâches" :
 
 if selected3 == "Tâches" :
     if "tasks_df" not in st.session_state:
-    st.session_state.tasks_df = pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
+        st.session_state.tasks_df = pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
 
     if st.session_state.tasks_df.empty:
         st.session_state.tasks_df.loc[0] = ["", "", "", "", ""]
