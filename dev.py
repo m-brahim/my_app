@@ -989,14 +989,22 @@ if selected3 == "OpenAI":
 
 
 if selected3 == "Tâches" :
+    @st.cache(allow_output_mutation=True)
     def load_data():
+        # Chargez les données depuis un fichier ou une base de données
         tasks_df = pd.DataFrame([
-            {"Tâches" : "Chargement des données sur Snowflake", "Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
+            {"Tâches" : "Intégration des données", "Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
         ])
         return tasks_df
     
-    tasks_df = load_data()
+    def main():
+        tasks_df = load_data()
     
-    edited_df = st.data_editor(tasks_df, width=1426, height=800, num_rows="dynamic")
+        # Affichez le tableau éditable
+        edited_df = st.data_editor(tasks_df, width=1426, height=800, num_rows="dynamic")
     
-    load_data()
+        # Stockez les données mises à jour dans le cache
+        load_data()
+    
+    if __name__ == "__main__":
+        main()
