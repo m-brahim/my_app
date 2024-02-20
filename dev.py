@@ -989,50 +989,21 @@ if selected3 == "OpenAI":
 
 
 
-def create_tasks_table():
-    # Créer un DataFrame avec des tâches fictives
-    data = {
-        'Titre de la tâche': ['Tâche 1', 'Tâche 2', 'Tâche 3'],
-        'Durée de la tâche (en heures)': [4, 3, 6],
-        'Statut': ['À faire', 'En cours', 'Finie'],
-        'Nombre de personnes': [2, 1, 3],
-        'Durée restante (en heures)': [4, 2, 0]  # Durée restante initiale
-    }
-    tasks_df = pd.DataFrame(data)
-
-    # Afficher le DataFrame dans un tableau interactif
-    st.dataframe(tasks_df, height=300)
-
-    # Modifier les tâches directement dans le tableau
-    edited_tasks_df = st.dataframe(tasks_df, height=300, editable=True)
-
-    # Sauvegarder les modifications dans le DataFrame
-    st.session_state.tasks_df = edited_tasks_df
-
 if selected3 == "Tâches":
-    st.title('Gestion des tâches')
+    # Création du DataFrame initial avec au moins 10 tâches
+    tasks_data = {
+        'Tâche': [f'Tâche {i+1}' for i in range(10)],
+        'Statut': ['À faire'] * 10,
+        'Durée (en heures)': [4, 3, 5, 6, 2, 4, 7, 3, 5, 8],
+        'Personnes assignées': [2, 1, 3, 2, 1, 2, 3, 2, 3, 4],
+        'Durée restante (en heures)': [4, 3, 5, 6, 2, 4, 7, 3, 5, 8]
+    }
 
-    # Vérifier si le DataFrame des tâches existe dans l'état de session
-    if 'tasks_df' not in st.session_state:
-        # Si non, créer le DataFrame initial
-        create_tasks_table()
-    else:
-        # Si oui, afficher le DataFrame existant
-        tasks_df = st.session_state.tasks_df
-        edited_tasks_df = st.dataframe(tasks_df, height=300, editable=True)
+    # Création du DataFrame
+    tasks_df = pd.DataFrame(tasks_data)
 
-        # Sauvegarder les modifications dans le DataFrame
-        st.session_state.tasks_df = edited_tasks_df
-
-    # Ajouter une nouvelle tâche
-    if st.button('Ajouter une nouvelle tâche'):
-        # Créer un DataFrame vide pour la nouvelle tâche
-        new_task_df = pd.DataFrame(columns=['Titre de la tâche', 'Durée de la tâche (en heures)', 'Statut', 'Nombre de personnes', 'Durée restante (en heures)'])
-        # Ajouter la nouvelle tâche au DataFrame existant
-        tasks_df = pd.concat([tasks_df, new_task_df], ignore_index=True)
-        # Actualiser le DataFrame dans l'état de session
-        st.session_state.tasks_df = tasks_df
-
-
+    # Affichage du DataFrame avec st.experimental_data_editor
+    st.experimental_set_query_params(task_df=True)
+    st.experimental_data_editor(tasks_df)
 
 
