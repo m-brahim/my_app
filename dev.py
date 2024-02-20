@@ -988,44 +988,11 @@ if selected3 == "OpenAI":
 
 
 if selected3 == "Tâches" :
-    @st.cache(allow_output_mutation=True)
-    def load_data():
-        # Chargez les données depuis un fichier ou une base de données
-        tasks_df = pd.DataFrame([
-            {"Tâches" : "Intégration des données", "Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
-        ])
-        return tasks_df
-    
-    def main():
-        # Chargez les données DataFrame depuis l'URL
-        tasks_df = load_data()
-        tasks_df = pd.DataFrame(tasks_df)
-    
-        # Affichez le tableau éditable
-        edited_df = st.data_editor(tasks_df, width=1426, height=800, num_rows="dynamic")
-    
-        # Stockez les données modifiées dans l'URL
-        st.experimental_set_query_params(tasks_df=edited_df.to_json())
-    
-    if __name__ == "__main__":
-        main()
+    tasks_df = pd.DataFrame([
+        {"Tâches" : "Intégration des données","Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
+                            ])
 
+    edited_df = st.data_editor(tasks_df, width=1426, height=800,num_rows="dynamic")    
 
-
-
-
-if selected3 == "Tâches" :
-    def initialize_data():
-        tasks_df = pd.DataFrame([
-            {"Tâches" : "Intégration des données", "Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
-        ])
-        return tasks_df
-    
-    if 'tasks_df' not in st.session_state:
-        st.session_state.tasks_df = initialize_data()
-    
-    edited_df = st.experimental_data_editor(st.session_state.tasks_df, height=800)
-    
-    st.session_state.tasks_df = edited_df
 
 
