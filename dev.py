@@ -1036,7 +1036,7 @@ if selected3 == "Tâches":
     
     remaining_tasks = total_tasks - completed_tasks
 
-    with col2:
+    with col_2:
         st.metric(label="Nombre total de tâches", value=total_tasks)
         st.metric(label="Tâches terminées", value=completed_tasks)
         st.metric(label="Tâches restantes", value=remaining_tasks)
