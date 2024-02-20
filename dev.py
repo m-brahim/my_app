@@ -56,7 +56,7 @@ col_title, col_logo = st.columns([3, 0.5])
 
 with st.sidebar:
     selected3 = option_menu("Menu", ["Accueil", "Import", "OpenAI", "Tâches", 'Paramètres'], 
-    icons=['house', 'cloud-upload', 'globe', 'list-task', 'gear'], 
+    icons=['house', 'cloud-upload', 'aperture', 'list-task', 'gear'], 
     menu_icon="cast", default_index=0,
     styles={
         "container": {"border": "1px solid #CCC", "border-left": "0.5rem solid #000000", "border-radius": "5px", "box-shadow": "0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15)", "height" : "800px"},
