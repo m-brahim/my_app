@@ -985,7 +985,7 @@ if selected3 == "OpenAI":
 
 
 if selected3 == "Tâches" :
-    @st.cache
+    @st.cache_data
     def load_or_create_dataframe():
         # Essayez de charger le dataframe à partir d'un fichier CSV s'il existe
         try:
