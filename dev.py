@@ -1012,10 +1012,14 @@ if selected3 == "Tâches":
 
     # Vérifier si les champs nécessaires sont remplis avant de calculer les métriques
     if "Personnes Assignées" in edited_df.columns and "Etat" in edited_df.columns:
+        # Remplacer les valeurs non finies par 0
+        edited_df["Personnes Assignées"].fillna(0, inplace=True)
+        edited_df["Personnes Assignées"] = edited_df["Personnes Assignées"].astype(int)
+        
         # Calcul de l'effectif total
         tot_effectif = 20
         
-        assigned_persons = edited_df["Personnes Assignées"].astype(int).sum()
+        assigned_persons = edited_df["Personnes Assignées"].sum()
         
         available_persons = tot_effectif - assigned_persons
     
