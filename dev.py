@@ -1003,9 +1003,9 @@ if "tasks_df" not in st.session_state:
 
 if selected3 == "Tâches":
     edited_df = st.dataframe(st.session_state.tasks_df, width=1426, height=600)
-    if "Démarrée" not in st.session_state.tasks_df.columns:
-        st.session_state.tasks_df["Démarrée"] = False
+        
     st.session_state.tasks_df = edited_df
+    
     save_data(edited_df)
 
     if "Personnes Assignées" in edited_df.columns and "Etat" in edited_df.columns:
