@@ -990,6 +990,7 @@ if selected3 == "OpenAI":
 
 
 if selected3 == "Tâches":
+    # Création du DataFrame initial avec au moins 10 tâches
     tasks_data = {
         'Tâche': [f'Tâche {i+1}' for i in range(10)],
         'Statut': ['À faire'] * 10,
@@ -997,22 +998,20 @@ if selected3 == "Tâches":
         'Personnes assignées': [2, 1, 3, 2, 1, 2, 3, 2, 3, 4],
         'Durée restante (en heures)': [4, 3, 5, 6, 2, 4, 7, 3, 5, 8]
     }
-
+    
     # Création du DataFrame
     tasks_df = pd.DataFrame(tasks_data)
-
-    # Création d'une liste de sliders pour chaque ligne du DataFrame
-    num_persons_sliders = []
-    for index, row in tasks_df.iterrows():
-        num_persons_slider = st.slider(f"Nombre de personnes assignées pour la tâche '{row['Tâche']}'",
-                                       min_value=1, max_value=5,
-                                       value=row['Personnes assignées'])
-        num_persons_sliders.append(num_persons_slider)
-
-    # Assignation des valeurs des sliders à la colonne 'Personnes assignées'
-    tasks_df['Personnes assignées'] = num_persons_sliders
-
+    
     # Affichage du DataFrame avec st.experimental_data_editor
     st.experimental_set_query_params(task_df=True)
     with st.expander("Modifier les tâches"):
-        st.experimental_data_editor(tasks_df, height=500)
+        # Copie du DataFrame pour les modifications
+        edited_tasks_df = tasks_df.copy()
+    
+        # Remplacement de la colonne 'Personnes assignées' par des sliders interactifs
+        edited_tasks_df['Personnes assignées'] = st.slider("Nombre de personnes assignées",
+                                                            min_value=1, max_value=5,
+                                                            value=tasks_df['Personnes assignées'])
+    
+        # Affichage du DataFrame édité
+        st.experimental_data_editor(edited_tasks_df, height=500)
