@@ -1021,6 +1021,6 @@ if selected3 == "Tâches":
     col_metric, col_2, col_3 = st.columns([1,1,1])
 
     with col_metric:
-        st.metric(label="Effectif total", value=total_persons)
+        st.metric(label="Effectif total", value=tot_effectif)
         st.metric(label="Personnes assignées à des tâches", value=assigned_persons)
         st.metric(label="Personnes disponibles", value=available_persons)
