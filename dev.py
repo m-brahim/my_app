@@ -990,9 +990,10 @@ def load_data():
     if os.path.exists("tasks_data.csv"):
         return pd.read_csv("tasks_data.csv")
     else:
+        # Initialiser "Personnes Assignées" et "Durée restante" à 0 pour une nouvelle ligne
         return pd.DataFrame([
-            {"Tâches": "Intégration des données", "Personnes Assignées": "2", "Durée": "4h", "Statut": "en cours",
-             "Durée restante": "2h"},
+            {"Tâches": "Intégration des données", "Démarrée": False, "Personnes Assignées": 0, "Durée": "4h", "Statut": "en cours",
+             "Durée restante": "0h"},
         ])
 
 def save_data(data):
@@ -1002,7 +1003,9 @@ if "tasks_df" not in st.session_state:
     st.session_state.tasks_df = load_data()
 
 if selected3 == "Tâches":
-    edited_df = st.data_editor(st.session_state.tasks_df, width=1426, height=600, num_rows="dynamic")
+    edited_df = st.dataframe(st.session_state.tasks_df, width=1426, height=600)
+    if "Démarrée" not in edited_df.columns:
+        edited_df["Démarrée"] = False
     st.session_state.tasks_df = edited_df
     save_data(edited_df)
 
