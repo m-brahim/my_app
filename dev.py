@@ -996,3 +996,29 @@ if selected3 == "Tâches" :
 
 
 
+if selected3 == "Tâches" :
+    # Création d'un DataFrame vide pour stocker les tâches
+    tasks_df = pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
+    
+    # Affichage du titre
+    st.title("Gestion des tâches")
+    
+    # Affichage du tableau et édition des données
+    edited_df = st.table(tasks_df)
+    
+    # Saisie des nouvelles tâches
+    new_task = st.text_input("Nouvelle tâche")
+    assignees = st.number_input("Personnes Assignées", min_value=0)
+    duration = st.text_input("Durée")
+    status = st.selectbox("État", ["en cours", "terminé", "en attente"])
+    remaining_time = st.text_input("Durée restante")
+    
+    # Ajout d'une nouvelle tâche
+    if st.button("Ajouter"):
+        new_row = {"Tâches": new_task, "Personnes Assignées": assignees, "Durée": duration, "Etat": status, "Durée restante": remaining_time}
+        tasks_df = tasks_df.append(new_row, ignore_index=True)
+        edited_df.table(tasks_df)
+    
+    # Affichage du DataFrame final
+    st.write("Tâches enregistrées :")
+    st.write(tasks_df)
