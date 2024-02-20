@@ -1010,3 +1010,17 @@ if selected3 == "Tâches":
     
     # Sauvegarder les données dans un fichier
     save_data(edited_df)
+
+    # Calcul de l'effectif total
+    tot_effectif = 20
+    
+    assigned_persons = st.session_state.tasks_df["Personnes Assignées"].astype(int).sum()
+    
+    available_persons = tot_effectif - assigned_persons
+
+    col_metric, col_2, col_3 = st.columns([1,1,1])
+
+    with col_metric:
+        st.metric(label="Effectif total", value=total_persons)
+        st.metric(label="Personnes assignées à des tâches", value=assigned_persons)
+        st.metric(label="Personnes disponibles", value=available_persons)
