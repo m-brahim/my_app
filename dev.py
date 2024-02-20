@@ -1003,7 +1003,7 @@ if selected3 == "Tâches" :
         tasks_df.loc[0] = ""
     
     # Afficher le dataframe et permettre l'édition
-    edited_df = st.data_editor(tasks_df, width=1426, height=600)
+    edited_df = st.data_editor(tasks_df, width=1426, height=600, num_rows="dynamic")
     
     # Si le dataframe édité est différent du dataframe original, sauvegarder les modifications
     if edited_df is not tasks_df:
