@@ -1018,7 +1018,7 @@ if selected3 == "Tâches":
     
     available_persons = tot_effectif - assigned_persons
 
-    col_1, col_2, col_3 = st.columns([0.5,1,1])
+    col_1, col_space, col_2, col_3, col_space = st.columns([0.5,0.5,0.5,0.5,0.5])
 
     with col_1:
         st.metric(label="Effectif total", value=tot_effectif)
