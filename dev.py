@@ -1026,7 +1026,7 @@ if selected3 == "Tâches":
         style_metric_cards()
     
         total_tasks = edited_df.shape[0]
-        completed_tasks = (edited_df["Etat"] == "terminée").sum()
+        completed_tasks = (edited_df["Statut"] == "terminée").sum()
         remaining_tasks = total_tasks - completed_tasks
     
         with col_2:
@@ -1035,5 +1035,3 @@ if selected3 == "Tâches":
             st.metric(label="Tâches restantes", value=remaining_tasks)
     
         style_metric_cards()
-    else:
-        st.warning("Remplissez les champs 'Personnes Assignées' et 'Etat' pour calculer les métriques.")
