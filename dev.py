@@ -990,10 +990,9 @@ def load_data():
     if os.path.exists("tasks_data.csv"):
         return pd.read_csv("tasks_data.csv")
     else:
-        # Initialiser "Personnes Assignées" et "Durée restante" à 0 pour une nouvelle ligne
         return pd.DataFrame([
-            {"Tâches": "Intégration des données", "Démarrée": False, "Personnes Assignées": 0, "Durée": "4h", "Statut": "en cours",
-             "Durée restante": "0h"},
+            {"Tâches": "Intégration des données", "Personnes Assignées": "2", "Durée": "4h", "Statut": "en cours",
+             "Durée restante": "2h"},
         ])
 
 def save_data(data):
@@ -1003,11 +1002,10 @@ if "tasks_df" not in st.session_state:
     st.session_state.tasks_df = load_data()
 
 if selected3 == "Tâches":
-    edited_df = st.dataframe(st.session_state.tasks_df, width=1426, height=600)
-    
-    # Sauvegarder uniquement les données du DataFrame
-    save_data(edited_df.drop(columns=edited_df.select_dtypes(include=['object']).columns))
-    
+    edited_df = st.data_editor(st.session_state.tasks_df, width=1426, height=600, num_rows="dynamic")
+    st.session_state.tasks_df = edited_df
+    save_data(edited_df)
+
     if "Personnes Assignées" in edited_df.columns and "Etat" in edited_df.columns:
         edited_df["Personnes Assignées"].fillna(0, inplace=True)
         edited_df["Personnes Assignées"] = edited_df["Personnes Assignées"].astype(int)
@@ -1017,21 +1015,17 @@ if selected3 == "Tâches":
         available_persons = tot_effectif - assigned_persons
     
         col_1, col_space, col_2, col_3, col_space = st.columns([0.5,0.5,0.5,0.5,0.5])
-    
         with col_1:
             st.metric(label="Effectif total", value=tot_effectif)
             st.metric(label="Personnes assignées à des tâches", value=assigned_persons)
             st.metric(label="Personnes disponibles", value=available_persons)
-    
         style_metric_cards()
-        
+    
         total_tasks = edited_df.shape[0]
         completed_tasks = (edited_df["Etat"] == "terminée").sum()
         remaining_tasks = total_tasks - completed_tasks
-    
         with col_2:
             st.metric(label="Nombre total de tâches", value=total_tasks)
             st.metric(label="Tâches terminées", value=completed_tasks)
             st.metric(label="Tâches restantes", value=remaining_tasks)
-    
         style_metric_cards()
