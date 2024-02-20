@@ -993,17 +993,18 @@ if selected3 == "Tâches" :
 
 
 if selected3 == "Tâches" :
-    # Vérifie si les données existent déjà dans l'état de session
     if "tasks_df" not in st.session_state:
-        # Si non, créez un DataFrame vide
-        st.session_state.tasks_df = pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
-    
-    # Ajoutez une ligne vide si le DataFrame est vide
+    st.session_state.tasks_df = pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
+
     if st.session_state.tasks_df.empty:
         st.session_state.tasks_df.loc[0] = ["", "", "", "", ""]
     
-    # Affichez le DataFrame éditable
-    edited_df = st.table(st.session_state.tasks_df)
+    edited_df = st.dataframe(st.session_state.tasks_df, width=1426, height=600, key="tasks")
     
-    # Stockez les modifications dans l'état de session
     st.session_state.tasks_df = edited_df
+    
+    query_params = st.experimental_get_query_params()
+    if "tasks" in query_params:
+        st.session_state.tasks_df = pd.read_json(query_params["tasks"][0])
+    
+    st.experimental_set_query_params(tasks=st.session_state.tasks_df.to_json())
