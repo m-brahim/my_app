@@ -988,11 +988,15 @@ if selected3 == "OpenAI":
 
 
 
-
-if selected3 == "Tâches":
-    tasks_df = pd.DataFrame([
-        {"Tâches" : "Intégration des données","Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
-                            ])
-
-    edited_df = st.data_editor(tasks_df, width=1426, height=800,num_rows="dynamic")
-
+if selected3 == "Tâches" :
+    def load_data():
+        tasks_df = pd.DataFrame([
+            {"Tâches" : "Chargement des données sur Snowflake", "Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
+        ])
+        return tasks_df
+    
+    tasks_df = load_data()
+    
+    edited_df = st.data_editor(tasks_df, width=1426, height=800, num_rows="dynamic")
+    
+    load_data()
