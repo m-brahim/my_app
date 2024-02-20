@@ -990,6 +990,7 @@ def load_data():
     if os.path.exists("tasks_data.csv"):
         return pd.read_csv("tasks_data.csv")
     else:
+        # Initialiser "Personnes Assignées" et "Durée restante" à 0 pour une nouvelle ligne
         return pd.DataFrame([
             {"Tâches": "Intégration des données", "Démarrée": False, "Personnes Assignées": 0, "Durée": "4h", "Statut": "en cours",
              "Durée restante": "0h"},
@@ -1003,11 +1004,10 @@ if "tasks_df" not in st.session_state:
 
 if selected3 == "Tâches":
     edited_df = st.dataframe(st.session_state.tasks_df, width=1426, height=600)
-        
-    st.session_state.tasks_df = edited_df
     
-    save_data(edited_df)
-
+    # Sauvegarder uniquement les données du DataFrame
+    save_data(edited_df.drop(columns=edited_df.select_dtypes(include=['object']).columns))
+    
     if "Personnes Assignées" in edited_df.columns and "Etat" in edited_df.columns:
         edited_df["Personnes Assignées"].fillna(0, inplace=True)
         edited_df["Personnes Assignées"] = edited_df["Personnes Assignées"].astype(int)
@@ -1035,4 +1035,3 @@ if selected3 == "Tâches":
             st.metric(label="Tâches restantes", value=remaining_tasks)
     
         style_metric_cards()
-
