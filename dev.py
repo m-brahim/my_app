@@ -985,12 +985,13 @@ if selected3 == "OpenAI":
 
 
 if selected3 == "Tâches" :
+    # Fonction pour charger ou créer le dataframe
     @st.cache_data
     def load_or_create_dataframe():
         # Essayez de charger le dataframe à partir d'un fichier CSV s'il existe
         try:
             tasks_df = pd.read_csv("tasks_data.csv")
-        # Si le fichier CSV n'existe pas, créez un nouveau dataframe vide
+        # Si le fichier CSV n'existe pas, créez un nouveau dataframe
         except FileNotFoundError:
             tasks_df = pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
         return tasks_df
@@ -998,17 +999,14 @@ if selected3 == "Tâches" :
     # Charger ou créer le dataframe
     tasks_df = load_or_create_dataframe()
     
-    # Vérifier si le dataframe est vide, si oui, ajouter une ligne vide
-    if tasks_df.empty:
-        tasks_df.loc[0] = ""
-    
     # Afficher le dataframe et permettre l'édition
-    edited_df = st.data_editor(tasks_df, width=1426, height=600, num_rows="dynamic")
+    with st.form("my_form"):
+        edited_df = st.dataframe(tasks_df, width=1426, height=600)
+        submitted = st.form_submit_button("Submit")
     
-    # Si le dataframe édité est différent du dataframe original, sauvegarder les modifications
-    if edited_df is not tasks_df:
+    # Si des modifications ont été apportées au dataframe, enregistrez-les dans le fichier CSV
+    if submitted and edited_df is not tasks_df:
         tasks_df = edited_df
         tasks_df.to_csv("tasks_data.csv", index=False)
-
 
 
