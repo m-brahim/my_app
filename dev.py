@@ -1009,3 +1009,20 @@ if selected3 == "Tâches" :
     
     if __name__ == "__main__":
         main()
+
+
+
+
+
+if selected3 == "Tâches" :
+    def initialize_data():
+        return pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
+    
+    if 'tasks_df' not in st.session_state:
+        st.session_state.tasks_df = initialize_data()
+    
+    edited_df = st.experimental_data_editor(st.session_state.tasks_df, height=800)
+    
+    st.session_state.tasks_df = edited_df
+
+
