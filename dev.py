@@ -991,11 +991,10 @@ def load_data():
         return pd.read_csv("tasks_data.csv")
     else:
         return pd.DataFrame([
-            {"Tâches": "Intégration des données", "Personnes Assignées": "2", "Durée": "4h", "Etat": "en cours",
+            {"Tâches": "Intégration des données", "Personnes Assignées": "2", "Durée": "4h", "Statut": "en cours",
              "Durée restante": "2h"},
         ])
 
-# Fonction pour sauvegarder les données dans un fichier
 def save_data(data):
     data.to_csv("tasks_data.csv", index=False)
 
