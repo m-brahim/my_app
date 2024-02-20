@@ -990,13 +990,17 @@ if selected3 == "Tâches" :
         # Essayez de charger le dataframe à partir d'un fichier CSV s'il existe
         try:
             tasks_df = pd.read_csv("tasks_data.csv")
-        # Si le fichier CSV n'existe pas, créez un nouveau dataframe
+        # Si le fichier CSV n'existe pas, créez un nouveau dataframe vide
         except FileNotFoundError:
             tasks_df = pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
         return tasks_df
     
     # Charger ou créer le dataframe
     tasks_df = load_or_create_dataframe()
+    
+    # Vérifier si le dataframe est vide, si oui, ajouter une ligne vide
+    if tasks_df.empty:
+        tasks_df.loc[0] = ""
     
     # Afficher le dataframe et permettre l'édition
     edited_df = st.data_editor(tasks_df, width=1426, height=600)
