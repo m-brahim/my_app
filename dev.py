@@ -1024,3 +1024,7 @@ if selected3 == "Tâches":
         st.metric(label="Effectif total", value=tot_effectif)
         st.metric(label="Personnes assignées à des tâches", value=assigned_persons)
         st.metric(label="Personnes disponibles", value=available_persons)
+
+    style_metric_cards()
+
+
