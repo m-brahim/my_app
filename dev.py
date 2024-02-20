@@ -994,20 +994,3 @@ if selected3 == "Tâches" :
 
 
 
-
-
-
-
-
-
-
-if selected3 == "Tâches" :
-    tasks_df = pd.DataFrame([
-        {"Tâches" : "Intégration des données","Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
-                            ])
-
-    edited_df = st.data_editor(tasks_df, width=1426, height=500,num_rows="dynamic")    
-
-
-
-
