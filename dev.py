@@ -993,15 +993,17 @@ if selected3 == "Tâches" :
 
 
 if selected3 == "Tâches" :
+    # Vérifie si les données existent déjà dans l'état de session
     if "tasks_df" not in st.session_state:
         # Si non, créez un DataFrame vide
         st.session_state.tasks_df = pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
     
+    # Ajoutez une ligne vide si le DataFrame est vide
+    if st.session_state.tasks_df.empty:
+        st.session_state.tasks_df.loc[0] = ["", "", "", "", ""]
+    
     # Affichez le DataFrame éditable
-    edited_df = st.data_editor(st.session_state.tasks_df, width=1426, height=600, num_rows="dynamic")
+    edited_df = st.dataframe(st.session_state.tasks_df, width=1426, height=600, editable=True)
     
     # Stockez les modifications dans l'état de session
     st.session_state.tasks_df = edited_df
-    
-    # Affichez le DataFrame modifié
-    st.write("DataFrame modifié :", edited_df)
