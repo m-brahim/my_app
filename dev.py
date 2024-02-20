@@ -992,19 +992,4 @@ if selected3 == "Tâches" :
     edited_df = st.data_editor(tasks_df, width=1426, height=600,num_rows="dynamic")    
 
 
-if selected3 == "Tâches" :
-    if "tasks_df" not in st.session_state:
-        st.session_state.tasks_df = pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
 
-    if st.session_state.tasks_df.empty:
-        st.session_state.tasks_df.loc[0] = ["", "", "", "", ""]
-    
-    edited_df = st.dataframe(st.session_state.tasks_df, width=1426, height=600, key="tasks")
-    
-    st.session_state.tasks_df = edited_df
-    
-    query_params = st.experimental_get_query_params()
-    if "tasks" in query_params:
-        st.session_state.tasks_df = pd.read_json(query_params["tasks"][0])
-    
-    st.experimental_set_query_params(tasks=st.session_state.tasks_df.to_json())
