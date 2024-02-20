@@ -992,5 +992,4 @@ if selected3 == "OpenAI":
 if selected3 == "Tâches":
     tasks_df = pd.DataFrame(columns=['Tâches', 'Personnes Assignées', 'Durée', 'Etat', 'Durée restante'])
     
-    st.experimental_set_query_params(task_df=True)
     st.experimental_data_editor(tasks_df, height=500, width=1426)
