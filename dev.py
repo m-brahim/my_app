@@ -1016,7 +1016,10 @@ if selected3 == "Tâches" :
 
 if selected3 == "Tâches" :
     def initialize_data():
-        return pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "Etat", "Durée restante"])
+        tasks_df = pd.DataFrame([
+            {"Tâches" : "Intégration des données", "Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
+        ])
+        return tasks_df
     
     if 'tasks_df' not in st.session_state:
         st.session_state.tasks_df = initialize_data()
