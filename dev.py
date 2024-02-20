@@ -988,31 +988,22 @@ if selected3 == "OpenAI":
 
 
 if selected3 == "Tâches" :
-    tasks_df = pd.DataFrame([
-        {"Tâches" : "Intégration des données","Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
-                            ])
-
-    edited_df = st.data_editor(tasks_df, width=1426, height=600,num_rows="dynamic")
-
-
-
-
-
-if selected3 == "Tâches" :
-    # Création d'un DataFrame vide pour stocker les tâches
-    if 'tasks_df' not in st.session_state:
-        st.session_state.tasks_df = pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "État", "Durée restante"])
+    @st.cache(allow_output_mutation=True)
+    def get_data():
+        return pd.DataFrame(columns=["Tâches", "Personnes Assignées", "Durée", "État", "Durée restante"])
+    
+    # Récupération ou initialisation des données
+    tasks_df = get_data()
     
     # Affichage du titre
     st.title("Gestion des tâches")
     
-    # Ajouter une ligne vide
-    if st.button("Ajouter une nouvelle tâche"):
-        st.session_state.tasks_df = st.session_state.tasks_df.append(pd.Series(), ignore_index=True)
-    
     # Affichage du tableau et édition des données
-    edited_df = st.dataframe(st.session_state.tasks_df, width=1426, height=600)
+    tasks_df = st.dataframe(tasks_df, width=1426, height=600, num_rows="dynamic")
     
-    # Affichage du DataFrame final
-    st.write("Tâches enregistrées :")
-    st.write(st.session_state.tasks_df)
+    # Mise à jour des données dans le cache
+    st.cache(allow_output_mutation=True)(get_data)(tasks_df)
+
+
+
+
