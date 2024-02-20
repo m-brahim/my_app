@@ -987,7 +987,6 @@ if selected3 == "OpenAI":
 
 
 
-
 if selected3 == "Tâches" :
     @st.cache(allow_output_mutation=True)
     def load_data():
@@ -998,13 +997,15 @@ if selected3 == "Tâches" :
         return tasks_df
     
     def main():
+        # Chargez les données DataFrame depuis l'URL
         tasks_df = load_data()
+        tasks_df = pd.DataFrame(tasks_df)
     
         # Affichez le tableau éditable
         edited_df = st.data_editor(tasks_df, width=1426, height=800, num_rows="dynamic")
     
-        # Stockez les données mises à jour dans le cache
-        load_data()
+        # Stockez les données modifiées dans l'URL
+        st.experimental_set_query_params(tasks_df=edited_df.to_json())
     
     if __name__ == "__main__":
         main()
