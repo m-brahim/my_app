@@ -1018,13 +1018,28 @@ if selected3 == "Tâches":
     
     available_persons = tot_effectif - assigned_persons
 
-    col_metric, col_2, col_3 = st.columns([0.5,1,1])
+    col_1, col_2, col_3 = st.columns([0.5,1,1])
 
-    with col_metric:
+    with col_1:
         st.metric(label="Effectif total", value=tot_effectif)
         st.metric(label="Personnes assignées à des tâches", value=assigned_persons)
         st.metric(label="Personnes disponibles", value=available_persons)
 
     style_metric_cards()
 
+
+
+    
+    total_tasks = st.session_state.tasks_df.shape[0]
+
+    completed_tasks = (st.session_state.tasks_df["Etat"] == "terminée").sum()
+    
+    remaining_tasks = total_tasks - completed_tasks
+
+    with col2:
+        st.metric(label="Nombre total de tâches", value=total_tasks)
+        st.metric(label="Tâches terminées", value=completed_tasks)
+        st.metric(label="Tâches restantes", value=remaining_tasks)
+
+    style_metric_cards()
 
