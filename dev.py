@@ -990,17 +990,9 @@ if selected3 == "OpenAI":
 
 
 if selected3 == "Tâches":
-    # Créer un DataFrame vide avec les colonnes spécifiées
-    tasks_df = pd.DataFrame(columns=['Tâches', 'Personnes Assignées', 'Durée', 'Etat', 'Durée restante'])
-    
-    # Ajouter une ligne de données fictive pour illustrer l'utilisation du tableau
-    tasks_df = tasks_df.append({
-        'Tâches': 'Intégration des données',
-        'Personnes Assignées': 2,
-        'Durée': '4h',
-        'Etat': 'en cours',
-        'Durée restante': '2h'
-    }, ignore_index=True)
-    
-    # Afficher le tableau interactif avec st.experimental_data_editor
-    st.experimental_data_editor(tasks_df, height=500, width=1426)
+    tasks_df = pd.DataFrame([
+        {"Tâches" : "Intégration des données","Personnes Assignées" : "2", "Durée": "4h", "Etat": "en cours", "Durée restante" : "2h"},
+                            ])
+
+    edited_df = st.data_editor(tasks_df)
+
