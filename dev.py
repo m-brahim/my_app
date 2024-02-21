@@ -1062,14 +1062,12 @@ if selected3 == "Tests":
     st.subheader("")
     st.subheader("")
     
-    # Collecte des données
     df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
     
-    # Sélectionner les colonnes à afficher dans le DataFrame
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
-
-    # Filtrer le DataFrame avec les colonnes sélectionnées
-    df_filtered = df_table[selected_columns_table]
     
-    # Afficher le DataFrame dans Streamlit avec le style CSS
+    df_filtered = df_table[selected_columns_table]
+
+    styled_df = df_filtered.style.applymap(lambda x: 'background-color: #fcc200' if x == 1000 else '', subset=['Ventes'])
+
     st.dataframe(df_filtered, hide_index=True)
