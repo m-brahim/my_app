@@ -14,3 +14,4 @@ numpy
 streamlit-aggrid
 duckdb
 openai
+streamlit-elements
