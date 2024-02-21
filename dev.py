@@ -1068,6 +1068,15 @@ if selected3 == "Tests":
     
     df_filtered = df_table[selected_columns_table]
 
-    styled_df = df_filtered.style.applymap(lambda x: 'background-color: #fcc200' if x == 1000 else '', subset=['Ventes'])
+    st.data_editor(
+    df_filtered,
+    column_config={
+        "Ventes": st.column_config.ProgressColumn(
+            "Volume des ventes",
+            format="%f€",
+        ),
+    },
+    hide_index=True,
+    )
 
-    st.dataframe(df_filtered, hide_index=True)
+
