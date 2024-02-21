@@ -1057,6 +1057,20 @@ if selected3 == "Tâches":
 
 
 
+image_folder = "img"
+flag_images = {}
+for filename in os.listdir(image_folder):
+    country_name = os.path.splitext(filename)[0]
+    flag_images[country_name] = os.path.join(image_folder, filename)
+
+# Fonction pour générer le code HTML de l'image du drapeau
+def get_flag_image(country):
+    img_path = flag_images.get(country)
+    if img_path:
+        return f'<img src="{img_path}" style="width: 30px; height: auto;">'
+    else:
+        return country
+
 if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
@@ -1071,24 +1085,9 @@ if selected3 == "Tests":
     # Filtrer le DataFrame avec les colonnes sélectionnées
     df_filtered = df_table[selected_columns_table].copy()  # Assurez-vous de copier le DataFrame pour éviter les modifications accidentelles
     
-    # Nettoyer la colonne "Ventes"
-    df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
-    df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
+    # Remplacer les noms des pays par les images des drapeaux dans la colonne "Pays/Région"
+    df_filtered['Pays/Région'] = df_filtered['Pays/Région'].apply(get_flag_image)
     
-    # Convertir les données de la colonne "Ventes" en str
-    df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
+    # Afficher le DataFrame dans Streamlit avec st.data_editor()
+    st.data_editor(df_filtered, escape_html=False, height=800)
     
-    # Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
-    st.data_editor(
-        df_filtered,
-        column_config={
-            "Ventes": st.column_config.ProgressColumn(
-                "Volume des ventes",
-                format="%f€",
-                min_value=0,
-                max_value=8000,
-            ),
-        },
-        hide_index=True,
-    )
-
