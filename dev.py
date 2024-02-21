@@ -1068,12 +1068,11 @@ if selected3 == "Tests":
     # Sélectionner les colonnes à afficher dans le DataFrame
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
 
-    st.markdown("""
-    <style>
-    df_table {background-color: #f0f0f0;}
-    </style>
-    """, unsafe_allow_html=True)
-
-    # Afficher uniquement les colonnes sélectionnées dans Streamlit
-    st.dataframe(df_table[selected_columns_table], hide_index=True)
+    # Filtrer le DataFrame avec les colonnes sélectionnées
+    df_filtered = df_table[selected_columns_table]
     
+    # Appliquer le style CSS
+    styled_df = df_filtered.style.set_properties(**{'background-color': 'lightblue', 'color': 'black', 'header': 'background-color: #fcc200'})
+    
+    # Afficher le DataFrame dans Streamlit avec le style CSS
+    st.dataframe(styled_df, hide_index=True)
