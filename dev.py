@@ -1092,11 +1092,11 @@ if selected3 == "Tests":
 
 if selected3 == "Elements":
     with elements("dashboard"):
-    layout = [
-        dashboard.Item("first_item", 0, 0, 2, 2),
-        dashboard.Item("second_item", 2, 0, 2, 2, isDraggable=False, moved=False),
-        dashboard.Item("third_item", 0, 2, 1, 1, isResizable=False),
-    ]
+        layout = [
+            dashboard.Item("first_item", 0, 0, 2, 2),
+            dashboard.Item("second_item", 2, 0, 2, 2, isDraggable=False, moved=False),
+            dashboard.Item("third_item", 0, 2, 1, 1, isResizable=False),
+        ]
 
     with dashboard.Grid(layout):
         mui.Paper("First item", key="first_item")
