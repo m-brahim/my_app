@@ -1071,8 +1071,5 @@ if selected3 == "Tests":
     # Filtrer le DataFrame avec les colonnes sélectionnées
     df_filtered = df_table[selected_columns_table]
     
-    # Appliquer le style CSS
-    styled_df = df_filtered.style.set_properties(**{'background-color': 'lightblue', 'color': 'black', 'header': 'background-color: #fcc200'})
-    
     # Afficher le DataFrame dans Streamlit avec le style CSS
-    st.dataframe(styled_df, hide_index=True)
+    st.dataframe(df_filtered, hide_index=True)
