@@ -1073,3 +1073,7 @@ if selected3 == "Tests":
     st.write(df_table[selected_columns_table])
 
 
+    df = pd.DataFrame({"A":[1,2,3],"B":['a','b','c']})
+    st.dataframe(df.set_index("A"))
+
+
