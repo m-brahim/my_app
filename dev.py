@@ -1060,10 +1060,16 @@ if selected3 == "Tâches":
 if selected3 == "Tests":
     st.header("1. Analyse client")
     
+    # Collecte des données
+    df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
+    
+    # Sélectionner les colonnes à afficher dans le DataFrame
+    selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
+    
+    # Affichage du DataFrame avec la colonne index cachée
+    st.dataframe(df_table[selected_columns_table].style.hide_index(), height=500)
 
-
-
-    df = pd.DataFrame({"A":[1,2,3],"B":['a','b','c']})
-    st.dataframe(df.set_index("A"))
+    # Affichage du DataFrame avec la colonne index cachée à l'aide de la méthode style et conversion en HTML pour utilisation dans st.markdown
+    st.markdown(df_table[selected_columns_table].style.hide_index().to_html(), unsafe_allow_html=True)
 
 
