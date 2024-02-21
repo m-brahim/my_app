@@ -55,7 +55,7 @@ col_title, col_logo = st.columns([3, 0.5])
 #une colonne pour le titre & une pour les listes déroulantes
 
 with st.sidebar:
-    selected3 = option_menu("Menu", ["Accueil", "Import", "OpenAI", "Tâches", 'Paramètres'], 
+    selected3 = option_menu("Menu", ["Accueil", "Import", "OpenAI", "Tâches", 'Tests'], 
     icons=['house', 'cloud-upload', 'lightbulb', 'list-task', 'gear'], 
     menu_icon="cast", default_index=0,
     styles={
