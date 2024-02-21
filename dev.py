@@ -1042,55 +1042,38 @@ if selected3 == "Tâches":
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import streamlit as st
-import pandas as pd
-
 if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
     st.subheader("")
     
+    # Collecte des données
     df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
     
+    # Sélectionner les colonnes à afficher dans le DataFrame
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
 
-    df_filtered = df_table[selected_columns_table].copy()
-
+    # Filtrer le DataFrame avec les colonnes sélectionnées
+    df_filtered = df_table[selected_columns_table].copy()  # Assurez-vous de copier le DataFrame pour éviter les modifications accidentelles
+    
+    # Nettoyer la colonne "Ventes"
     df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
     df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
     
+    # Convertir les données de la colonne "Ventes" en str
     df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
     
-    countries = ["Allemagne", "Autriche", "Belgique", "Danemark", "Espagne", "Finlande", "France", "Hollande", "Irlande", "Italie", "Norvège", "Portugal", "Royaume-Uni", "Suisse", "Suède"]
-    flag_images = ["img/Allemagne.png", "img/Autriche.png", "img/Belgique.png", "img/Danemark.jpg", "img/Espagne.jpg", "img/Finlande.png", "img/France.png", "img/Hollande.jpg" , "img/Irlande.jpg", "img/Italie.png", "img/Norvège.png", "img/Portugal.jpg", "img/Royaume-Uni.jpg", "img/Suisse.png", "img/Suède.png"]
-    
-    flags = {country: flag_image for country, flag_image in zip(countries, flag_images)}
-    
-    # Création d'une nouvelle colonne contenant les images de drapeaux
-    df_filtered['Drapeau'] = df_filtered['Pays/Région'].map(flags)
-    
-    # Supprimer la colonne des noms de pays (si vous ne souhaitez pas l'afficher)
-    df_filtered = df_filtered.drop(columns=['Pays/Région'])
-    
-    # Afficher le DataFrame avec les images de drapeaux
-    st.dataframe(
+    # Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
+    st.data_editor(
         df_filtered,
-        width=1000, height=500
+        column_config={
+            "Ventes": st.column_config.ProgressColumn(
+                "Volume des ventes",
+                format="%f€",
+                min_value=0,
+                max_value=8000,
+            ),
+        },
+        hide_index=True,
     )
-
     
