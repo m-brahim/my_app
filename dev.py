@@ -1066,6 +1066,7 @@ if selected3 == "Tests":
     # Sélectionner les colonnes à afficher dans le DataFrame
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
     
-    st.write(url.set_index('Catégorie'))
+    st.write(df_table.set_index('Catégorie')[selected_columns_table])
+
 
 
