@@ -1074,6 +1074,20 @@ if selected3 == "Tests":
                 max_value=8000,
             ),
         },
+        column_config={
+            "Date de commande": st.column_config.DateColumn(
+                "Date de commande",
+                format="DD.MM.YYYY",
+                step=1,
+            ),
+        },
         hide_index=True,
-    )
+        )
     
+
+    
+
+
+
+
+
