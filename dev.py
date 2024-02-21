@@ -1084,7 +1084,7 @@ if selected3 == "Tests":
         column_config={
             "Ventes": st.column_config.ProgressColumn(
                 "Volume des ventes",
-                format="%f",
+                format="%f€",
                 min_value=df_filtered['Ventes'].min(),
                 max_value=df_filtered['Ventes'].max(),
             ),
