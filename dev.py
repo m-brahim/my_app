@@ -1060,10 +1060,9 @@ if selected3 == "Tests":
     df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
     df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
     
-    # Convertir les données de la colonne "Ventes" en str
     df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
-    # Convertir la colonne "Date de commande" en type de données date
-    df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d.%m.%Y')
+    df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
+
     
     # Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
     st.data_editor(
