@@ -1065,11 +1065,9 @@ if selected3 == "Tests":
     
     # Sélectionner les colonnes à afficher dans le DataFrame
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
-    
-    # Affichage du DataFrame avec la colonne index cachée
-    st.dataframe(df_table[selected_columns_table].style.hide_index(), height=500)
 
-    # Affichage du DataFrame avec la colonne index cachée à l'aide de la méthode style et conversion en HTML pour utilisation dans st.markdown
-    st.markdown(df_table[selected_columns_table].style.hide_index().to_html(), unsafe_allow_html=True)
+    styler = df_table.style.hide_index()
+    
+    st.write(styler.to_html(), unsafe_allow_html = True)
 
 
