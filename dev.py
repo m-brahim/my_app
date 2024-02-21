@@ -1095,5 +1095,5 @@ if selected3 == "Tests":
     
     # Condition pour afficher le tableau uniquement si la sélection a été effectuée
     if selection_effectuee:
-        # Afficher le DataFrame
-        st.write(df_filtre)
+        # Afficher uniquement les colonnes sélectionnées
+        st.write(df_filtre[selected_columns_table])
