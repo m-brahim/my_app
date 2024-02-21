@@ -610,8 +610,6 @@ if selected3 == "Accueil" :
     icon_path = 'Kiloutou_logo.jpg'
     client_icon = folium.CustomIcon(icon_image=icon_path, icon_size=(20, 20))
 
-    selected_country_data = merged_data[merged_data['Pays/Région'] == selected_pays]
-    
     if selection:
         # définition d'une localisation initiale
         my_map = folium.Map(location=[merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]], zoom_start=5.5)
