@@ -1069,7 +1069,6 @@ if selected3 == "Tests":
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
 
     styled_df = df_table[selected_columns_table].style
-    styled_df = styled_df.hide_index()  # Masquer l'index
     styled_df = styled_df.set_properties(**{'font-size': '16px'})  # Définir la taille de la police
     styled_df = styled_df.set_table_styles([{'selector': 'th', 'props': [('background-color', '#f2f2f2')]}])  # Modifier le style des en-têtes
-    st.dataframe(styled_df)
+    st.dataframe(styled_df, hidex_index=True)
