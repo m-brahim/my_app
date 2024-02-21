@@ -1068,12 +1068,17 @@ if selected3 == "Tests":
     # Sélectionner les colonnes à afficher dans le DataFrame
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
 
-    df['Ventes'] = df['Ventes'].str.replace('[^\d]', '', regex=True)
-    df['Ventes'] = pd.to_numeric(df['Ventes'], errors='coerce', downcast='integer')
+    # Filtrer le DataFrame avec les colonnes sélectionnées
+    df_filtered = df_table[selected_columns_table].copy()  # Assurez-vous de copier le DataFrame pour éviter les modifications accidentelles
     
+    # Nettoyer la colonne "Ventes"
+    df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
+    df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
+    
+    # Afficher le DataFrame avec le ProgressColumn pour la colonne "Ventes"
     st.data_editor(
-    df_filtered,
-    column_config={
+        df_filtered,
+        column_config={
             "Ventes": st.column_config.ProgressColumn(
                 "Volume des ventes",
                 format="%f",
