@@ -1002,6 +1002,7 @@ if "tasks_df" not in st.session_state:
     st.session_state.tasks_df = load_data()
 
 if selected3 == "Tâches":
+    st.title("Gestion des tâches")
     edited_df = st.data_editor(st.session_state.tasks_df, width=1426, height=600, num_rows="dynamic")
     st.session_state.tasks_df = edited_df
     save_data(edited_df)
