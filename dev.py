@@ -1070,7 +1070,7 @@ if selected3 == "Tests":
 
     st.markdown("""
     <style>
-    table {background-color: #f0f0f0;}
+    df_table {background-color: #f0f0f0;}
     </style>
     """, unsafe_allow_html=True)
 
