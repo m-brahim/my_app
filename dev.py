@@ -1062,21 +1062,29 @@ if selected3 == "Tests":
     st.subheader("")
     st.subheader("")
     
+    # Collecte des données
     df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
     
+    # Nettoyer les données dans la colonne "Ventes"
+    df_table['Ventes'] = df_table['Ventes'].str.replace('€', '').str.replace(',', '').astype(float)
+    
+    # Sélectionner les colonnes à afficher dans le DataFrame
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
     
+    # Filtrer le DataFrame avec les colonnes sélectionnées
     df_filtered = df_table[selected_columns_table]
 
+    # Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
     st.data_editor(
-    df_filtered,
-    column_config={
-        "Ventes": st.column_config.ProgressColumn(
-            "Volume des ventes",
-            format="%f€",
-        ),
-    },
-    hide_index=True,
+        df_filtered,
+        column_config={
+            "Ventes": st.column_config.ProgressColumn(
+                "Volume des ventes",
+                format="%f",
+                min_value=df_filtered['Ventes'].min(),
+                max_value=df_filtered['Ventes'].max(),
+            ),
+        },
+        hide_index=True,
     )
-
 
