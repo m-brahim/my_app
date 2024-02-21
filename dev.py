@@ -1057,6 +1057,9 @@ if selected3 == "Tâches":
 
 
 
+import streamlit as st
+import pandas as pd
+
 if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
@@ -1078,10 +1081,16 @@ if selected3 == "Tests":
     
     flags = {country: flag_image for country, flag_image in zip(countries, flag_images)}
     
-    df_filtered['Pays/Région'] = df_filtered['Pays/Région'].map(lambda x: flags.get(x, x))
+    # Création d'une nouvelle colonne contenant les images de drapeaux
+    df_filtered['Drapeau'] = df_filtered['Pays/Région'].map(flags)
     
+    # Supprimer la colonne des noms de pays (si vous ne souhaitez pas l'afficher)
+    df_filtered = df_filtered.drop(columns=['Pays/Région'])
+    
+    # Afficher le DataFrame avec les images de drapeaux
     st.dataframe(
         df_filtered,
         width=1000, height=500
     )
+
     
