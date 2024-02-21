@@ -615,8 +615,8 @@ if selected3 == "Accueil" :
         my_map = folium.Map(location=[merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]], zoom_start=5.5)
     
         # ajoutez un seul marqueur pour représenter le pays avec le nombre de clients dans l'infobulle
-        folium.Marker([merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]],
-                      popup=f"Nombre de clients: {num_clients}",
+        folium.Marker([selected_country_data['Latitude'].iloc[0], selected_country_data['Longitude'].iloc[0]],
+                      popup=f"Nombre de clients: {selected_country_data['ID client'].iloc[0]}",
                       icon=client_icon).add_to(my_map)
     
         st_folium(my_map, width=1410, height=600)
