@@ -1060,17 +1060,7 @@ if selected3 == "Tâches":
 if selected3 == "Tests":
     st.header("1. Analyse client")
     
-    # Collecte des données
-    df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
-    
-    # Sélectionner les colonnes à afficher dans le DataFrame
-    selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
-    
-    # Définir l'index sur la colonne 'Catégorie'
-    df_table = df_table.set_index('Catégorie')
-    
-    # Afficher le DataFrame avec l'index défini sur la colonne 'Catégorie'
-    st.write(df_table[selected_columns_table])
+
 
 
     df = pd.DataFrame({"A":[1,2,3],"B":['a','b','c']})
