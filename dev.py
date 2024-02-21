@@ -1075,7 +1075,10 @@ if selected3 == "Tests":
     df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
     df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
     
-    # Afficher le DataFrame avec le ProgressColumn pour la colonne "Ventes"
+    # Convertir les données de la colonne "Ventes" en str
+    df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
+    
+    # Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
     st.data_editor(
         df_filtered,
         column_config={
@@ -1088,5 +1091,4 @@ if selected3 == "Tests":
         },
         hide_index=True,
     )
-
 
