@@ -1059,6 +1059,8 @@ if selected3 == "Tâches":
 
 if selected3 == "Tests":
     st.header("1. Analyse client")
+    st.subheader("")
+    st.subheader("")
     
     # Collecte des données
     df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
@@ -1069,6 +1071,7 @@ if selected3 == "Tests":
     # Afficher uniquement les colonnes sélectionnées dans Streamlit
     st.dataframe(df_table[selected_columns_table], hide_index=True)
 
-
+    
+    
 
 
