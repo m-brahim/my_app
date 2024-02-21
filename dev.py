@@ -1067,7 +1067,7 @@ if selected3 == "Tests":
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
 
     # Afficher le DataFrame dans Streamlit
-    st.dataframe(url, hide_index=True)
+    st.dataframe(df_table, hide_index=True)
 
 
 
