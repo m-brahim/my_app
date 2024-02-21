@@ -1092,7 +1092,7 @@ if selected3 == "Tests":
 
 if selected3 == "Elements":
     with elements("dashboard"):
-    from streamlit_elements import dashboard
+        from streamlit_elements import dashboard
         layout = [
             dashboard.Item("first_item", 0, 0, 2, 2),
             dashboard.Item("second_item", 2, 0, 2, 2, isDraggable=False, moved=False),
