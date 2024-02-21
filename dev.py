@@ -602,6 +602,9 @@ if selected3 == "Accueil" :
     
     # agréger le nombre de clients par pays
     clients_by_country = df.drop_duplicates(subset=['ID client', 'Pays/Région']).groupby('Pays/Région')['ID client'].count().reset_index()
+
+    # récupérer le nombre de clients pour le pays sélectionné
+    num_clients = clients_by_country[clients_by_country['Pays/Région'] == selected_pays]['ID client'].values[0]
     
     # fusionner les données agrégées avec les données filtrées
     merged_data = pd.merge(data_f, clients_by_country, how='left', on='Pays/Région')
