@@ -990,7 +990,6 @@ def load_data():
     if os.path.exists("tasks_data.csv"):
         return pd.read_csv("tasks_data.csv")
     else:
-        # Initialiser "Personnes Assignées" et "Durée restante" à 0 pour une nouvelle ligne
         return pd.DataFrame([
             {"Tâches": "Chargement des données sur Snowflake", "Personnes Assignées": 2, "Durée": "4h", "Statut": "en cours",
              "Durée restante": "2h"},
@@ -1008,16 +1007,16 @@ if selected3 == "Tâches":
     save_data(edited_df)
 
     if "Personnes Assignées" in edited_df.columns and "Statut" in edited_df.columns:
+        #Initialisation de Personnes Assignées à 0 pour une nouvelle ligne 
         edited_df["Personnes Assignées"].fillna(0, inplace=True)
         edited_df["Personnes Assignées"] = edited_df["Personnes Assignées"].astype(int)
         
+        col_1, col_space, col_2, col_3, col_space = st.columns([0.5,0.5,0.5,0.5,0.5])
+
         tot_effectif = 20
-        
         assigned_persons = edited_df["Personnes Assignées"].sum()
-        
         available_persons = tot_effectif - assigned_persons
     
-        col_1, col_space, col_2, col_3, col_space = st.columns([0.5,0.5,0.5,0.5,0.5])
         with col_1:
             st.metric(label="Effectif total", value=tot_effectif)
             st.metric(label="Personnes assignées à des tâches", value=assigned_persons)
