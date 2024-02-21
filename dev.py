@@ -1066,14 +1066,11 @@ if selected3 == "Tests":
     # Sélectionner les colonnes à afficher dans le DataFrame
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
 
-    # Appliquer le style pour masquer l'index
-    styler = df_table[selected_columns_table].style.hide_index()
+    # Masquer l'index dans le DataFrame
+    df_table[selected_columns_table].index.name = None
 
-    # Convertir le styler en HTML
-    html = styler.render()
-
-    # Afficher le HTML dans Streamlit
-    st.write(html, unsafe_allow_html=True)
+    # Afficher le DataFrame dans Streamlit
+    st.write(df_table[selected_columns_table])
 
 
 
