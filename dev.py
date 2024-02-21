@@ -1068,5 +1068,11 @@ if selected3 == "Tests":
     # Sélectionner les colonnes à afficher dans le DataFrame
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
 
-    # Afficher uniquement les colonnes sélectionnées dans Streamlit
-    st.dataframe(df_table[selected_columns_table], hide_index=True, style={'backgroundColor': 'lightblue', 'color': 'black'})
+    # Filtrer le DataFrame avec les colonnes sélectionnées
+    df_filtered = df_table[selected_columns_table]
+    
+    # Appliquer le style CSS
+    styled_df = df_filtered.style.set_properties(**{'background-color': 'lightblue', 'color': 'black'})
+    
+    # Afficher le DataFrame dans Streamlit
+    st.write(styled_df)
