@@ -609,13 +609,15 @@ if selected3 == "Accueil" :
     # icône personnalisée pour représenter un client (ici l'exemple c'est Kiloutou)
     icon_path = 'Kiloutou_logo.jpg'
     client_icon = folium.CustomIcon(icon_image=icon_path, icon_size=(20, 20))
+
+    selected_country_data = merged_data[merged_data['Pays/Région'] == selected_pays]
     
     if selection:
         # définition d'une localisation initiale
         my_map = folium.Map(location=[merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]], zoom_start=5.5)
     
         # ajoutez un seul marqueur pour représenter le pays avec le nombre de clients dans l'infobulle
-        folium.Marker([selected_pays['Latitude'].iloc[0], selected_country_data['Longitude'].iloc[0]],
+        folium.Marker([selected_country_data['Latitude'].iloc[0], selected_country_data['Longitude'].iloc[0]],
                       popup=f"Nombre de clients: {selected_country_data['ID client'].iloc[0]}",
                       icon=client_icon).add_to(my_map)
     
