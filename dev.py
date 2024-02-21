@@ -18,6 +18,7 @@ from openai import OpenAI
 import time
 import json
 import os
+from streamlit_elements import elements, mui, html
 
 #config du titre de la page
 st.set_page_config("Suivi des ventes de la société", page_icon="", layout="wide")
