@@ -799,8 +799,8 @@ if selected3 == "OpenAI":
     
     if map_state not in st.session_state:
         st.session_state[map_state] = {
-            "latitude": 39.949610,
-            "longitude": -75.150282,
+            "latitude": 50.60272,
+            "longitude": 3.13381,
             "zoom": 16,
         }
     
