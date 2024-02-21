@@ -1057,6 +1057,9 @@ if selected3 == "Tâches":
 
 
 
+import streamlit as st
+import pandas as pd
+
 if selected3 == "Tests":
     st.header("1. Analyse client")
     
@@ -1095,6 +1098,7 @@ if selected3 == "Tests":
     
     # Condition pour afficher le tableau uniquement si la sélection a été effectuée
     if selection_effectuee:
-        # Afficher uniquement les colonnes sélectionnées sans l'index
-        st.write(df_filtre[selected_columns_table], index=False)
+        # Masquer l'index et afficher uniquement les colonnes sélectionnées
+        st.write(df_filtre[selected_columns_table].style.hide_index())
+
 
