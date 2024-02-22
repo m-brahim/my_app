@@ -1095,20 +1095,24 @@ if selected3 == "Tests":
 
 
 
-
-# Créer un DataFrame pour l'exemple
-data = {
-    'Nom': ['Alice', 'Bob', 'Charlie', 'David'],
-    'Âge': [25, 30, 35, 40],
-    'Ville': ['Paris', 'New York', 'Londres', 'Tokyo']
-}
-df = pd.DataFrame(data)
-
-# Afficher la BasicTable dans Streamlit
 if selected3 == "Elements":
-    with stmui.container():
-        stmui.table(df)
+    with elements("dashboard"):
+        from streamlit_elements import dashboard
+        layout = [
+            dashboard.Item("graphique", 0, 0, 2, 2),
+            dashboard.Item("metric", 0, 0, 2, 2),
+            dashboard.Item("tableau", 0, 0, 2, 2),
+        ]
+        
+        def handle_layout_change(updated_layout):
+            # You can save the layout in a file, or do anything you want with it.
+            # You can pass it back to dashboard.Grid() if you want to restore a saved layout.
+            print(updated_layout)
 
+        with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
+            mui.Paper("graphique", key="graphique")
+            mui.Paper("metric", key="metric")
+            mui.Paper("tableau", key="tableau")
         
 
 
