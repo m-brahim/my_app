@@ -1099,7 +1099,6 @@ if selected3 == "Elements" :
     with elements("boutton"):
         with mui.FormGroup():
             mui.FormControlLabel(
-                control={<Checkbox defaultChecked />},
                 label="Label")
 
 
