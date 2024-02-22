@@ -1128,13 +1128,13 @@ if selected3 == "Elements":
 
         with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
             # Intégrer un graphique
-            with components.expander("Graphique"):
+            with elements.expander("Graphique"):
                 st.line_chart(data)  # Remplacez data par vos données de graphique
                 
             # Intégrer une métrique
-            with components.expander("Métrique"):
+            with elements.expander("Métrique"):
                 st.metric(label="Métrique label", value=42)  # Remplacez 42 par la valeur de votre métrique
                 
             # Intégrer un tableau
-            with components.expander("Tableau"):
+            with elements.expander("Tableau"):
                 st.write(df)  # Remplacez df par votre DataFrame ou tableau
