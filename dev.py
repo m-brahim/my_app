@@ -1097,10 +1097,11 @@ if selected3 == "Tests":
 
 if selected3 == "Elements" :
     with elements("boutton"):
-        mui.Button(
-            variant="contained", 
-            "TEXT",
-        )
+        with mui.FormGroup():
+            mui.FormControlLabel(
+                control={<Checkbox defaultChecked />},
+                label="Label")
+
 
 
 
