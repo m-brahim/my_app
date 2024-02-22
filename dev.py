@@ -1115,7 +1115,8 @@ if selected3 == "Tests":
 if selected3 == "Elements":
     with elements("dashboard"):
         from streamlit_elements import dashboard, mui
-        
+        df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
+
         # Définir votre layout
         layout = [
             dashboard.Item("graphique", 0, 0, 1, 1),
