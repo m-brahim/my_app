@@ -1109,8 +1109,7 @@ table_data = df.to_dict('records')
 
 # Afficher la BasicTable dans Streamlit
 if selected3 == "Elements":
-    with elements("dashboard"):
-        from streamlit_elements import dashboard
+    with dashboard("dashboard"):
         layout = [
             dashboard.Item("tableau", 0, 0, 2, 2),
         ]
@@ -1118,14 +1117,9 @@ if selected3 == "Elements":
         def handle_layout_change(updated_layout):
             print(updated_layout)
 
-        with mui.Paper:
-            components.html(
-                """
-                <BasicTable :columns="['Nom', 'Âge', 'Ville']" :data="table_data" />
-                """,
-                height=500,
-                width=700
-            )
+        st.write("""
+        <BasicTable :columns="['Nom', 'Âge', 'Ville']" :data="table_data" />
+        """, unsafe_allow_html=True)
     
 
         
