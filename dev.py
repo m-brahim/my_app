@@ -1115,17 +1115,10 @@ if selected3 == "Elements":
             mui.Card(" well meaning and kindly.", key="card")
     
     
-    def main():
-        st.title("Tableau basique avec Streamlit")
+    # Lecture du contenu du fichier JavaScript
+    with open("BasicTable.js", "r") as file:
+        js_code = file.read()
     
-        # Intégration du code JavaScript compilé
-        with open("BasicTable.js", "r") as file:
-            js_code = file.read()
-    
-        # Affichage du code JavaScript dans l'application Streamlit
-        st.components.v1.html(js_code, height=600)
-
-    if __name__ == "__main__":
-        main()
-
+    # Affichage du contenu JavaScript dans l'application Streamlit
+    st.components.v1.html(js_code, height=600)
 
