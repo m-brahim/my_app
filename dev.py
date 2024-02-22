@@ -1118,12 +1118,27 @@ if selected3 == "Elements":
 
 
     def main():
-        st.title("Intégration d'une application React dans Streamlit")
+        # Titre de l'application
+        st.title("Tableau de desserts")
     
-        with st.container():
-            with open("BasicTable.js", "r") as f:
-                js_code = f.read()
-            st.components.v1.html(js_code)
+        # Données du tableau
+        rows = [
+            {"name": 'Frozen yoghurt', "calories": 159, "fat": 6.0, "carbs": 24, "protein": 4.0},
+            {"name": 'Ice cream sandwich', "calories": 237, "fat": 9.0, "carbs": 37, "protein": 4.3},
+            {"name": 'Eclair', "calories": 262, "fat": 16.0, "carbs": 24, "protein": 6.0},
+            {"name": 'Cupcake', "calories": 305, "fat": 3.7, "carbs": 67, "protein": 4.3},
+            {"name": 'Gingerbread', "calories": 356, "fat": 16.0, "carbs": 49, "protein": 3.9}
+        ]
+    
+        # Affichage du tableau
+        st.write("<h2>Dessert (portion de 100g)</h2>", unsafe_allow_html=True)
+        st.write("<table>", unsafe_allow_html=True)
+        st.write("<tr><th>Dessert</th><th>Calories</th><th>Fat (g)</th><th>Carbs (g)</th><th>Protein (g)</th></tr>", unsafe_allow_html=True)
+        for row in rows:
+            st.write("<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
+                row["name"], row["calories"], row["fat"], row["carbs"], row["protein"]
+            ), unsafe_allow_html=True)
+        st.write("</table>", unsafe_allow_html=True)
 
     if __name__ == "__main__":
         main()
