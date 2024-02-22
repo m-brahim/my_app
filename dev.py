@@ -1131,7 +1131,39 @@ if selected3 == "Elements":
 
 
 
+    def basic_table():
+    st.write("""
+    ## Basic Table
+    """)
+    st.markdown("""
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mui/material@5.3.3/dist/material.min.css" />
 
+    <table class="MuiTable-root">
+        <thead class="MuiTableHead-root">
+            <tr class="MuiTableRow-root MuiTableRow-head">
+                <th class="MuiTableCell-root MuiTableCell-head">Dessert (100g serving)</th>
+                <th class="MuiTableCell-root MuiTableCell-head" align="right">Calories</th>
+                <th class="MuiTableCell-root MuiTableCell-head" align="right">Fat&nbsp;(g)</th>
+                <th class="MuiTableCell-root MuiTableCell-head" align="right">Carbs&nbsp;(g)</th>
+                <th class="MuiTableCell-root MuiTableCell-head" align="right">Protein&nbsp;(g)</th>
+            </tr>
+        </thead>
+        <tbody class="MuiTableBody-root">
+            <tr class="MuiTableRow-root">
+                <td class="MuiTableCell-root">Frozen yoghurt</td>
+                <td class="MuiTableCell-root" align="right">159</td>
+                <td class="MuiTableCell-root" align="right">6.0</td>
+                <td class="MuiTableCell-root" align="right">24</td>
+                <td class="MuiTableCell-root" align="right">4.0</td>
+            </tr>
+            <!-- Ajoutez les autres lignes de tableau ici -->
+        </tbody>
+    </table>
+    """)
+
+basic_table()
 
 
 
