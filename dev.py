@@ -1098,7 +1098,8 @@ if selected3 == "Tests":
 if selected3 == "Elements" :
     with elements("boutton"):
         mui.Button(
-        "TEXT"
+            variant="contained",
+            "TEXT"
     )
 
         with mui.Button(variant="text"):
