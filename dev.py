@@ -1096,13 +1096,19 @@ if selected3 == "Tests":
 
 
 
+# Créer un DataFrame pour l'exemple
+data = {
+    'Nom': ['Alice', 'Bob', 'Charlie', 'David'],
+    'Âge': [25, 30, 35, 40],
+    'Ville': ['Paris', 'New York', 'Londres', 'Tokyo']
+}
+df = pd.DataFrame(data)
+
+# Convertir le DataFrame en une liste de dictionnaires
+table_data = df.to_dict('records')
+
+# Afficher la BasicTable dans Streamlit
 if selected3 == "Elements":
-    data = {
-        'Nom': ['Alice', 'Bob', 'Charlie', 'David'],
-        'Âge': [25, 30, 35, 40],
-        'Ville': ['Paris', 'New York', 'Londres', 'Tokyo']
-    }
-    df_test = pd.DataFrame(data)
     with elements("dashboard"):
         from streamlit_elements import dashboard
         layout = [
@@ -1113,8 +1119,13 @@ if selected3 == "Elements":
             print(updated_layout)
 
         with mui.Paper:
-            with mui.Table:
-                st.write(df_test)
+            components.html(
+                """
+                <BasicTable :columns="['Nom', 'Âge', 'Ville']" :data="table_data" />
+                """,
+                height=500,
+                width=700
+            )
     
 
         
