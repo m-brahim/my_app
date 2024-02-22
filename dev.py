@@ -1113,32 +1113,17 @@ if selected3 == "Elements":
             mui.Paper("metric", key="metric")
             mui.Paper("tableau", key="tableau")
             mui.Card(" well meaning and kindly.", key="card")
-
-        
-
-
+    
+    
     def main():
-        # Titre de l'application
-        st.title("Tableau de desserts")
+        st.title("Tableau basique avec Streamlit")
     
-        # Données du tableau
-        rows = [
-            {"name": 'Frozen yoghurt', "calories": 159, "fat": 6.0, "carbs": 24, "protein": 4.0},
-            {"name": 'Ice cream sandwich', "calories": 237, "fat": 9.0, "carbs": 37, "protein": 4.3},
-            {"name": 'Eclair', "calories": 262, "fat": 16.0, "carbs": 24, "protein": 6.0},
-            {"name": 'Cupcake', "calories": 305, "fat": 3.7, "carbs": 67, "protein": 4.3},
-            {"name": 'Gingerbread', "calories": 356, "fat": 16.0, "carbs": 49, "protein": 3.9}
-        ]
+        # Intégration du code JavaScript compilé
+        with open("BasicTable.js", "r") as file:
+            js_code = file.read()
     
-        # Affichage du tableau
-        st.write("<h2>Dessert (portion de 100g)</h2>", unsafe_allow_html=True)
-        st.write("<table>", unsafe_allow_html=True)
-        st.write("<tr><th>Dessert</th><th>Calories</th><th>Fat (g)</th><th>Carbs (g)</th><th>Protein (g)</th></tr>", unsafe_allow_html=True)
-        for row in rows:
-            st.write("<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
-                row["name"], row["calories"], row["fat"], row["carbs"], row["protein"]
-            ), unsafe_allow_html=True)
-        st.write("</table>", unsafe_allow_html=True)
+        # Affichage du code JavaScript dans l'application Streamlit
+        st.components.v1.html(js_code, height=600)
 
     if __name__ == "__main__":
         main()
