@@ -21,6 +21,8 @@ import os
 from streamlit_elements import elements, mui, html
 from streamlit_elements import dashboard
 from st_mui_table import st_mui_table
+import * as React from 'react'
+import Button from '@mui/material/Button'
 
 #config du titre de la page
 st.set_page_config("Suivi des ventes de la société", page_icon="", layout="wide")
@@ -1149,4 +1151,8 @@ if selected3 == "Elements":
 
 
 
-
+    
+    
+    export default function ButtonUsage() {
+      return <Button variant="contained">Hello world</Button>;
+    }
