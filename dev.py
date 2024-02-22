@@ -1101,7 +1101,10 @@ if selected3 == "Elements" :
             mui.Button("One")
             mui.Button("Two")
             mui.Button("Three")
-
+        with mui.FormGroup(label="Label", label="Required", label="Disabled"):
+            mui.FormControlLabel()
+            mui.FormControlLabel()
+            mui.FormControlLabel()
 
 
 
