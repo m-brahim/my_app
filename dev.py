@@ -1094,58 +1094,42 @@ if selected3 == "Tests":
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if selected3 == "Elements":
-    df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
+    with elements("dashboard"):
+        from streamlit_elements import dashboard
+        layout = [
+            dashboard.Item("graphique", 0, 0, 2, 2),
+            dashboard.Item("metric", 0, 0, 2, 2),
+            dashboard.Item("tableau", 0, 0, 2, 2),
+        ]
+        
+        def handle_layout_change(updated_layout):
+            # You can save the layout in a file, or do anything you want with it.
+            # You can pass it back to dashboard.Grid() if you want to restore a saved layout.
+            print(updated_layout)
 
-    # Définir les propriétés de l'élément Paper
-    paper_props = {
-        "resizable": True,
-        "draggable": True,
-        "style": {
-            "width": "100%",
-            "height": "300px"  # Ajustez la hauteur selon vos besoins
-        }
-    }
+        with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
+            mui.Paper("graphique", key="graphique")
+            mui.Paper("metric", key="metric")
+            mui.Paper("tableau", key="tableau")
 
-    # Créer un élément Paper redimensionnable et déplaçable pour envelopper la table
-    with elements("frame"):
-        with mui.Paper(key="resizable_paper", **paper_props):
-            # Afficher la table à l'intérieur de l'élément Paper
-            st_mui_table(
-                df_table,
-                enablePagination=True,
-                customCss="",
-                paginationSizes=[5, 10, 25],
-                size="medium",
-                padding="normal",
-                showHeaders=True,
-                key="mui_table",
-                stickyHeader=True,
-                paperStyle={"width": "100%", "overflow": "hidden", "paddingBottom": "1px", "border": "2px solid rgba(224, 224, 224, 1)"},
-                detailColumns=[],
-                detailColNum=1,
-                detailsHeader="Details",
-                showIndex=False
-            )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
