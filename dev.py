@@ -1134,11 +1134,10 @@ if selected3 == "Elements":
             #     st.line_chart(data)
             
             # Intégrer une métrique
-            with dashboard.Item("metric", 1, 0, 1, 1, resizable=True, draggable=True):
-                with mui.Paper(key="metric"):
-                    st.metric(label="Métrique label", value=42)  # Remplacez 42 par la valeur de votre métrique
+        with dashboard.Item("metric", 1, 0, 1, 1, resizable=True, draggable=True):
+            with mui.Paper(key="metric"):
+                st.metric(label="Métrique label", value=42)  # Remplacez 42 par la valeur de votre métrique
             
-            # Intégrer un tableau
-            with dashboard.Item("tableau", 0, 1, 2, 1, resizable=True, draggable=True):
-                with mui.Paper(key="tableau"):
-                    st.write(df_table)
+        with dashboard.Item("tableau", 0, 1, 2, 1, resizable=True, draggable=True):
+            with mui.Paper(key="tableau"):
+                st.write(df_table)
