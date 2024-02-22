@@ -1094,53 +1094,40 @@ if selected3 == "Tests":
 
 
 
+def generate_random_data():
+    return pd.DataFrame({
+        'Date': pd.date_range(start='2024-01-01', end='2024-01-10'),
+        'Valeur': np.random.randn(10)
+    })
 
 if selected3 == "Elements":
     with elements("dashboard"):
         from streamlit_elements import dashboard
         layout = [
             dashboard.Item("graphique", 0, 0, 2, 2),
-            dashboard.Item("metric", 0, 0, 2, 2),
-            dashboard.Item("tableau", 0, 0, 2, 2),
+            dashboard.Item("metric", 2, 0, 2, 2),
+            dashboard.Item("tableau", 0, 2, 4, 4),
         ]
         
         def handle_layout_change(updated_layout):
-            # You can save the layout in a file, or do anything you want with it.
-            # You can pass it back to dashboard.Grid() if you want to restore a saved layout.
             print(updated_layout)
 
         with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
-            mui.Paper("graphique", key="graphique")
-            mui.Paper("metric", key="metric")
-            mui.Paper("tableau", key="tableau")
+            with dashboard.ItemContent("graphique"):
+                st.write("Exemple de graphique :")
+                # Créer un graphique fictif
+                random_data = generate_random_data()
+                st.line_chart(random_data.set_index('Date'))
 
+            with dashboard.ItemContent("metric"):
+                st.write("Exemple de métrique :")
+                # Afficher un métrique fictif
+                st.metric(label="Valeur moyenne", value=np.mean(random_data['Valeur']))
 
-
-
-    with elements("monaco_editors"):
-        if "content" not in st.session_state:
-            st.session_state.content = "Default value"
-    
-        mui.Typography("Content: ", st.session_state.content)
-    
-        def update_content(value):
-            st.session_state.content = value
-    
-        editor.Monaco(
-            height=300,
-            defaultValue=st.session_state.content,
-            onChange=lazy(update_content)
-        )
-    
-        mui.Button("Update content", onClick=sync())
-    
-        editor.MonacoDiff(
-            original="Happy Streamlit-ing!",
-            modified="Happy Streamlit-in' with Elements!",
-            height=300,
-        )
-
-
+            with dashboard.ItemContent("tableau"):
+                st.write("Exemple de tableau :")
+                # Afficher un tableau fictif
+                st.table(random_data)
 
 
 
