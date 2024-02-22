@@ -1111,7 +1111,7 @@ if selected3 == "Elements":
             mui.Paper("graphique", key="graphique")
             mui.Paper("metric", key="metric")
             mui.Paper("tableau", key="tableau")
-            mui.FormControlLabel(label="Test", value="test", key="tableau")
+            mui.Card(" well meaning and kindly.", key="tableau")
 
         
 
