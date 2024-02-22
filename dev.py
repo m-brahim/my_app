@@ -20,6 +20,7 @@ import json
 import os
 from streamlit_elements import elements, mui, html
 from streamlit_elements import dashboard
+from streamlit_elements import editor
 from st_mui_table import st_mui_table
 
 
@@ -1116,7 +1117,28 @@ if selected3 == "Elements":
 
 
 
-
+    with elements("monaco_editors"):
+        if "content" not in st.session_state:
+            st.session_state.content = "Default value"
+    
+        mui.Typography("Content: ", st.session_state.content)
+    
+        def update_content(value):
+            st.session_state.content = value
+    
+        editor.Monaco(
+            height=300,
+            defaultValue=st.session_state.content,
+            onChange=lazy(update_content)
+        )
+    
+        mui.Button("Update content", onClick=sync())
+    
+        editor.MonacoDiff(
+            original="Happy Streamlit-ing!",
+            modified="Happy Streamlit-in' with Elements!",
+            height=300,
+        )
 
 
 
