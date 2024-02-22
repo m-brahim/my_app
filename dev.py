@@ -1114,7 +1114,6 @@ if selected3 == "Tests":
 
 if selected3 == "Elements":
     with elements("dashboard"):
-        from streamlit_elements import dashboard, components
         
         # Définir votre layout
         layout = [
