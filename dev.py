@@ -1090,21 +1090,52 @@ if selected3 == "Tests":
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if selected3 == "Elements":
     with elements("dashboard"):
-        from streamlit_elements import dashboard
+        from streamlit_elements import dashboard, components
+        
+        # Définir votre layout
         layout = [
-            dashboard.Item("graphique", 0, 0, 2, 2),
-            dashboard.Item("metric", 0, 0, 2, 2),
-            dashboard.Item("tableau", 0, 0, 2, 2),
+            dashboard.Item("graphique", 0, 0, 1, 1),
+            dashboard.Item("metric", 1, 0, 1, 1),
+            dashboard.Item("tableau", 0, 1, 2, 1),
         ]
         
         def handle_layout_change(updated_layout):
-            # You can save the layout in a file, or do anything you want with it.
-            # You can pass it back to dashboard.Grid() if you want to restore a saved layout.
+            # Gérer les changements de layout
             print(updated_layout)
 
         with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
-            mui.Paper("graphique", key="graphique")
-            mui.Paper("metric", key="metric")
-            mui.Paper("tableau", key="tableau")
+            # Intégrer un graphique
+            with components.expander("Graphique"):
+                st.line_chart(data)  # Remplacez data par vos données de graphique
+                
+            # Intégrer une métrique
+            with components.expander("Métrique"):
+                st.metric(label="Métrique label", value=42)  # Remplacez 42 par la valeur de votre métrique
+                
+            # Intégrer un tableau
+            with components.expander("Tableau"):
+                st.write(df)  # Remplacez df par votre DataFrame ou tableau
