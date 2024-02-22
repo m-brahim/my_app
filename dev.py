@@ -1117,6 +1117,15 @@ if selected3 == "Elements":
         
 
 
+    def main():
+        st.title("Intégration d'une application React dans Streamlit")
+    
+        with st.container():
+            with open("BasicTable.js", "r") as f:
+                js_code = f.read()
+            st.components.v1.html(js_code)
 
+    if __name__ == "__main__":
+        main()
 
 
