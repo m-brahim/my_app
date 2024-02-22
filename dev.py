@@ -1095,31 +1095,18 @@ if selected3 == "Tests":
 
 
 
-if selected3 == "Elements" :
-    with elements("boutton"):
+if selected3 == "Elements" :     
+    with elements("properties"):
+        with mui.Stack(spacing={2}, direction="row"):
         mui.Button(
             variant="contained",
-            "TEXT"
-    )
-
-        with mui.Button(variant="text"):
-            mui.Button("TEXT2")
-     
-    with elements("properties"):
-        with mui.Paper(elevation=3, variant="outlined", square=True):
-            mui.TextField(
-                label="My text input",
-                defaultValue="Type here",
-                variant="outlined",
-            )
+            label="TEXT"
+        )
 
 
 
 
-
-
-
-
+    
 
 
 
