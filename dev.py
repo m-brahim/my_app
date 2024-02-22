@@ -1104,23 +1104,10 @@ data = {
 }
 df = pd.DataFrame(data)
 
-# Convertir le DataFrame en une liste de dictionnaires
-table_data = df.to_dict('records')
-
 # Afficher la BasicTable dans Streamlit
 if selected3 == "Elements":
-    with dashboard("dashboard"):
-        layout = [
-            dashboard.Item("tableau", 0, 0, 2, 2),
-        ]
-        
-        def handle_layout_change(updated_layout):
-            print(updated_layout)
-
-        st.write("""
-        <BasicTable :columns="['Nom', 'Âge', 'Ville']" :data="table_data" />
-        """, unsafe_allow_html=True)
-    
+    with stmui.container():
+        stmui.table(df)
 
         
 
