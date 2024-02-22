@@ -20,6 +20,7 @@ import json
 import os
 from streamlit_elements import elements, mui, html
 from streamlit_elements import dashboard
+from st_mui_table import st_mui_table
 
 #config du titre de la page
 st.set_page_config("Suivi des ventes de la société", page_icon="", layout="wide")
@@ -1113,24 +1114,24 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements":
-    with elements("dashboard"):
-        from streamlit_elements import dashboard, mui
-        df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
+    df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
+    st_mui_table(
+    df_table,
+    enablePagination=True,
+    customCss="",
+    paginationSizes = [5,10,25],
+    size="medium",
+    padding="normal",
+    showHeaders=True,
+    key="mui_table",
+    stickyHeader=True,
+    paperStyle={ "width": '100%',  "overflow": 'hidden',"paddingBottom": '1px', "border": '2px solid rgba(224, 224, 224, 1)'},
+    detailColumns=[],
+    detailColNum=1,
+    detailsHeader="Details",
+    showIndex=False
+)
 
-        # Définir votre layout
-        layout = [
-            dashboard.Item("metric", 1, 0, 1, 1),
-            dashboard.Item("tableau", 0, 1, 2, 1),
-        ]
-        
-        def handle_layout_change(updated_layout):
-            # Gérer les changements de layout
-            print(updated_layout)
 
-        with dashboard.Item("metric", 1, 0, 1, 1, resizable=True, draggable=True):
-            with mui.Paper(key="metric"):
-                st.metric(label="Métrique label", value=42)  # Remplacez 42 par la valeur de votre métrique
-            
-        with dashboard.Item("tableau", 0, 1, 2, 1, resizable=True, draggable=True):
-            with mui.Paper(key="tableau"):
-                st.write(df_table)
+
+
