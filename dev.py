@@ -21,8 +21,7 @@ import os
 from streamlit_elements import elements, mui, html
 from streamlit_elements import dashboard
 from st_mui_table import st_mui_table
-import * as React from 'react'
-import Button from '@mui/material/Button'
+
 
 #config du titre de la page
 st.set_page_config("Suivi des ventes de la société", page_icon="", layout="wide")
@@ -1151,8 +1150,62 @@ if selected3 == "Elements":
 
 
 
-    
-    
-    export default function ButtonUsage() {
-      return <Button variant="contained">Hello world</Button>;
-    }
+if selected3 == "Elements":
+    def show_mui_table():
+        st.components.v1.html(
+            """
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Dessert (100g serving)</TableCell>
+                    <TableCell align="right">Calories</TableCell>
+                    <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                    <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                    <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>Frozen yoghurt</TableCell>
+                    <TableCell align="right">159</TableCell>
+                    <TableCell align="right">6.0</TableCell>
+                    <TableCell align="right">24</TableCell>
+                    <TableCell align="right">4.0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Ice cream sandwich</TableCell>
+                    <TableCell align="right">237</TableCell>
+                    <TableCell align="right">9.0</TableCell>
+                    <TableCell align="right">37</TableCell>
+                    <TableCell align="right">4.3</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Eclair</TableCell>
+                    <TableCell align="right">262</TableCell>
+                    <TableCell align="right">16.0</TableCell>
+                    <TableCell align="right">24</TableCell>
+                    <TableCell align="right">6.0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Cupcake</TableCell>
+                    <TableCell align="right">305</TableCell>
+                    <TableCell align="right">3.7</TableCell>
+                    <TableCell align="right">67</TableCell>
+                    <TableCell align="right">4.3</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Gingerbread</TableCell>
+                    <TableCell align="right">356</TableCell>
+                    <TableCell align="right">16.0</TableCell>
+                    <TableCell align="right">49</TableCell>
+                    <TableCell align="right">3.9</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+            """
+        )
+
+    # Afficher la table MUI
+    show_mui_table()
