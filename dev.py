@@ -1101,8 +1101,14 @@ if selected3 == "Elements" :
             mui.Button("One")
             mui.Button("Two")
             mui.Button("Three")
-        with mui.BasicSwitches():
-            mui.Switch()
+        mui.Box(
+            component="form"
+            sx={{
+                '& > :not(style)': { m: 1, width: '25ch' },
+              }}
+            noValidate
+            autoComplete="off")
+            
 
 
 
