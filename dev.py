@@ -1101,8 +1101,7 @@ def generate_random_data():
     })
 
 if selected3 == "Elements":
-    with elements("dashboard"):
-        from streamlit_elements import dashboard
+    with dashboard.elements("dashboard"):
         layout = [
             dashboard.Item("graphique", 0, 0, 2, 2),
             dashboard.Item("metric", 2, 0, 2, 2),
@@ -1113,27 +1112,21 @@ if selected3 == "Elements":
             print(updated_layout)
 
         with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
-            with dashboard.ItemContent("graphique"):
+            with dashboard.Item("graphique"):
                 st.write("Exemple de graphique :")
                 # Créer un graphique fictif
                 random_data = generate_random_data()
                 st.line_chart(random_data.set_index('Date'))
 
-            with dashboard.ItemContent("metric"):
+            with dashboard.Item("metric"):
                 st.write("Exemple de métrique :")
                 # Afficher un métrique fictif
                 st.metric(label="Valeur moyenne", value=np.mean(random_data['Valeur']))
 
-            with dashboard.ItemContent("tableau"):
+            with dashboard.Item("tableau"):
                 st.write("Exemple de tableau :")
                 # Afficher un tableau fictif
                 st.table(random_data)
-
-
-
-
-
-
 
 
 
