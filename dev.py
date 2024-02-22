@@ -1115,22 +1115,36 @@ if selected3 == "Tests":
 
 if selected3 == "Elements":
     df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
-    st_mui_table(
-    df_table,
-    enablePagination=True,
-    customCss="",
-    paginationSizes = [5,10,25],
-    size="medium",
-    padding="normal",
-    showHeaders=True,
-    key="mui_table",
-    stickyHeader=True,
-    paperStyle={ "width": '100%',  "overflow": 'hidden',"paddingBottom": '1px', "border": '2px solid rgba(224, 224, 224, 1)'},
-    detailColumns=[],
-    detailColNum=1,
-    detailsHeader="Details",
-    showIndex=False
-)
+
+    # Définir les propriétés de l'élément Paper
+    paper_props = {
+        "resizable": True,
+        "draggable": True,
+        "style": {
+            "width": "100%",
+            "height": "300px"  # Ajustez la hauteur selon vos besoins
+        }
+    }
+
+    # Créer un élément Paper redimensionnable et déplaçable pour envelopper la table
+    with mui.Paper(key="resizable_paper", **paper_props):
+        # Afficher la table à l'intérieur de l'élément Paper
+        st_mui_table(
+            df_table,
+            enablePagination=True,
+            customCss="",
+            paginationSizes=[5, 10, 25],
+            size="medium",
+            padding="normal",
+            showHeaders=True,
+            key="mui_table",
+            stickyHeader=True,
+            paperStyle={"width": "100%", "overflow": "hidden", "paddingBottom": "1px", "border": "2px solid rgba(224, 224, 224, 1)"},
+            detailColumns=[],
+            detailColNum=1,
+            detailsHeader="Details",
+            showIndex=False
+        )
 
 
 
