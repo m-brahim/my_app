@@ -1096,6 +1096,17 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements" :
+    with elements("boutton"):
+        mui.Button(
+        mui.icon.EmojiPeople,
+        mui.icon.DoubleArrow,
+        "Button with multiple children"
+    )
+        with mui.Button:
+            mui.icon.EmojiPeople()
+            mui.icon.DoubleArrow()
+            mui.Typography("Button with multiple children")
+            
     with elements("properties"):
         with mui.Paper(elevation=3, variant="outlined", square=True):
             mui.TextField(
