@@ -1094,61 +1094,32 @@ if selected3 == "Tests":
 
 
 
+
+
 if selected3 == "Elements":
+    data = {
+        'Nom': ['Alice', 'Bob', 'Charlie', 'David'],
+        'Âge': [25, 30, 35, 40],
+        'Ville': ['Paris', 'New York', 'Londres', 'Tokyo']
+    }
+    df_test = pd.DataFrame(data)
     with elements("dashboard"):
         from streamlit_elements import dashboard
         layout = [
-            dashboard.Item("graphique", 0, 0, 2, 2),
-            dashboard.Item("metric", 0, 0, 2, 2),
             dashboard.Item("tableau", 0, 0, 2, 2),
         ]
         
         def handle_layout_change(updated_layout):
-            # You can save the layout in a file, or do anything you want with it.
-            # You can pass it back to dashboard.Grid() if you want to restore a saved layout.
             print(updated_layout)
 
-        with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
-            mui.Paper("graphique", key="graphique")
-            mui.Paper("metric", key="metric")
-            mui.Paper("tableau", key="tableau")
-
-
-
-
-    def basic_table():
-        st.write("""
-        ## Basic Table
-        """)
-        st.markdown("""
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mui/material@5.3.3/dist/material.min.css" />
+        with mui.Paper:
+            with mui.Table:
+                st.write(df_test)
     
-        <table class="MuiTable-root">
-            <thead class="MuiTableHead-root">
-                <tr class="MuiTableRow-root MuiTableRow-head">
-                    <th class="MuiTableCell-root MuiTableCell-head">Dessert (100g serving)</th>
-                    <th class="MuiTableCell-root MuiTableCell-head" align="right">Calories</th>
-                    <th class="MuiTableCell-root MuiTableCell-head" align="right">Fat&nbsp;(g)</th>
-                    <th class="MuiTableCell-root MuiTableCell-head" align="right">Carbs&nbsp;(g)</th>
-                    <th class="MuiTableCell-root MuiTableCell-head" align="right">Protein&nbsp;(g)</th>
-                </tr>
-            </thead>
-            <tbody class="MuiTableBody-root">
-                <tr class="MuiTableRow-root">
-                    <td class="MuiTableCell-root">Frozen yoghurt</td>
-                    <td class="MuiTableCell-root" align="right">159</td>
-                    <td class="MuiTableCell-root" align="right">6.0</td>
-                    <td class="MuiTableCell-root" align="right">24</td>
-                    <td class="MuiTableCell-root" align="right">4.0</td>
-                </tr>
-                <!-- Ajoutez les autres lignes de tableau ici -->
-            </tbody>
-        </table>
-        """)
 
-    basic_table()
+        
+
+
 
 
 
