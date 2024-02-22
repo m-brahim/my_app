@@ -1129,8 +1129,13 @@ if selected3 == "Elements":
 
         with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
             # Intégrer un graphique
-            mui.Paper("Graphique", key="graphique")
+            with mui.Paper(key="graphique"):
+                st.line_chart(data)  # Remplacez data par vos données de graphique
+            
             # Intégrer une métrique
-            mui.Paper("Métrique", key="metric")
+            with mui.Paper(key="metric"):
+                st.metric(label="Métrique label", value=42)  # Remplacez 42 par la valeur de votre métrique
+                
             # Intégrer un tableau
-            mui.Paper("Tableau", key="tableau")
+            with mui.Paper(key="tableau"):
+                st.write(df)  # Remplacez df par votre DataFrame ou tableau
