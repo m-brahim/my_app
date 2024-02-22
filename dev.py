@@ -1119,7 +1119,6 @@ if selected3 == "Elements":
 
         # Définir votre layout
         layout = [
-            dashboard.Item("graphique", 0, 0, 1, 1),
             dashboard.Item("metric", 1, 0, 1, 1),
             dashboard.Item("tableau", 0, 1, 2, 1),
         ]
@@ -1128,12 +1127,6 @@ if selected3 == "Elements":
             # Gérer les changements de layout
             print(updated_layout)
 
-        with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
-            # Intégrer un graphique
-            # with mui.Paper(key="graphique"):
-            #     st.line_chart(data)
-            
-            # Intégrer une métrique
         with dashboard.Item("metric", 1, 0, 1, 1, resizable=True, draggable=True):
             with mui.Paper(key="metric"):
                 st.metric(label="Métrique label", value=42)  # Remplacez 42 par la valeur de votre métrique
