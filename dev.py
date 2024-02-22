@@ -1096,11 +1096,13 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements" :
-    with elements("nested_children"):
-        with mui.Paper:
-            with mui.Typography:
-                html.p("Hello world")
-                html.p("Goodbye world")
+    with mui.Paper(elevation=3, variant="outlined", square=True):
+        mui.TextField(
+            label="My text input",
+            defaultValue="Type here",
+            variant="outlined",
+        )
+
 
 
 
