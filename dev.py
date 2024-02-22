@@ -1095,30 +1095,34 @@ if selected3 == "Tests":
 
 
 
-if selected3 == "Elements":
-    with elements("dashboard"):
-        from streamlit_elements import dashboard
-        layout = [
-            dashboard.Item("graphique", 0, 0, 2, 2),
-            dashboard.Item("metric", 0, 0, 2, 2),
-            dashboard.Item("tableau", 0, 0, 2, 2),
-            dashboard.Item("card", 0,0,2,2),
-        ]
+if selected3 == "Elements" :
+    with elements("nested_children"):
+        with mui.Paper:
+            with mui.Typography:
+                html.p("Hello world")
+                html.p("Goodbye world")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
-        def handle_layout_change(updated_layout):
-            print(updated_layout)
-
-        with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
-            mui.Paper("graphique", key="graphique")
-            mui.Paper("metric", key="metric")
-            mui.Paper("tableau", key="tableau")
-            mui.Card(" well meaning and kindly.", key="card")
     
     
-    # Lecture du contenu du fichier JavaScript
-    with open("BasicTable.js", "r") as file:
-        js_code = file.read()
-    
-    # Affichage du contenu JavaScript dans l'application Streamlit
-    st.components.v1.html(js_code, height=600)
-
