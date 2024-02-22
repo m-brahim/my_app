@@ -1105,14 +1105,14 @@ if selected3 == "Elements":
         ]
         
         def handle_layout_change(updated_layout):
-            # You can save the layout in a file, or do anything you want with it.
-            # You can pass it back to dashboard.Grid() if you want to restore a saved layout.
             print(updated_layout)
 
         with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
             mui.Paper("graphique", key="graphique")
             mui.Paper("metric", key="metric")
             mui.Paper("tableau", key="tableau")
+            mui.FormControlLabel(label="Test", value="test", key="tableau")
+
         
 
 
