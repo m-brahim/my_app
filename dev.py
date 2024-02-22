@@ -1102,6 +1102,7 @@ if selected3 == "Elements":
             dashboard.Item("graphique", 0, 0, 2, 2),
             dashboard.Item("metric", 0, 0, 2, 2),
             dashboard.Item("tableau", 0, 0, 2, 2),
+            dashboard.Item("card", 0,0,2,2),
         ]
         
         def handle_layout_change(updated_layout):
@@ -1111,7 +1112,7 @@ if selected3 == "Elements":
             mui.Paper("graphique", key="graphique")
             mui.Paper("metric", key="metric")
             mui.Paper("tableau", key="tableau")
-            mui.Card(" well meaning and kindly.", key="tableau")
+            mui.Card(" well meaning and kindly.", key="card")
 
         
 
