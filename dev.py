@@ -1097,7 +1097,7 @@ if selected3 == "Tests":
 
 if selected3 == "Elements" :
     with elements("boutton"):
-        with mui.ButtonGroup(variant="contained", aria-label="Basic button group"):
+        with mui.ButtonGroup(variant="contained"):
             mui.Button("One")
             mui.Button("Two")
             mui.Button("Three")
