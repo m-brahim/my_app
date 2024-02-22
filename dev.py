@@ -1114,6 +1114,7 @@ if selected3 == "Tests":
 
 if selected3 == "Elements":
     with elements("dashboard"):
+        from streamlit_elements import dashboard, mui
         
         # Définir votre layout
         layout = [
@@ -1128,13 +1129,8 @@ if selected3 == "Elements":
 
         with dashboard.Grid(layout, onLayoutChange=handle_layout_change):
             # Intégrer un graphique
-            with elements.expander("Graphique"):
-                st.line_chart(data)  # Remplacez data par vos données de graphique
-                
+            mui.Paper("Graphique", key="graphique")
             # Intégrer une métrique
-            with elements.expander("Métrique"):
-                st.metric(label="Métrique label", value=42)  # Remplacez 42 par la valeur de votre métrique
-                
+            mui.Paper("Métrique", key="metric")
             # Intégrer un tableau
-            with elements.expander("Tableau"):
-                st.write(df)  # Remplacez df par votre DataFrame ou tableau
+            mui.Paper("Tableau", key="tableau")
