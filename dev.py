@@ -1102,12 +1102,15 @@ if selected3 == "Elements" :
             mui.Button("Two")
             mui.Button("Three")
         mui.Box(
-            component="form"
-            sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
-              }}
-            noValidate
-            autoComplete="off")
+            "Some text in a styled box",
+            sx={
+                "bgcolor": "background.paper",
+                "boxShadow": 1,
+                "borderRadius": 2,
+                "p": 2,
+                "minWidth": 300,
+                }
+            )
             
 
 
