@@ -1096,12 +1096,13 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements" :
-    with mui.Paper(elevation=3, variant="outlined", square=True):
-        mui.TextField(
-            label="My text input",
-            defaultValue="Type here",
-            variant="outlined",
-        )
+    with elements("properties"):
+        with mui.Paper(elevation=3, variant="outlined", square=True):
+            mui.TextField(
+                label="My text input",
+                defaultValue="Type here",
+                variant="outlined",
+            )
 
 
 
