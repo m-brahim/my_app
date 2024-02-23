@@ -1222,7 +1222,7 @@ if selected3 == "Elements" :
                 defs=[{"patternDotsDef"("dots", { color: 'inherit' }),
                        "patternLinesDef"('squares', { background: 'inherit' }),
                        { id: "custom", type: "patternSquares", size: 24 },
-                       }]
+                       }],
                 
                 fill=[{"match" : {id: "css"}, id: "custom"},
                       {"match" : {id : "scala"}, id: "dots"},
