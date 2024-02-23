@@ -1096,17 +1096,28 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements" :
-    with elements("boutton"):
+    with elements("bouttongroup"):
         with mui.ButtonGroup(variant="contained"):
             mui.Button("One")
             mui.Button("Two")
             mui.Button("Three")
+    with elements("boutton"):
         with mui.Box():
             mui.TextField(
                 id="outlined-basic",
                 label="Outlined",
                 variant="outlined"
             )
+    with elements("style_elements_css"):
+        html.div(
+            "This has a hotpink background",
+            css={
+                "backgroundColor": "hotpink",
+                "&:hover": {
+                    "color": "lightgreen"
+                }
+            }
+        )
             
             
 
