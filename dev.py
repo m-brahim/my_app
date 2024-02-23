@@ -1219,9 +1219,9 @@ if selected3 == "Elements" :
                 arcLabelsSkipAngle=10,
                 arcLabelsTextColor={"from" : "color", "modifiers" : [["darker", 2]]},
 
-                fill=[{"match" : {id: css}, id: dots},
-                      {"match" : {id : scala}, id: lines},
-                      {"match" : {id : javascript}, id: lines}],
+                fill=[{"match" : {id: "css"}, id: "dots"},
+                      {"match" : {id : "scala"}, id: "lines"},
+                      {"match" : {id : "javascript"}, id: "lines"}],
 
                 legends=[{
                     "anchor": "bottom",
