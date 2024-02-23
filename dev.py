@@ -1202,7 +1202,7 @@ if selected3 == "Elements" :
                  {"id": "erlang","label": "erlang","value": 292,"color": "hsl(342, 70%, 50%)"}]
 
         with mui.Box(sx={"height": 500}):
-            nivo.Pie(
+            nivo.ResponsivePie(
                 data=data2,
                 keys=[ "go", "scala", "css", "javascript", "erlang"],
                 margin={ "top": 40, "right": 80, "bottom": 80, "left": 80 },
