@@ -1219,8 +1219,8 @@ if selected3 == "Elements" :
                 arcLabelsSkipAngle=10,
                 arcLabelsTextColor={"from" : "color", "modifiers" : [["darker", 2]]},
 
-                defs=[{"patternDotsDef"("dots", { color: 'inherit' }),
-                       "patternLinesDef"('squares', { background: 'inherit' }),
+                defs=[{"patternDotsDef"("dots", { color: "inherit" }),
+                       "patternLinesDef"('squares', { background: "inherit" }),
                        { id: "custom", type: "patternSquares", size: 24 },
                        }],
                 
