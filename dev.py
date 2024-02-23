@@ -1101,7 +1101,7 @@ if selected3 == "Elements" :
             mui.Button("One")
             mui.Button("Two")
             mui.Button("Three")
-        with mui.Box(sx={{'& > :not(style)': { m: 1, width: '25ch' },}}, components="form", noValidate, autoComplete="off"):
+        with mui.Box( sx={{'& > :not(style)': { m: 1, width: '25ch' },}}, components="form", noValidate, autoComplete="off", ):
             mui.TextField(
                 id="outlined-basic",
                 label="Outlined",
