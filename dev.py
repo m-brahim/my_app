@@ -1132,8 +1132,6 @@ if selected3 == "Elements" :
             
 
     with elements("nivo_charts"):
-
-        # Streamlit Elements includes 45 dataviz components powered by Nivo.
     
         from streamlit_elements import nivo
     
@@ -1193,6 +1191,7 @@ if selected3 == "Elements" :
 
     
     with elements("nivo_pie"):
+        
         from streamlit_elements import nivo
 
         data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
@@ -1219,21 +1218,11 @@ if selected3 == "Elements" :
                 arcLinkLabelsColor={ "from": "color" },
                 arcLabelsSkipAngle=10,
                 arcLabelsTextColor={"from" : "color", "modifiers" : [["darker", 2]]},
-                
-            
-                fill=[{"match" : {"id": "ruby"}, "id" : "dots"}, 
-                      {"match" : {"id": "c"}, "id": "dots"}, 
-                      {"match": {"id": "go"}, "id": "dots"},
-                      {"match" : {"id" : "python"},"id": "dots"},
-                      {"match" : {"id" : "scala"}, "id": "lines"},
-                      {"match" : {"id" : "lisp"}, "id" : "lines"},
-                      {"match": {"id" : "elixir"}, "id": "lines"},
-                      {"match" : {"id" : "javascript"}, "id": "lines"}],
-                
+
+
                 legends=[{
                     "anchor": "bottom",
                     "direction" : "row",
-      
                     "translateX" : 0,
                     "translateY" : 56,
                     "itemsSpacing": 0,
