@@ -1193,8 +1193,8 @@ if selected3 == "Elements" :
     with elements("nivo_pie"):
         
         from streamlit_elements import nivo
-        from nivo import patternDotsDef 
-        from nivo import patternSquaresDef 
+        from nivo.core import patternDotsDef 
+        from nivo.core import patternSquaresDef 
 
         data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
                  {"id": "scala","label": "scala","value": 205, "color": "hsl(175, 70%, 50%)"},
