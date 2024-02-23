@@ -1230,7 +1230,7 @@ if selected3 == "Elements" :
                       {"match" : {"id" : "scala"}, "id": "lines"},
                       {"match" : {"id" : "lisp"}, "id" : "lines"},
                       {"match": {"id" : "elixir"}, "id": "lines"},
-                      {"match" : {"id" : "javascript"}, "id": "lines"}]
+                      {"match" : {"id" : "javascript"}, "id": "lines"}],
                 
                 legends=[{
                     "anchor": "bottom",
