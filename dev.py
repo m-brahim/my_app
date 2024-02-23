@@ -1219,9 +1219,14 @@ if selected3 == "Elements" :
                 arcLabelsSkipAngle=10,
                 arcLabelsTextColor={"from" : "color", "modifiers" : [["darker", 2]]},
 
-                fill=[{"match" : {id: "css"}, id: "dots"},
-                      {"match" : {id : "scala"}, id: "lines"},
-                      {"match" : {id : "javascript"}, id: "lines"}],
+                defs=[{"patternDotsDef"("dots", { color: 'inherit' }),
+                       "patternLinesDef"('squares', { background: 'inherit' }),
+                       { id: "custom", type: "patternSquares", size: 24 },
+                       }]
+                
+                fill=[{"match" : {id: "css"}, id: "custom"},
+                      {"match" : {id : "scala"}, id: "dots"},
+                      {"match" : {id : "javascript"}, id: "squares"}],
 
                 legends=[{
                     "anchor": "bottom",
