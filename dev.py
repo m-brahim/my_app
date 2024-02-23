@@ -1193,9 +1193,7 @@ if selected3 == "Elements" :
     with elements("nivo_pie"):
         
         from streamlit_elements import nivo
-        import patternDotsDef from nivo.core 
-        import patternSquaresDef from nivo.core  
-
+        
         data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
                  {"id": "scala","label": "scala","value": 205, "color": "hsl(175, 70%, 50%)"},
                  {"id": "css","label": "css","value": 51,"color": "hsl(341, 70%, 50%)"},
@@ -1220,15 +1218,6 @@ if selected3 == "Elements" :
                 arcLinkLabelsColor={ "from": "color" },
                 arcLabelsSkipAngle=10,
                 arcLabelsTextColor={"from" : "color", "modifiers" : [["darker", 2]]},
-
-                defs=[{patternDotsDef("dots", { color: "inherit" }),
-                       patternLinesDef('squares', { background: "inherit" }),
-                       { id: "custom", type: "patternSquares", size: 24 },
-                       }],
-                
-                fill=[{"match" : {id: "css"}, id: "custom"},
-                      {"match" : {id : "scala"}, id: "dots"},
-                      {"match" : {id : "javascript"}, id: "squares"}],
 
                 legends=[{
                     "anchor": "bottom",
