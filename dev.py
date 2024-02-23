@@ -1233,7 +1233,7 @@ if selected3 == "Elements" :
                 legends=[{
                     "anchor": "bottom",
                     "direction" : "row",
-                    "justify" : false,
+      
                     "translateX" : 0,
                     "translateY" : 56,
                     "itemsSpacing": 0,
