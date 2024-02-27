@@ -23,7 +23,6 @@ from streamlit_elements import dashboard
 from streamlit_elements import editor
 from st_mui_table import st_mui_table
 from streamlit_elements import nivo
-from dash_mui_components import Resizable, ResizableHandle
 
 
 #config du titre de la page
