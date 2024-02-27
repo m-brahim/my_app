@@ -1266,9 +1266,6 @@ if selected3 == "Elements" :
     with elements("monaco_editors"):
 	    from streamlit_elements import editor
 
-    	    if "content" not in st.session_state:
-		    st.session_state.content = "Default value"
-
     	    mui.Typography("Content: ", st.session_state.content)
 
     	    def update_content(value):
