@@ -1188,8 +1188,10 @@ if selected3 == "Elements" :
 			                    "effects" : [{"on" : "hover", "style"  : {"itemTextColor" : "#000"}}]}])
 
 
-			with mui.Paper(key="third_item"):
-				mui.Toolbar()
+			with mui.Paper(borderRadius=2, key="third_item"):
+				mui.AppBar(position="static",
+					  mui.Toolbar(),
+					  mui.IconButton(size="large", edge="start", color="inherit", aria-label="menu"))
 					
 				nivo.Bar(
 			                data=data3,
