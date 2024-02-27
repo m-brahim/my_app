@@ -1264,6 +1264,12 @@ if selected3 == "Elements" :
 
 
 
+    with elements("dashboard"):
+	    layout = [dashboard.Item("first_item", 0, 0, 2, 2)]
+
+	    with dashboard.Grid(layout):
+		    mui.Box("First item", key="first_item")
+
 
 
 
