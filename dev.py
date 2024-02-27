@@ -1262,30 +1262,10 @@ if selected3 == "Elements" :
             )
 
 
+    with elements("dashboard"):
+	    layout = [dashboard.Item("nivo_bar", 0, 0, 2, 2)]
 
-    with elements("monaco_editors"):
-	    from streamlit_elements import editor
-
-    	    mui.Typography("Content: ", st.session_state.content)
-
-    	    def update_content(value):
-        	    st.session_state.content = value
-
-    	    editor.Monaco(
-        		height=300,
-        		defaultValue=st.session_state.content,
-        		onChange=lazy(update_content)
-    			)
-
-    	    mui.Button("Update content", onClick=sync())
-
-    	   editor.MonacoDiff(
-        		original="Happy Streamlit-ing!",
-        		modified="Happy Streamlit-in' with Elements!",
-        		height=300,
-    			)
-
-
-
+	    with dashboard.Grid(layout):
+		    mui.Paper("Bar Chart', key="nivo_bar")
 
 
