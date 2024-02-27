@@ -1097,7 +1097,7 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements" :   
-	layout = [dashboard.Item("first_item", 0, 0, 4, 4), dashboard.Item("second_item", 3, 0, 4, 4), dashboard.Item("third_item", 0, 0, 4, 4)]
+	layout = [dashboard.Item("first_item", 0, 0, 4, 4), dashboard.Item("second_item", 4, 0, 4, 4), dashboard.Item("third_item", 5, 0, 4, 4)]
 	with elements("dashboard"):
 		data1 = [{ "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
             	        { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
