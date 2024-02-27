@@ -1188,7 +1188,7 @@ if selected3 == "Elements" :
 			                    "effects" : [{"on" : "hover", "style"  : {"itemTextColor" : "#000"}}]}])
 
 
-			with mui.Paper(borderRadius=2, key="third_item"):
+			with mui.Box(key="third_item"):
 				with mui.AppBar(position="static"):
 					  mui.Toolbar()
 					
