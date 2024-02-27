@@ -1112,7 +1112,7 @@ if selected3 == "Elements" :
 		     {"id": "scala","label": "scala","value": 205, "color": "hsl(175, 70%, 50%)"},       
 		     {"id": "css","label": "css","value": 51,"color": "hsl(341, 70%, 50%)"},
 		     {"id": "javascript","label": "javascript","value": 130,"color": "hsl(349, 70%, 50%)"},
-		     {"id": "erlang","label": "erlang","value": 292,"color": "hsl(342, 70%, 50%)"}]
+		     {"id": "erlang","label": "erlang","value": 292,"color": "hsl(342, 70%, 50%)"},]
 	
 	   data3 = [{"country": "AD", "hot dog": 183, "hot dogColor": "hsl(284, 70%, 50%)", "burger": 113, "burgerColor": "hsl(42, 70%, 50%)", "sandwich": 100, "sandwichColor": "hsl(184, 70%, 50%)", "kebab": 49, "kebabColor": "hsl(98, 70%, 50%)",
 		      "fries": 166, "friesColor": "hsl(170, 70%, 50%)", "donut": 64, "donutColor": "hsl(35, 70%, 50%)"},
@@ -1127,7 +1127,7 @@ if selected3 == "Elements" :
 		     {"country": "AL", "hot dog": 106, "hot dogColor": "hsl(351, 70%, 50%)", "burger": 179, "burgerColor": "hsl(23, 70%, 50%)", "sandwich": 66, "sandwichColor": "hsl(293, 70%, 50%)", "kebab": 27, "kebabColor": "hsl(226, 70%, 50%)",
 		      "fries": 105, "friesColor": "hsl(314, 70%, 50%)", "donut": 200, "donutColor": "hsl(65, 70%, 50%)"},
 		     {"country": "AM", "hot dog": 85, "hot dogColor": "hsl(161, 70%, 50%)", "burger": 97, "burgerColor": "hsl(23, 70%, 50%)", "sandwich": 5, "sandwichColor": "hsl(126, 70%, 50%)", "kebab": 190, "kebabColor": "hsl(258, 70%, 50%)",
-		      "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"}]
+		      "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"},]
 	    
 	    with dashboard.Grid(layout):
 		    with mui.Box:
