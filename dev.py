@@ -1128,7 +1128,7 @@ if selected3 == "Elements" :
 		      "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"},]
 	    
 	    with dashboard.Grid(layout):
-		    with mui.Box():
+		    with mui.Box(key="first_item"):
 			    nivo.Radar(
 				    data=data1,
                 		    keys=[ "chardonay", "carmenere", "syrah" ],
@@ -1156,7 +1156,7 @@ if selected3 == "Elements" :
 		                	theme={"background": "#FFFFFF","textColor": "#31333F","tooltip": {"container": {"background": "#FFFFFF","color": "#31333F",}}})
 		    
 
-		    with mui.Box():
+		    with mui.Box(key="second_item"):
 			    nivo.Pie(
 				    data=data2,
 		                    keys=[ "go", "scala", "css", "javascript", "erlang"],
@@ -1189,7 +1189,7 @@ if selected3 == "Elements" :
 		                    "effects" : [{"on" : "hover", "style"  : {"itemTextColor" : "#000"}}]}])
 
 
-		    with mui.Box():
+		    with mui.Box(key="third_item"):
 			    nivo.Bar(
 		                data=data3,
 				keys = ['hot dog','burger','sandwich','kebab','donut'],
