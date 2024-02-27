@@ -1098,23 +1098,21 @@ if selected3 == "Tests":
 
 if selected3 == "Elements" :   
     with elements("dashboard1"):
-	    layout = [dashboard.Item("first_item", 0, 0, 2, 2),
-		       dashboard.Item("second_item", 0, 0, 2, 2),
-		       dashboard.Item("third_item", 0, 0, 2, 2)]
+	    layout = [dashboard.Item("first_item", 0, 0, 2, 2), dashboard.Item("second_item", 0, 0, 2, 2), dashboard.Item("third_item", 0, 0, 2, 2)]
 	    
 	    data1 = [{ "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
             	    { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
             	    { "taste": "heavy", "chardonay": 56, "carmenere": 95, "syrah": 99 },
                     { "taste": "strong", "chardonay": 64, "carmenere": 90, "syrah": 30 },
             	    { "taste": "sunny", "chardonay": 119, "carmenere": 94, "syrah": 103 },]
-
-	   data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
+	    
+	    data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
 		     {"id": "scala","label": "scala","value": 205, "color": "hsl(175, 70%, 50%)"},       
 		     {"id": "css","label": "css","value": 51,"color": "hsl(341, 70%, 50%)"},
 		     {"id": "javascript","label": "javascript","value": 130,"color": "hsl(349, 70%, 50%)"},
 		     {"id": "erlang","label": "erlang","value": 292,"color": "hsl(342, 70%, 50%)"},]
-	
-	   data3 = [{"country": "AD", "hot dog": 183, "hot dogColor": "hsl(284, 70%, 50%)", "burger": 113, "burgerColor": "hsl(42, 70%, 50%)", "sandwich": 100, "sandwichColor": "hsl(184, 70%, 50%)", "kebab": 49, "kebabColor": "hsl(98, 70%, 50%)",
+	    
+	    data3 = [{"country": "AD", "hot dog": 183, "hot dogColor": "hsl(284, 70%, 50%)", "burger": 113, "burgerColor": "hsl(42, 70%, 50%)", "sandwich": 100, "sandwichColor": "hsl(184, 70%, 50%)", "kebab": 49, "kebabColor": "hsl(98, 70%, 50%)",
 		      "fries": 166, "friesColor": "hsl(170, 70%, 50%)", "donut": 64, "donutColor": "hsl(35, 70%, 50%)"},
 		     {"country": "AE", "hot dog": 108, "hot dogColor": "hsl(290, 70%, 50%)", "burger": 26, "burgerColor": "hsl(281, 70%, 50%)", "sandwich": 188, "sandwichColor": "hsl(111, 70%, 50%)", "kebab": 91, "kebabColor": "hsl(214, 70%, 50%)",
 		      "fries": 105, "friesColor": "hsl(130, 70%, 50%)", "donut": 22, "donutColor": "hsl(338, 70%, 50%)"},
