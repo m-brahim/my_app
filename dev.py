@@ -23,6 +23,7 @@ from streamlit_elements import dashboard
 from streamlit_elements import editor
 from st_mui_table import st_mui_table
 from streamlit_elements import nivo
+from dash_mui_components import Resizable, ResizableHandle
 
 
 #config du titre de la page
@@ -1096,117 +1097,115 @@ if selected3 == "Tests":
 
 
 
-if selected3 == "Elements" :
-	col_radar, col_pie = st.columns[(1,1)]
-	with col_radar:
-		with elements("nivo_radar"):
-			DATA = [
-		            { "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
-		            { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
-		            { "taste": "heavy", "chardonay": 56, "carmenere": 95, "syrah": 99 },
-		            { "taste": "strong", "chardonay": 64, "carmenere": 90, "syrah": 30 },
-		            { "taste": "sunny", "chardonay": 119, "carmenere": 94, "syrah": 103 },
-		        ]
-		    
-		        with mui.Box(sx={"height": 500}):
-		            nivo.Radar(
-		                data=DATA,
-		                keys=[ "chardonay", "carmenere", "syrah" ],
-		                indexBy="taste",
-		                valueFormat=">-.2f",
-		                margin={ "top": 70, "right": 80, "bottom": 40, "left": 80 },
-		                borderColor={ "from": "color" },
-		                gridLabelOffset=36,
-		                dotSize=10,
-		                dotColor={ "theme": "background" },
-		                dotBorderWidth=2,
-		                motionConfig="wobbly",
-		                legends=[
-		                    {
-		                        "anchor": "top-left",
-		                        "direction": "column",
-		                        "translateX": -50,
-		                        "translateY": -40,
-		                        "itemWidth": 80,
-		                        "itemHeight": 20,
-		                        "itemTextColor": "#999",
-		                        "symbolSize": 12,
-		                        "symbolShape": "circle",
-		                        "effects": [
-		                            {
-		                                "on": "hover",
-		                                "style": {
-		                                    "itemTextColor": "#000"
-		                                }
-		                            }
-		                        ]
-		                    }
-		                ],
-		                theme={
-		                    "background": "#FFFFFF",
-		                    "textColor": "#31333F",
-		                    "tooltip": {
-		                        "container": {
-		                            "background": "#FFFFFF",
-		                            "color": "#31333F",
-		                        }
-		                    }
-		                }
-		            )
+if selected3 == "Elements" :   
+    with elements("nivo_radar"):
+    
+        DATA = [
+            { "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
+            { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
+            { "taste": "heavy", "chardonay": 56, "carmenere": 95, "syrah": 99 },
+            { "taste": "strong", "chardonay": 64, "carmenere": 90, "syrah": 30 },
+            { "taste": "sunny", "chardonay": 119, "carmenere": 94, "syrah": 103 },
+        ]
+    
+        with mui.Box(sx={"height": 500}):
+            nivo.Radar(
+                data=DATA,
+                keys=[ "chardonay", "carmenere", "syrah" ],
+                indexBy="taste",
+                valueFormat=">-.2f",
+                margin={ "top": 70, "right": 80, "bottom": 40, "left": 80 },
+                borderColor={ "from": "color" },
+                gridLabelOffset=36,
+                dotSize=10,
+                dotColor={ "theme": "background" },
+                dotBorderWidth=2,
+                motionConfig="wobbly",
+                legends=[
+                    {
+                        "anchor": "top-left",
+                        "direction": "column",
+                        "translateX": -50,
+                        "translateY": -40,
+                        "itemWidth": 80,
+                        "itemHeight": 20,
+                        "itemTextColor": "#999",
+                        "symbolSize": 12,
+                        "symbolShape": "circle",
+                        "effects": [
+                            {
+                                "on": "hover",
+                                "style": {
+                                    "itemTextColor": "#000"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                theme={
+                    "background": "#FFFFFF",
+                    "textColor": "#31333F",
+                    "tooltip": {
+                        "container": {
+                            "background": "#FFFFFF",
+                            "color": "#31333F",
+                        }
+                    }
+                }
+            )
 
+    
+    with elements("nivo_pie"):
+        
+        data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
+                 {"id": "scala","label": "scala","value": 205, "color": "hsl(175, 70%, 50%)"},
+                 {"id": "css","label": "css","value": 51,"color": "hsl(341, 70%, 50%)"},
+                 {"id": "javascript","label": "javascript","value": 130,"color": "hsl(349, 70%, 50%)"},
+                 {"id": "erlang","label": "erlang","value": 292,"color": "hsl(342, 70%, 50%)"}]
 
+        with mui.Box(sx={"height": 500}):
+            nivo.Pie(
+                data=data2,
+                keys=[ "go", "scala", "css", "javascript", "erlang"],
+                margin={ "top": 40, "right": 80, "bottom": 80, "left": 80 },
+                innerRadius=0.5,
+                padAngle=0.7,
+                cornerRadius=3,
+                activeOuterRadiusOffset=8,
+                borderWidth=1,
+                borderColor={"from": "color", "modifiers" : [["darker", 0.2]]},
+                
+                arcLinkLabelsSkipAngle=10,
+                arcLinkLabelsTextColor="#333333",
+                arcLinkLabelsThickness=2,
+                arcLinkLabelsColor={ "from": "color" },
+                arcLabelsSkipAngle=10,
+                arcLabelsTextColor={"from" : "color", "modifiers" : [["darker", 2]]},
 
-	with col_pie:
-		with elements("nivo_pie"):
-		        data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
-		                 {"id": "scala","label": "scala","value": 205, "color": "hsl(175, 70%, 50%)"},
-		                 {"id": "css","label": "css","value": 51,"color": "hsl(341, 70%, 50%)"},
-		                 {"id": "javascript","label": "javascript","value": 130,"color": "hsl(349, 70%, 50%)"},
-		                 {"id": "erlang","label": "erlang","value": 292,"color": "hsl(342, 70%, 50%)"}]
-		
-		        with mui.Box(sx={"height": 500}):
-		            nivo.Pie(
-		                data=data2,
-		                keys=[ "go", "scala", "css", "javascript", "erlang"],
-		                margin={ "top": 40, "right": 80, "bottom": 80, "left": 80 },
-		                innerRadius=0.5,
-		                padAngle=0.7,
-		                cornerRadius=3,
-		                activeOuterRadiusOffset=8,
-		                borderWidth=1,
-		                borderColor={"from": "color", "modifiers" : [["darker", 0.2]]},
-		                
-		                arcLinkLabelsSkipAngle=10,
-		                arcLinkLabelsTextColor="#333333",
-		                arcLinkLabelsThickness=2,
-		                arcLinkLabelsColor={ "from": "color" },
-		                arcLabelsSkipAngle=10,
-		                arcLabelsTextColor={"from" : "color", "modifiers" : [["darker", 2]]},
-		
-		                legends=[{
-		                    "anchor": "bottom",
-		                    "direction" : "row",
-		                    "translateX" : 0,
-		                    "translateY" : 56,
-		                    "itemsSpacing": 0,
-		                    "itemWidth" : 100,
-		                    "itemHeight" : 18,
-		                    "itemTextColor" : "#999",
-		                    "itemDirection" : "left-to-right",
-		                    "itemOpacity" : 1,
-		                    "symbolSize" : 18,
-		                    "symbolShape" : "circle",
-		                    "effects" : [
-		                        {
-		                            "on" : "hover",
-		                            "style"  : {
-		                            "itemTextColor" : "#000"
-		                            }
-		                        }
-		                    ]
-		                }
-		                        ]
-		            )
+                legends=[{
+                    "anchor": "bottom",
+                    "direction" : "row",
+                    "translateX" : 0,
+                    "translateY" : 56,
+                    "itemsSpacing": 0,
+                    "itemWidth" : 100,
+                    "itemHeight" : 18,
+                    "itemTextColor" : "#999",
+                    "itemDirection" : "left-to-right",
+                    "itemOpacity" : 1,
+                    "symbolSize" : 18,
+                    "symbolShape" : "circle",
+                    "effects" : [
+                        {
+                            "on" : "hover",
+                            "style"  : {
+                            "itemTextColor" : "#000"
+                            }
+                        }
+                    ]
+                }
+                        ]
+            )
     
 
 
@@ -1292,4 +1291,3 @@ if selected3 == "Elements" :
 
 
 	
-
