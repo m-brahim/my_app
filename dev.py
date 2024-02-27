@@ -1216,7 +1216,7 @@ if selected3 == "Elements" :
 
 
 	    
-		with elements("nivo_bar"):
+		with elements("nivobar"):
 			
 		        data3 = [{"country": "AD", "hot dog": 183, "hot dogColor": "hsl(284, 70%, 50%)", "burger": 113, "burgerColor": "hsl(42, 70%, 50%)", "sandwich": 100, "sandwichColor": "hsl(184, 70%, 50%)", "kebab": 49, "kebabColor": "hsl(98, 70%, 50%)",
 		    	        "fries": 166, "friesColor": "hsl(170, 70%, 50%)", "donut": 64, "donutColor": "hsl(35, 70%, 50%)"},
