@@ -1189,7 +1189,7 @@ if selected3 == "Elements" :
 
 
 			with mui.Paper(key="third_item"):
-				with mui.AppBar("Bar chart", position="static"):
+				with mui.AppBar():
 					  mui.Toolbar()
 					
 				nivo.Bar(
