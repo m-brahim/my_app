@@ -1097,127 +1097,126 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements" :   
-    with elements("dashboard"):
-	    layout = [dashboard.Item("first_item", 0, 0, 2, 2), dashboard.Item("second_item", 0, 0, 2, 2), dashboard.Item("third_item", 0, 0, 2, 2)]
-	    
-	    data1 = [{ "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
-            	    { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
-            	    { "taste": "heavy", "chardonay": 56, "carmenere": 95, "syrah": 99 },
-                    { "taste": "strong", "chardonay": 64, "carmenere": 90, "syrah": 30 },
-            	    { "taste": "sunny", "chardonay": 119, "carmenere": 94, "syrah": 103 },]
-	    
-	    data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
-		     {"id": "scala","label": "scala","value": 205, "color": "hsl(175, 70%, 50%)"},       
-		     {"id": "css","label": "css","value": 51,"color": "hsl(341, 70%, 50%)"},
-		     {"id": "javascript","label": "javascript","value": 130,"color": "hsl(349, 70%, 50%)"},
-		     {"id": "erlang","label": "erlang","value": 292,"color": "hsl(342, 70%, 50%)"},]
-	    
-	    data3 = [{"country": "AD", "hot dog": 183, "hot dogColor": "hsl(284, 70%, 50%)", "burger": 113, "burgerColor": "hsl(42, 70%, 50%)", "sandwich": 100, "sandwichColor": "hsl(184, 70%, 50%)", "kebab": 49, "kebabColor": "hsl(98, 70%, 50%)",
-		      "fries": 166, "friesColor": "hsl(170, 70%, 50%)", "donut": 64, "donutColor": "hsl(35, 70%, 50%)"},
-		     {"country": "AE", "hot dog": 108, "hot dogColor": "hsl(290, 70%, 50%)", "burger": 26, "burgerColor": "hsl(281, 70%, 50%)", "sandwich": 188, "sandwichColor": "hsl(111, 70%, 50%)", "kebab": 91, "kebabColor": "hsl(214, 70%, 50%)",
-		      "fries": 105, "friesColor": "hsl(130, 70%, 50%)", "donut": 22, "donutColor": "hsl(338, 70%, 50%)"},
-		     {"country": "AF", "hot dog": 182, "hot dogColor": "hsl(51, 70%, 50%)", "burger": 35, "burgerColor": "hsl(197, 70%, 50%)", "sandwich": 5, "sandwichColor": "hsl(78, 70%, 50%)", "kebab": 100, "kebabColor": "hsl(253, 70%, 50%)",
-		      "fries": 169, "friesColor": "hsl(204, 70%, 50%)", "donut": 197, "donutColor": "hsl(30, 70%, 50%)"},
-		     {"country": "AG", "hot dog": 182, "hot dogColor": "hsl(252, 70%, 50%)", "burger": 196, "burgerColor": "hsl(19, 70%, 50%)", "sandwich": 10, "sandwichColor": "hsl(145, 70%, 50%)", "kebab": 125, "kebabColor": "hsl(351, 70%, 50%)",	    
-		      "fries": 88, "friesColor": "hsl(12, 70%, 50%)", "donut": 12, "donutColor": "hsl(345, 70%, 50%)"},
-		     {"country": "AI", "hot dog": 107, "hot dogColor": "hsl(17, 70%, 50%)", "burger": 12, "burgerColor": "hsl(134, 70%, 50%)", "sandwich": 162, "sandwichColor": "hsl(130, 70%, 50%)", "kebab": 118, "kebabColor": "hsl(24, 70%, 50%)",
-		      "fries": 168, "friesColor": "hsl(216, 70%, 50%)", "donut": 154, "donutColor": "hsl(176, 70%, 50%)"},
-		     {"country": "AL", "hot dog": 106, "hot dogColor": "hsl(351, 70%, 50%)", "burger": 179, "burgerColor": "hsl(23, 70%, 50%)", "sandwich": 66, "sandwichColor": "hsl(293, 70%, 50%)", "kebab": 27, "kebabColor": "hsl(226, 70%, 50%)",
-		      "fries": 105, "friesColor": "hsl(314, 70%, 50%)", "donut": 200, "donutColor": "hsl(65, 70%, 50%)"},
-		     {"country": "AM", "hot dog": 85, "hot dogColor": "hsl(161, 70%, 50%)", "burger": 97, "burgerColor": "hsl(23, 70%, 50%)", "sandwich": 5, "sandwichColor": "hsl(126, 70%, 50%)", "kebab": 190, "kebabColor": "hsl(258, 70%, 50%)",
-		      "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"},]
-	    
-	    with dashboard.Grid(layout):
-		    with mui.Paper(key="first_item"):
-			    nivo.Radar(
-				    data=data1,
-                		    keys=[ "chardonay", "carmenere", "syrah" ],
-				    indexBy="taste",
-				    valueFormat=">-.2f",
-				    margin={ "top": 70, "right": 80, "bottom": 40, "left": 80 },
-				    borderColor={ "from": "color" },        
-				    gridLabelOffset=36,
-				    dotSize=10,
-				    dotColor={ "theme": "background" },
-				    dotBorderWidth=2,
-				    motionConfig="wobbly",
-				    legends=[
-		                    {
-		                        "anchor": "top-left",
-		                        "direction": "column",
-		                        "translateX": -50,
-		                        "translateY": -40,
-		                        "itemWidth": 80,
-		                        "itemHeight": 20,
-		                        "itemTextColor": "#999",
-		                        "symbolSize": 12,
-		                        "symbolShape": "circle",
-		                        "effects": [{"on": "hover","style": {"itemTextColor": "#000"}}]}],
-		                	theme={"background": "#FFFFFF","textColor": "#31333F","tooltip": {"container": {"background": "#FFFFFF","color": "#31333F",}}})
+	layout = [dashboard.Item("first_item", 0, 0, 2, 2), dashboard.Item("second_item", 0, 0, 2, 2), dashboard.Item("third_item", 0, 0, 2, 2)]
+	with elements("dashboard"):
+		data1 = [{ "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
+            	        { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
+            	        { "taste": "heavy", "chardonay": 56, "carmenere": 95, "syrah": 99 },
+                        { "taste": "strong", "chardonay": 64, "carmenere": 90, "syrah": 30 },
+            	        { "taste": "sunny", "chardonay": 119, "carmenere": 94, "syrah": 103 },]
+		
+		data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
+		        {"id": "scala","label": "scala","value": 205, "color": "hsl(175, 70%, 50%)"},       
+		        {"id": "css","label": "css","value": 51,"color": "hsl(341, 70%, 50%)"},
+		        {"id": "javascript","label": "javascript","value": 130,"color": "hsl(349, 70%, 50%)"},
+		        {"id": "erlang","label": "erlang","value": 292,"color": "hsl(342, 70%, 50%)"},] 
+		
+		data3 = [{"country": "AD", "hot dog": 183, "hot dogColor": "hsl(284, 70%, 50%)", "burger": 113, "burgerColor": "hsl(42, 70%, 50%)", "sandwich": 100, "sandwichColor": "hsl(184, 70%, 50%)", "kebab": 49, "kebabColor": "hsl(98, 70%, 50%)",
+		        "fries": 166, "friesColor": "hsl(170, 70%, 50%)", "donut": 64, "donutColor": "hsl(35, 70%, 50%)"},
+		        {"country": "AE", "hot dog": 108, "hot dogColor": "hsl(290, 70%, 50%)", "burger": 26, "burgerColor": "hsl(281, 70%, 50%)", "sandwich": 188, "sandwichColor": "hsl(111, 70%, 50%)", "kebab": 91, "kebabColor": "hsl(214, 70%, 50%)",
+		        "fries": 105, "friesColor": "hsl(130, 70%, 50%)", "donut": 22, "donutColor": "hsl(338, 70%, 50%)"},
+		        {"country": "AF", "hot dog": 182, "hot dogColor": "hsl(51, 70%, 50%)", "burger": 35, "burgerColor": "hsl(197, 70%, 50%)", "sandwich": 5, "sandwichColor": "hsl(78, 70%, 50%)", "kebab": 100, "kebabColor": "hsl(253, 70%, 50%)",
+		        "fries": 169, "friesColor": "hsl(204, 70%, 50%)", "donut": 197, "donutColor": "hsl(30, 70%, 50%)"},
+		       {"country": "AG", "hot dog": 182, "hot dogColor": "hsl(252, 70%, 50%)", "burger": 196, "burgerColor": "hsl(19, 70%, 50%)", "sandwich": 10, "sandwichColor": "hsl(145, 70%, 50%)", "kebab": 125, "kebabColor": "hsl(351, 70%, 50%)",	    
+		       "fries": 88, "friesColor": "hsl(12, 70%, 50%)", "donut": 12, "donutColor": "hsl(345, 70%, 50%)"},
+		       {"country": "AI", "hot dog": 107, "hot dogColor": "hsl(17, 70%, 50%)", "burger": 12, "burgerColor": "hsl(134, 70%, 50%)", "sandwich": 162, "sandwichColor": "hsl(130, 70%, 50%)", "kebab": 118, "kebabColor": "hsl(24, 70%, 50%)",
+		       "fries": 168, "friesColor": "hsl(216, 70%, 50%)", "donut": 154, "donutColor": "hsl(176, 70%, 50%)"},
+		       {"country": "AL", "hot dog": 106, "hot dogColor": "hsl(351, 70%, 50%)", "burger": 179, "burgerColor": "hsl(23, 70%, 50%)", "sandwich": 66, "sandwichColor": "hsl(293, 70%, 50%)", "kebab": 27, "kebabColor": "hsl(226, 70%, 50%)",
+		       "fries": 105, "friesColor": "hsl(314, 70%, 50%)", "donut": 200, "donutColor": "hsl(65, 70%, 50%)"},
+		       {"country": "AM", "hot dog": 85, "hot dogColor": "hsl(161, 70%, 50%)", "burger": 97, "burgerColor": "hsl(23, 70%, 50%)", "sandwich": 5, "sandwichColor": "hsl(126, 70%, 50%)", "kebab": 190, "kebabColor": "hsl(258, 70%, 50%)",
+		       "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"},]
+		
+		with dashboard.Grid(layout):
+			with mui.Paper(key="first_item"):
+				nivo.Radar(
+					    data=data1,
+	                		    keys=[ "chardonay", "carmenere", "syrah" ],
+					    indexBy="taste",
+					    valueFormat=">-.2f",
+					    margin={ "top": 70, "right": 80, "bottom": 40, "left": 80 },
+					    borderColor={ "from": "color" },        
+					    gridLabelOffset=36,
+					    dotSize=10,
+					    dotColor={ "theme": "background" },
+					    dotBorderWidth=2,
+					    motionConfig="wobbly",
+					    legends=[
+			                    {
+			                        "anchor": "top-left",
+			                        "direction": "column",
+			                        "translateX": -50,
+			                        "translateY": -40,
+			                        "itemWidth": 80,
+			                        "itemHeight": 20,
+			                        "itemTextColor": "#999",
+			                        "symbolSize": 12,
+			                        "symbolShape": "circle",
+			                        "effects": [{"on": "hover","style": {"itemTextColor": "#000"}}]}],
+			                	theme={"background": "#FFFFFF","textColor": "#31333F","tooltip": {"container": {"background": "#FFFFFF","color": "#31333F",}}})
 		    
 
-		    with mui.Paper(key="second_item"):
-			    nivo.Pie(
-				    data=data2,
-		                    keys=[ "go", "scala", "css", "javascript", "erlang"],
-		                    margin={ "top": 40, "right": 80, "bottom": 80, "left": 80 },
-				    innerRadius=0.5,
-				    padAngle=0.7,
-				    cornerRadius=3,
-				    activeOuterRadiusOffset=8,
-				    borderWidth=1,
-				    borderColor={"from": "color", "modifiers" : [["darker", 0.2]]},
-				    arcLinkLabelsSkipAngle=10,
-				    arcLinkLabelsTextColor="#333333",
-				    arcLinkLabelsThickness=2,
-				    arcLinkLabelsColor={ "from": "color" },
-				    arcLabelsSkipAngle=10,
-				    arcLabelsTextColor={"from" : "color", "modifiers" : [["darker", 2]]},
-		                legends=[{
-		                    "anchor": "bottom",
-		                    "direction" : "row",
-		                    "translateX" : 0,
-		                    "translateY" : 56,
-		                    "itemsSpacing": 0,
-		                    "itemWidth" : 100,
-		                    "itemHeight" : 18,
-		                    "itemTextColor" : "#999",
-		                    "itemDirection" : "left-to-right",
-		                    "itemOpacity" : 1,
-		                    "symbolSize" : 18,
-		                    "symbolShape" : "circle",
-		                    "effects" : [{"on" : "hover", "style"  : {"itemTextColor" : "#000"}}]}])
+			with mui.Paper(key="second_item"):
+				nivo.Pie(
+					    data=data2,
+			                    keys=[ "go", "scala", "css", "javascript", "erlang"],
+			                    margin={ "top": 40, "right": 80, "bottom": 80, "left": 80 },
+					    innerRadius=0.5,
+					    padAngle=0.7,
+					    cornerRadius=3,
+					    activeOuterRadiusOffset=8,
+					    borderWidth=1,
+					    borderColor={"from": "color", "modifiers" : [["darker", 0.2]]},
+					    arcLinkLabelsSkipAngle=10,
+					    arcLinkLabelsTextColor="#333333",
+					    arcLinkLabelsThickness=2,
+					    arcLinkLabelsColor={ "from": "color" },
+					    arcLabelsSkipAngle=10,
+					    arcLabelsTextColor={"from" : "color", "modifiers" : [["darker", 2]]},
+			                legends=[{
+			                    "anchor": "bottom",
+			                    "direction" : "row",
+			                    "translateX" : 0,
+			                    "translateY" : 56,
+			                    "itemsSpacing": 0,
+			                    "itemWidth" : 100,
+			                    "itemHeight" : 18,
+			                    "itemTextColor" : "#999",
+			                    "itemDirection" : "left-to-right",
+			                    "itemOpacity" : 1,
+			                    "symbolSize" : 18,
+			                    "symbolShape" : "circle",
+			                    "effects" : [{"on" : "hover", "style"  : {"itemTextColor" : "#000"}}]}])
 
 
-		    with mui.Paper(key="third_item"):
-			    nivo.Bar(
-		                data=data3,
-				keys = ['hot dog','burger','sandwich','kebab','donut'],
-				indexBy="country",
-		        	margin={ "top" : 50, "right" : 130, "bottom" : 50, "left" : 60 },
-		        	padding=0.3,
-		        	valueScale={ "type" : "linear" },
-		        	indexScale={ "type" : "band"},
-		        	colors={ "scheme" : "nivo" },
-				borderColor={"from" : "color", "modifiers" : [["darker", 1.6]]},
-		        	axisBottom={ "tickSize" : 5, "tickPadding" : 5, "tickRotation" : 0, "legend" : "country", "legendPosition" : "middle", "legendOffset" : 32, "truncateTickAt" : 0},
-		                axisLeft={"tickSize" : 5,"tickPadding" : 5,"tickRotation" : 0,"legend" : "food", "legendPosition" : "middle", "legendOffset" : -40, "truncateTickAt" : 0},
-				labelSkipWidth=12,
-		        	labelSkipHeight=12,
-		        	labelTextColor={"from" : "color", "modifiers" : [["darker",1.6]]},
-				legends=[{
-		                    "dataFrom" : "keys",
-		                    "anchor" : "bottom-right",
-		                    "direction" : "column",
-		                    "translateX" : 120,
-		                    "translateY" : 0,
-		                    "itemsSpacing" : 2,
-		                    "itemWidth" : 100,
-		                    "itemHeight" : 20,
-		                    "itemDirection" : "left-to-right",
-		                    "itemOpacity" : 0.85,
-		                    "symbolSize" : 20,
-		                    "effects" : [{"on" : "hover" , "style" : {"itemOpacity": 1}}]}])
+			with mui.Paper(key="third_item"):
+				nivo.Bar(
+			                data=data3,
+					keys = ['hot dog','burger','sandwich','kebab','donut'],
+					indexBy="country",
+			        	margin={ "top" : 50, "right" : 130, "bottom" : 50, "left" : 60 },
+			        	padding=0.3,
+			        	valueScale={ "type" : "linear" },
+			        	indexScale={ "type" : "band"},
+			        	colors={ "scheme" : "nivo" },
+					borderColor={"from" : "color", "modifiers" : [["darker", 1.6]]},
+			        	axisBottom={ "tickSize" : 5, "tickPadding" : 5, "tickRotation" : 0, "legend" : "country", "legendPosition" : "middle", "legendOffset" : 32, "truncateTickAt" : 0},
+			                axisLeft={"tickSize" : 5,"tickPadding" : 5,"tickRotation" : 0,"legend" : "food", "legendPosition" : "middle", "legendOffset" : -40, "truncateTickAt" : 0},
+					labelSkipWidth=12,
+			        	labelSkipHeight=12,
+			        	labelTextColor={"from" : "color", "modifiers" : [["darker",1.6]]},
+					legends=[{
+			                    "dataFrom" : "keys",
+			                    "anchor" : "bottom-right",
+			                    "direction" : "column",
+			                    "translateX" : 120,
+			                    "translateY" : 0,
+			                    "itemsSpacing" : 2,
+			                    "itemWidth" : 100,
+			                    "itemHeight" : 20,
+			                    "itemDirection" : "left-to-right",
+			                    "itemOpacity" : 0.85,
+			                    "symbolSize" : 20,
+			                    "effects" : [{"on" : "hover" , "style" : {"itemOpacity": 1}}]}])
 
 
 
