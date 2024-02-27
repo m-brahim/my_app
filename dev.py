@@ -1188,7 +1188,11 @@ if selected3 == "Elements" :
 			                    "effects" : [{"on" : "hover", "style"  : {"itemTextColor" : "#000"}}]}])
 
 
-			with mui.AppBar(key="third_item"):
+			with mui.Paper(key="third_item"):
+				with mui.AppBar(position="static"):
+					mui.Toolbar(),
+					mui.IconButton(size="large", edge="start", color="inherit")
+					
 				nivo.Bar(
 			                data=data3,
 					keys = ['hot dog','burger','sandwich','kebab','donut'],
