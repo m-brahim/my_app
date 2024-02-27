@@ -22,7 +22,7 @@ from streamlit_elements import elements, mui, html
 from streamlit_elements import dashboard
 from streamlit_elements import editor
 from st_mui_table import st_mui_table
-
+from streamlit_elements import nivo
 
 #config du titre de la page
 st.set_page_config("Suivi des ventes de la société", page_icon="", layout="wide")
@@ -1095,45 +1095,8 @@ if selected3 == "Tests":
 
 
 
-if selected3 == "Elements" :
-    with elements("bouttongroup"):
-        with mui.ButtonGroup(variant="contained"):
-            mui.Button("One")
-            mui.Button("Two")
-            mui.Button("Three")
-    with elements("boutton"):
-        with mui.Box():
-            mui.TextField(
-                id="outlined-basic",
-                label="Outlined",
-                variant="outlined"
-            )
-    with elements("style_elements_css"):
-        html.div(
-            "This has a hotpink background",
-            css={
-                "backgroundColor": "hotpink",
-                "&:hover": {
-                    "color": "lightgreen"
-                }
-            }
-        )
-    with elements("callbacks_retrieve_data"):
-
-        if "my_text" not in st.session_state:
-            st.session_state.my_text = ""
-    
-        def handle_change(event):
-            st.session_state.my_text = event.target.value
-    
-        mui.Typography(st.session_state.my_text)
-    
-        mui.TextField(label="Input some text here", onChange=handle_change)      
-            
-
-    with elements("nivo_charts"):
-    
-        from streamlit_elements import nivo
+if selected3 == "Elements" :   
+    with elements("nivo_radar"):
     
         DATA = [
             { "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
@@ -1192,8 +1155,6 @@ if selected3 == "Elements" :
     
     with elements("nivo_pie"):
         
-        from streamlit_elements import nivo
-        
         data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
                  {"id": "scala","label": "scala","value": 205, "color": "hsl(175, 70%, 50%)"},
                  {"id": "css","label": "css","value": 51,"color": "hsl(341, 70%, 50%)"},
@@ -1244,9 +1205,66 @@ if selected3 == "Elements" :
                         ]
             )
     
-    
-    
-    
+
+
+    with elements("nivo_bar"):
+        
+        data3 = [{"country": "AD", "hot dog": 183, "hot dogColor": "hsl(284, 70%, 50%)", "burger": 113, "burgerColor": "hsl(42, 70%, 50%)", "sandwich": 100, "sandwichColor": "hsl(184, 70%, 50%)", "kebab": 49, "kebabColor": "hsl(98, 70%, 50%)",
+    	        "fries": 166, "friesColor": "hsl(170, 70%, 50%)", "donut": 64, "donutColor": "hsl(35, 70%, 50%)"},
+  	            {"country": "AE", "hot dog": 108, "hot dogColor": "hsl(290, 70%, 50%)", "burger": 26, "burgerColor": "hsl(281, 70%, 50%)", "sandwich": 188, "sandwichColor": "hsl(111, 70%, 50%)", "kebab": 91, "kebabColor": "hsl(214, 70%, 50%)",
+    	        "fries": 105, "friesColor": "hsl(130, 70%, 50%)", "donut": 22, "donutColor": "hsl(338, 70%, 50%)"},
+  	            {"country": "AF", "hot dog": 182, "hot dogColor": "hsl(51, 70%, 50%)", "burger": 35, "burgerColor": "hsl(197, 70%, 50%)", "sandwich": 5, "sandwichColor": "hsl(78, 70%, 50%)", "kebab": 100, "kebabColor": "hsl(253, 70%, 50%)",
+    	         "fries": 169, "friesColor": "hsl(204, 70%, 50%)", "donut": 197, "donutColor": "hsl(30, 70%, 50%)"},
+  	            {"country": "AG", "hot dog": 182, "hot dogColor": "hsl(252, 70%, 50%)", "burger": 196, "burgerColor": "hsl(19, 70%, 50%)", "sandwich": 10, "sandwichColor": "hsl(145, 70%, 50%)", "kebab": 125, "kebabColor": "hsl(351, 70%, 50%)",
+    	         "fries": 88, "friesColor": "hsl(12, 70%, 50%)", "donut": 12, "donutColor": "hsl(345, 70%, 50%)"},
+  	            {"country": "AI", "hot dog": 107, "hot dogColor": "hsl(17, 70%, 50%)", "burger": 12, "burgerColor": "hsl(134, 70%, 50%)", "sandwich": 162, "sandwichColor": "hsl(130, 70%, 50%)", "kebab": 118, "kebabColor": "hsl(24, 70%, 50%)",
+    	         "fries": 168, "friesColor": "hsl(216, 70%, 50%)", "donut": 154, "donutColor": "hsl(176, 70%, 50%)"},
+  	            {"country": "AL", "hot dog": 106, "hot dogColor": "hsl(351, 70%, 50%)", "burger": 179, "burgerColor": "hsl(23, 70%, 50%)", "sandwich": 66, "sandwichColor": "hsl(293, 70%, 50%)", "kebab": 27, "kebabColor": "hsl(226, 70%, 50%)",
+    	         "fries": 105, "friesColor": "hsl(314, 70%, 50%)", "donut": 200, "donutColor": "hsl(65, 70%, 50%)"},
+  	            {"country": "AM", "hot dog": 85, "hot dogColor": "hsl(161, 70%, 50%)", "burger": 97, "burgerColor": "hsl(23, 70%, 50%)", "sandwich": 5, "sandwichColor": "hsl(126, 70%, 50%)", "kebab": 190, "kebabColor": "hsl(258, 70%, 50%)",
+    	         "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"}]
+        
+
+        with mui.Box(sx={"height": 500}):
+            nivo.Bar(
+                data=data3,
+		        keys = ['hot dog','burger','sandwich','kebab','donut'],
+		        indexBy="country",
+        	    margin={ "top" : 50, "right" : 130, "bottom" : 50, "left" : 60 },
+        	    padding=0.3,
+        	    valueScale={ "type" : "linear" },
+        	    indexScale={ "type" : "band", "round" : true },
+        	    colors={ "scheme" : "nivo" },
+		        borderColor={"from" : "color", "modifiers" : [["darker", 1.6]]},
+		        axisTop=null,
+        	    axisRight=null,
+        	    axisBottom={ "tickSize" : 5, "tickPadding" : 5, "tickRotation" : 0, "legend" : "country", "legendPosition" : "middle", "legendOffset" : 32, "truncateTickAt" : 0},
+                axisLeft={"tickSize" : 5,"tickPadding" : 5,"tickRotation" : 0,"legend" : "food", "legendPosition" : "middle", "legendOffset" : -40, "truncateTickAt" : 0},
+		        labelSkipWidth=12,
+        	    labelSkipHeight=12,
+        	    labelTextColor={"from" : "color", "modifiers" : [["darker",1.6]]},
+		        legends=[{
+                    "dataFrom" : "keys",
+                    "anchor" : "bottom-right",
+                    "direction" : "column",
+                    "justify" : false,
+                    "translateX" : 120,
+                    "translateY" : 0,
+                    "itemsSpacing" : 2,
+                    "itemWidth" : 100,
+                    "itemHeight" : 20,
+                    "itemDirection" : "left-to-right",
+                    "itemOpacity" : 0.85,
+                    "symbolSize" : 20,
+                    "effects" : [{"on" : "hover" , "style" : {"itemOpacity": 1
+                            }
+                        }
+                    ]
+                }
+                        ]
+            )
+     
+            
     
     
     
