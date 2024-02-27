@@ -1098,7 +1098,6 @@ if selected3 == "Tests":
 
 if selected3 == "Elements" :
 	col_radar, col_pie = st.columns[(1,1)]
-
 	with col_radar:
 		with elements("nivo_radar"):
 			DATA = [
