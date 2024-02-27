@@ -1266,6 +1266,6 @@ if selected3 == "Elements" :
 	    layout = [dashboard.Item("nivo_bar", 0, 0, 2, 2)]
 
 	    with dashboard.Grid(layout):
-		    mui.Paper("Bar', key="nivo_bar")
+		    mui.Paper(key="nivo_bar")
 
 
