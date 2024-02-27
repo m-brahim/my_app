@@ -1156,7 +1156,7 @@ if selected3 == "Elements" :
 
 
 
-	with col_radar:
+	with col_pie:
 		with elements("nivo_pie"):
 		        data2 = [{"id": "go","label": "go","value": 265,"color": "hsl(351, 70%, 50%)"},
 		                 {"id": "scala","label": "scala","value": 205, "color": "hsl(175, 70%, 50%)"},
