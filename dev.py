@@ -1189,7 +1189,7 @@ if selected3 == "Elements" :
 
 
 			with mui.Paper(borderRadius=2, key="third_item"):
-				mui.AppBar(position="static",
+				with mui.AppBar(position="static"):
 					  mui.Toolbar(),
 					  mui.IconButton(size="large", edge="start", color="inherit", aria-label="menu"))
 					
