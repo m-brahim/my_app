@@ -1209,10 +1209,10 @@ if selected3 == "Elements" :
 
     with elements("dashboard"):
 
-	    layout = [dashboard.Item("nivo_bar", 0, 0, 2, 2)]
+	    layout = [dashboard.Item("nivobar", 0, 0, 2, 2)]
 	
 	    with dashboard.Grid(layout):
-		    mui.Paper("Bar chart", key="nivo_bar")
+		    mui.Paper("Bar chart", key="nivobar")
 
 
 	    
