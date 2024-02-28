@@ -1088,32 +1088,7 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements" :   
-
-
-	with elements("table"):
-		df = pd.read_csv(url, delimiter=";")
-		st_mui_table(
-			df,
-    			enablePagination=True,
-    			customCss="",
-		    	paginationSizes = [5,10,25],
-		    	size="medium",
-		    	padding="normal",
-		    	showHeaders=True,
-		    	key="mui_table",
-		    	stickyHeader=True,
-		    	paperStyle={ "width": '100%',  "overflow": 'hidden',"paddingBottom": '1px', "border": '2px solid rgba(224, 224, 224, 1)'},
-		    	detailColumns=[],
-		    	detailColNum=1,
-		    	detailsHeader="Details",
-		    	showIndex=False
-		)
-
-
-	
-
-	
-	layout = [dashboard.Item("first_item", 0, 0, 4, 4), dashboard.Item("second_item", 4, 0, 4, 4), dashboard.Item("third_item", 8, 0, 4, 4)]
+	layout = [dashboard.Item("first_item", 0, 0, 4, 4), dashboard.Item("second_item", 4, 0, 4, 4), dashboard.Item("third_item", 8, 0, 4, 4), dashboard.Item("fourth_item", 0, 0, 4, 4)]
 	with elements("dashboard"):
 		data1 = [{ "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
             	        { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
@@ -1256,8 +1231,24 @@ if selected3 == "Elements" :
 			                    "symbolSize" : 20,
 			                    "effects" : [{"on" : "hover" , "style" : {"itemOpacity": 1}}]}])
 
-
-
+			with mui.Paper(key="fourth_item"):
+				df = pd.read_csv(url, delimiter=";")
+				st_mui_table(
+					df,
+    					enablePagination=True,
+    					customCss="",
+		    			paginationSizes = [5,10,25],
+		    			size="medium",
+		    			padding="normal",
+		    			showHeaders=True,
+		    			key="mui_table",
+		    			stickyHeader=True,
+		    			paperStyle={ "width": '100%',  "overflow": 'hidden',"paddingBottom": '1px', "border": '2px solid rgba(224, 224, 224, 1)'},
+		    			detailColumns=[],
+		    			detailColNum=1,
+		    			detailsHeader="Details",
+		    			showIndex=False
+				)
 
 
 
