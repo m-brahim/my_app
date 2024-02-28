@@ -1179,12 +1179,12 @@ if selected3 == "Elements" :
 			                    "effects" : [{"on" : "hover", "style"  : {"itemTextColor" : "#000"}}]}])
 
 
-			with mui.Paper(key="third_item"):
+			with mui.Paper(key="third_item", sx={ "flexGrow" : 1 }):
 				with mui.AppBar():
 					  mui.Toolbar(
 						  mui.IconButton(
 							  size="small",
-							  sx={"borderRadius" : 2, "p" : 2, "aria-label" : "menu"},
+							  sx={"borderRadius" : 2, "p" : 2, "aria-label" : "menu", "edge" : "start"},
 						  	  mui.icon.ListIcon()
 						  ),
 						  mui.Typography(
