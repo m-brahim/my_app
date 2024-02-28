@@ -1180,7 +1180,7 @@ if selected3 == "Elements" :
 
 
 			with mui.Paper(key="third_item"):
-				with mui.AppBar(position="contained"):
+				with mui.AppBar(position="sticky"):
 					mui.Toolbar()
 					
 				nivo.Bar(
@@ -1227,7 +1227,7 @@ if selected3 == "Elements" :
 					  ('Cupcake', 305, 3.7, 67, 4.3),
 					  ('Gingerbread', 356, 16.0, 49, 3.9)]
 				
-				with mui.AppBar(position="sticky"):
+				with mui.AppBar(position="static"):
 					mui.Toolbar()
 				
 				with mui.TableContainer():
