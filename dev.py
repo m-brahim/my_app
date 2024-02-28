@@ -1235,7 +1235,7 @@ if selected3 == "Elements" :
 
 
 			
-			with mui.Paper(key="fourth_item"):
+			with mui.Box(key="fourth_item"):
 				with mui.AppBar():
 					  mui.Toolbar(
 						  mui.Typography(
