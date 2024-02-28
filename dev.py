@@ -1190,7 +1190,7 @@ if selected3 == "Elements" :
 							  variant = "h6",
 							  component = "div",
 							  sx = {"flexGrow" : 1},
-							  "Menu"
+							  "Menu",
 						  )
 					  )
 							  
