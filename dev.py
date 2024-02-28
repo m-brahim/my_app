@@ -1229,16 +1229,9 @@ if selected3 == "Elements" :
 				
 				with mui.Box(sx={ "flexGrow" : 1 }):
 					with mui.AppBar(position="static"):
-						mui.Toolbar(
-							mui.Button(
-								size="large",
-								edge="start",
-								aria_label="menu",
-								sx={ "mr" : 2 },
-								mui.icon.DoubleArrow,
-							)
-						)
-						
+						with mui.Toolbar() :
+							with mui.Button(size="large", edge="start", aria_label="menu", sx={"mr": 2}):
+								mui.icon.DoubleArrow
 						
 				
 				with mui.TableContainer():
