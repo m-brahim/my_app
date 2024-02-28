@@ -1184,7 +1184,7 @@ if selected3 == "Elements" :
 					  mui.Toolbar(
 						  mui.IconButton(
 							  size="small",
-							  sx={borderRadius:2, p:2, bgcolor:"background.paper"}
+							  sx={"borderRadius" : 2, "p" : 2, "bgcolor" :"background.paper"}
 						  ))
 							  
 					
