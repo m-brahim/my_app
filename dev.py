@@ -1180,26 +1180,8 @@ if selected3 == "Elements" :
 
 
 			with mui.Paper(key="third_item", sx={ "flexGrow" : 1 }):
-				with mui.AppBar():
-					  mui.Toolbar(
-						  mui.IconButton(
-							  size="large",
-							  color="inherit",
-							  sx={"borderRadius" : 2, "p" : 2},
-							  edge="start"
-						  ),
-						  mui.Typography(
-							  "Menu",
-							  variant = "h6",
-							  component = "div",
-							  sx = {"flexGrow" : 1},
-						  ),
-						  mui.Button(
-							  "Login",
-							  sx={ "color" : "error.main" }
-						  )
-						  
-					  )
+				with mui.AppBar(position="static"):
+					mui.Toolbar()
 					
 				nivo.Bar(
 			                data=data3,
