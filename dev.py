@@ -1236,6 +1236,16 @@ if selected3 == "Elements" :
 
 			
 			with mui.Paper(key="fourth_item"):
+				with mui.AppBar():
+					  mui.Toolbar(
+						  mui.Typography(
+							  "Mui Table",
+							  variant = "h3",
+							  component = "div",
+							  sx = {"flexGrow" : 1},
+						  ),
+					  )
+
 				def create_data(name, calories, fat, carbs, protein):
 					return {"name": name, "calories": calories, "fat": fat, "carbs": carbs, "protein": protein}
 
