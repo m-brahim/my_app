@@ -1248,7 +1248,7 @@ if selected3 == "Elements" :
 				with mui.AppBar(position="static"):
 					mui.Toolbar()
 				
-				with mui.TableContainer(component="Paper"):
+				with mui.TableContainer():
 					mui.Table(
 						sx={"minWidth": 650},
 						aria_label="simple table",
