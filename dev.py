@@ -1180,7 +1180,7 @@ if selected3 == "Elements" :
 
 
 			with mui.Paper(key="third_item", sx={ "flexGrow" : 1 }):
-				with mui.AppBar(position="static"):
+				with mui.AppBar():
 					mui.Toolbar()
 					
 				nivo.Bar(
