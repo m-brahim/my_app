@@ -584,31 +584,24 @@ if selected3 == "Accueil" :
     
     
     with col_pie :
-        quantity_by_category = data_f.groupby('Catégorie')['Quantité'].sum().reset_index()
-            
-        colors = ['#fcc200', '#ffe033', '#f7e98e']
-        fig = px.pie(quantity_by_category, values='Quantité', names='Catégorie',
-                     color_discrete_sequence=colors)
-            
-        fig.update_traces(marker=dict(line=dict(color='#FFFFFF', width=2)))
-        
-        fig.update_layout(title='Quantités vendues par catégorie',
+	    if selection :
+		    quantity_by_category = data_f.groupby('Catégorie')['Quantité'].sum().reset_index()
+		    colors = ['#fcc200', '#ffe033', '#f7e98e']
+		    fig = px.pie(quantity_by_category, values='Quantité', names='Catégorie', color_discrete_sequence=colors)
+		    fig.update_traces(marker=dict(line=dict(color='#FFFFFF', width=2)))
+		    fig.update_layout(title='Quantités vendues par catégorie',
                           title_x=0.25,
                           title_font=dict(size=15),
                           height=300,
                           width=300,
-                          margin=dict(t=40, b=30, l=100)
-    
-        )
-        
-        if selection :
-            st.plotly_chart(fig, use_container_width=True)
+                          margin=dict(t=40, b=30, l=100))
+		    st.plotly_chart(fig, use_container_width=True)
     
     
     if selection:
 	    # agréger le nombre de clients par pays
 	    clients_by_country = df.drop_duplicates(subset=['ID client', 'Pays/Région']).groupby('Pays/Région')['ID client'].count().reset_index()
-	
+	    
 	    # récupérer le nombre de clients pour le pays sélectionné
 	    num_clients = clients_by_country[clients_by_country['Pays/Région'] == selected_pays]['ID client'].values[0]
 	    
@@ -618,23 +611,22 @@ if selected3 == "Accueil" :
 	    # icône personnalisée pour représenter un client (ici l'exemple c'est Kiloutou)
 	    icon_path = 'Kiloutou_logo.jpg'
 	    client_icon = folium.CustomIcon(icon_image=icon_path, icon_size=(20, 20))
-    
+	    
 	    # définition d'une localisation initiale
 	    my_map = folium.Map(location=[merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]], zoom_start=5.5)
+	    
+	    # ajoutez un seul marqueur pour représenter le pays avec le nombre de clients dans l'infobulle
+	    folium.Marker([merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]],
+			  popup=f"Nombre de clients: {num_clients}",
+			  icon=client_icon).add_to(my_map)
+	    
+	    st_folium(my_map, width=1410, height=600)
     
-            # ajoutez un seul marqueur pour représenter le pays avec le nombre de clients dans l'infobulle
-            folium.Marker([merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]],
-                          popup=f"Nombre de clients: {num_clients}",
-                          icon=client_icon).add_to(my_map)
-    
-            st_folium(my_map, width=1410, height=600)
-    
-    
-    
-    
-    
-    
-    #new_dfs, code = spreadsheet(url)
+
+
+
+
+
 
 
 
