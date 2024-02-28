@@ -1236,7 +1236,7 @@ if selected3 == "Elements" :
 								edge="start",
 								aria_label="menu",
 								sx={ "mr" : 2 },
-								children=mui.Icon("menu")
+								children=mui.Icon("MenuIcon")
 							)
 							]
 						)
