@@ -1246,7 +1246,7 @@ if selected3 == "Elements" :
 					  ('Gingerbread', 356, 16.0, 49, 3.9)]
 				
 				with mui.AppBar(position="static"):
-					mui.Toolbar(variant="dense")
+					mui.Toolbar()
 				
 				with mui.TableContainer():
 					mui.Table(
