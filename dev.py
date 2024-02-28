@@ -1189,7 +1189,7 @@ if selected3 == "Elements" :
 
 
 			with mui.Paper(key="third_item"):
-				with mui.AppBar():
+				with mui.AppBar(color = "primary", enableColorOnDark=true):
 					  mui.Toolbar()
 					
 				nivo.Bar(
