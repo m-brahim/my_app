@@ -1200,7 +1200,6 @@ if selected3 == "Elements" :
 						  )
 						  
 					  )
-							  
 					
 				nivo.Bar(
 			                data=data3,
@@ -1231,19 +1230,55 @@ if selected3 == "Elements" :
 			                    "symbolSize" : 20,
 			                    "effects" : [{"on" : "hover" , "style" : {"itemOpacity": 1}}]}])
 
+
+
+
+
+			
 			with mui.Paper(key="fourth_item"):
-				col = ["Name", "Company", "City", "State"]
+				def create_data(name, calories, fat, carbs, protein):
+					return {"name": name, "calories": calories, "fat": fat, "carbs": carbs, "protein": protein}
+
+				rows =   [('Frozen yoghurt', 159, 6.0, 24, 4.0),
+					  ('Ice cream sandwich', 237, 9.0, 37, 4.3),
+					  ('Eclair', 262, 16.0, 24, 6.0),
+					  ('Cupcake', 305, 3.7, 67, 4.3),
+					  ('Gingerbread', 356, 16.0, 49, 3.9)]
 				
-				donnees = [["Joe James", "Test Corp", "Yonkers", "NY"],
-				       ["Bob Herm", "Test Corp", "Tampa", "FL"],
-				       ["James Houston", "Test Corp", "Dallas", "TX"]]
-				
-				op = { "filterType" : "checkbox"},
-				
-				mui.DataTable(
-					title="Employee List",
-					data= donnees,
-					column = col,
-					options = op
-				)
+
+				with mui.TableContainer(component="Paper"):
+					mui.Table(
+						sx={"minWidth": 650},
+						aria_label="simple table",
+						children=[
+							mui.TableHead(
+					                    children=[
+					                        mui.TableRow(
+					                            children=[
+					                                mui.TableCell("Dessert (100g serving)"),
+					                                mui.TableCell("Calories", align="right"),
+					                                mui.TableCell("Fat&nbsp;(g)", align="right"),
+					                                mui.TableCell("Carbs&nbsp;(g)", align="right"),
+					                                mui.TableCell("Protein&nbsp;(g)", align="right")
+					                            ]
+					                        )
+					                    ]
+					                ),
+							mui.TableBody(
+					                    children=[
+					                        mui.TableRow(
+					                            key=row[0],
+					                            sx={"&:last-child td, &:last-child th": {"border": 0}},
+					                            children=[
+					                                mui.TableCell(component="th", scope="row", children=row[0]),
+					                                mui.TableCell(align="right", children=row[1]),
+					                                mui.TableCell(align="right", children=row[2]),
+					                                mui.TableCell(align="right", children=row[3]),
+					                                mui.TableCell(align="right", children=row[4])
+					                            ]
+					                        ) for row in rows
+					                    ]
+					                )
+					            ]
+					        )
 
