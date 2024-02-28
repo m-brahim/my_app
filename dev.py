@@ -1232,24 +1232,18 @@ if selected3 == "Elements" :
 			                    "effects" : [{"on" : "hover" , "style" : {"itemOpacity": 1}}]}])
 
 			with mui.Paper(key="fourth_item"):
-				df = pd.read_csv(url, delimiter=";")
-				mui.Table(
-					df,
-    					enablePagination=True,
-    					customCss="",
-		    			paginationSizes = [5,10,25],
-		    			size="medium",
-		    			padding="normal",
-		    			showHeaders=True,
-		    			key="mui_table",
-		    			stickyHeader=True,
-		    			paperStyle={ "width": '100%',  "overflow": 'hidden',"paddingBottom": '1px', "border": '2px solid rgba(224, 224, 224, 1)'},
-		    			detailColumns=[],
-		    			detailColNum=1,
-		    			detailsHeader="Details",
-		    			showIndex=False
+				col = ["Name", "Company", "City", "State"]
+				
+				donnees = [["Joe James", "Test Corp", "Yonkers", "NY"],
+				       ["Bob Herm", "Test Corp", "Tampa", "FL"],
+				       ["James Houston", "Test Corp", "Dallas", "TX"]]
+				
+				op = { "filterType" : "checkbox"},
+				
+				mui.DataTable(
+					title="Employee List",
+					data= donnees,
+					column = col,
+					options = op
 				)
-
-
-
 
