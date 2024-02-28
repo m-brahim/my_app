@@ -1230,15 +1230,13 @@ if selected3 == "Elements" :
 				with mui.Box(sx={ "flexGrow" : 1 }):
 					with mui.AppBar(position="static"):
 						mui.Toolbar(
-							children=[
-								mui.IconButton(
+							mui.Button(
 								size="large",
 								edge="start",
 								aria_label="menu",
 								sx={ "mr" : 2 },
-								mui.Icon("MenuIcon")
+								mui.icon.DoubleArrow()
 							)
-							]
 						)
 						
 						
