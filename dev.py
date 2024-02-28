@@ -1187,8 +1187,7 @@ if selected3 == "Elements" :
 							  color="inherit",
 							  sx={"borderRadius" : 2, "p" : 2},
 							  aria-label = "menu",
-							  edge="start",
-						  	  mui.icon.ListIcon()
+							  edge="start"
 						  ),
 						  mui.Typography(
 							  "Menu",
