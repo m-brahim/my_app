@@ -605,30 +605,29 @@ if selected3 == "Accueil" :
             st.plotly_chart(fig, use_container_width=True)
     
     
-    
-    # agréger le nombre de clients par pays
-    clients_by_country = df.drop_duplicates(subset=['ID client', 'Pays/Région']).groupby('Pays/Région')['ID client'].count().reset_index()
-
-    # récupérer le nombre de clients pour le pays sélectionné
-    num_clients = clients_by_country[clients_by_country['Pays/Région'] == selected_pays]['ID client'].values[0]
-    
-    # fusionner les données agrégées avec les données filtrées
-    merged_data = pd.merge(data_f, clients_by_country, how='left', on='Pays/Région')
-    
-    # icône personnalisée pour représenter un client (ici l'exemple c'est Kiloutou)
-    icon_path = 'Kiloutou_logo.jpg'
-    client_icon = folium.CustomIcon(icon_image=icon_path, icon_size=(20, 20))
-    
     if selection:
-        # définition d'une localisation initiale
-        my_map = folium.Map(location=[merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]], zoom_start=5.5)
+	    # agréger le nombre de clients par pays
+	    clients_by_country = df.drop_duplicates(subset=['ID client', 'Pays/Région']).groupby('Pays/Région')['ID client'].count().reset_index()
+	
+	    # récupérer le nombre de clients pour le pays sélectionné
+	    num_clients = clients_by_country[clients_by_country['Pays/Région'] == selected_pays]['ID client'].values[0]
+	    
+	    # fusionner les données agrégées avec les données filtrées
+	    merged_data = pd.merge(data_f, clients_by_country, how='left', on='Pays/Région')
+	    
+	    # icône personnalisée pour représenter un client (ici l'exemple c'est Kiloutou)
+	    icon_path = 'Kiloutou_logo.jpg'
+	    client_icon = folium.CustomIcon(icon_image=icon_path, icon_size=(20, 20))
     
-        # ajoutez un seul marqueur pour représenter le pays avec le nombre de clients dans l'infobulle
-        folium.Marker([merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]],
-                      popup=f"Nombre de clients: {num_clients}",
-                      icon=client_icon).add_to(my_map)
+	    # définition d'une localisation initiale
+	    my_map = folium.Map(location=[merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]], zoom_start=5.5)
     
-        st_folium(my_map, width=1410, height=600)
+            # ajoutez un seul marqueur pour représenter le pays avec le nombre de clients dans l'infobulle
+            folium.Marker([merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]],
+                          popup=f"Nombre de clients: {num_clients}",
+                          icon=client_icon).add_to(my_map)
+    
+            st_folium(my_map, width=1410, height=600)
     
     
     
