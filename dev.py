@@ -1185,7 +1185,7 @@ if selected3 == "Elements" :
 						  mui.IconButton(
 							  size="small",
 							  sx={"borderRadius" : 2, "p" : 2, "aria-label" : "menu"},
-							  mui.icon.EmojiPeople
+							  mui.icon.MenuIcon()
 						  ),
 						  mui.Typography(
 							  "Menu",
