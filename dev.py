@@ -1183,8 +1183,11 @@ if selected3 == "Elements" :
 				with mui.AppBar():
 					  mui.Toolbar(
 						  mui.IconButton(
-							  size="small",
-							  sx={"borderRadius" : 2, "p" : 2, "aria-label" : "menu", "edge" : "start"},
+							  size="large",
+							  color="inherit",
+							  sx={"borderRadius" : 2, "p" : 2},
+							  aria-label = "menu",
+							  edge="start",
 						  	  mui.icon.ListIcon()
 						  ),
 						  mui.Typography(
@@ -1193,6 +1196,10 @@ if selected3 == "Elements" :
 							  component = "div",
 							  sx = {"flexGrow" : 1},
 						  ),
+						  mui.Button(
+							  "Login",
+							  color="inherit"
+						  )
 						  
 					  )
 							  
