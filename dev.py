@@ -1196,7 +1196,7 @@ if selected3 == "Elements" :
 						  ),
 						  mui.Button(
 							  "Login",
-							  color="inherit"
+							  color="white"
 						  )
 						  
 					  )
