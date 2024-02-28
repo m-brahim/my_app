@@ -1185,7 +1185,14 @@ if selected3 == "Elements" :
 						  mui.IconButton(
 							  size="small",
 							  sx={"borderRadius" : 2, "p" : 2, "bgcolor" :"background.paper"}
-						  ))
+						  )
+						  mui.Typography(
+							  variant = "h6",
+							  component = "div",
+							  sx = {"flexGrow" : 1},
+							  "Menu"
+						  )
+					  )
 							  
 					
 				nivo.Bar(
