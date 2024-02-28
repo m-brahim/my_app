@@ -1236,7 +1236,15 @@ if selected3 == "Elements" :
 
 			
 			with mui.Paper(key="fourth_item"):
-				
+				with mui.AppBar():
+					  mui.Toolbar(
+						  mui.Typography(
+							  "Mui Table",
+							  variant = "h8",
+							  component = "div",
+							  sx = {"flexGrow" : 1},
+						  ),
+					  )
 
 				def create_data(name, calories, fat, carbs, protein):
 					return {"name": name, "calories": calories, "fat": fat, "carbs": carbs, "protein": protein}
@@ -1249,47 +1257,37 @@ if selected3 == "Elements" :
 				
 
 				with mui.TableContainer(component="Paper"):
-					with mui.AppBar():
-					  mui.Toolbar(
-						  mui.Typography(
-							  "Mui Table",
-							  variant = "h3",
-							  component = "div",
-							  sx = {"flexGrow" : 1},
-						  ),
-					  )
-					  mui.Table(
-						  sx={"minWidth": 650},
-						  aria_label="simple table",
-						  children=[
-							  mui.TableHead(
-								  children=[
-									  mui.TableRow(
-										  children=[
-											  mui.TableCell("Dessert (100g serving)"),
-											  mui.TableCell("Calories", align="center"),
-											  mui.TableCell("Fat;(g)", align="center"),
-											  mui.TableCell("Carbs (g)", align="center"),
-											  mui.TableCell("Protein (g)", align="center")
-										  ]
-									  )
-								  ]
-							  ),
-							  mui.TableBody(
-								  children=[
-									  mui.TableRow(
-										  key=row[0],
-										  sx={"&:last-child td, &:last-child th": {"border": 0}},
-										  children=[
-											  mui.TableCell(component="th", scope="row", children=row[0]),
-											  mui.TableCell(align="center", children=row[1]),
-											  mui.TableCell(align="center", children=row[2]),
-											  mui.TableCell(align="center", children=row[3]),
-											  mui.TableCell(align="center", children=row[4])
-										  ]
-									  ) for row in rows
-								  ]
-							  )
-						  ]
-					  )
-
+					mui.Table(
+						sx={"minWidth": 650},
+						aria_label="simple table",
+						children=[
+							mui.TableHead(
+					                    children=[
+					                        mui.TableRow(
+					                            children=[
+					                                mui.TableCell("Dessert (100g serving)"),
+					                                mui.TableCell("Calories", align="center"),
+					                                mui.TableCell("Fat;(g)", align="center"),
+					                                mui.TableCell("Carbs (g)", align="center"),
+					                                mui.TableCell("Protein (g)", align="center")
+					                            ]
+					                        )
+					                    ]
+					                ),
+							mui.TableBody(
+					                    children=[
+					                        mui.TableRow(
+					                            key=row[0],
+					                            sx={"&:last-child td, &:last-child th": {"border": 0}},
+					                            children=[
+					                                mui.TableCell(component="th", scope="row", children=row[0]),
+					                                mui.TableCell(align="center", children=row[1]),
+					                                mui.TableCell(align="center", children=row[2]),
+					                                mui.TableCell(align="center", children=row[3]),
+					                                mui.TableCell(align="center", children=row[4])
+					                            ]
+					                        ) for row in rows
+					                    ]
+					                )
+					            ]
+					        )
