@@ -1196,7 +1196,7 @@ if selected3 == "Elements" :
 						  ),
 						  mui.Button(
 							  "Login",
-							  color="#E0C2FF"
+							  sx={ "color" : pink[500] }
 						  )
 						  
 					  )
