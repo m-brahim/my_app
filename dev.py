@@ -1187,6 +1187,7 @@ if selected3 == "Elements" :
 							  sx={"borderRadius" : 2, "p" : 2, "bgcolor" :"background.paper"}
 						  ),
 						  mui.Typography(
+							  "Menu",
 							  variant = "h6",
 							  component = "div",
 							  sx = {"flexGrow" : 1},
