@@ -1235,7 +1235,7 @@ if selected3 == "Elements" :
 								edge="start",
 								aria_label="menu",
 								sx={ "mr" : 2 },
-								mui.icon.DoubleArrow
+								mui.icon.DoubleArrow,
 							)
 						)
 						
