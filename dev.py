@@ -1237,7 +1237,8 @@ if selected3 == "Elements" :
 			
 			with mui.Paper(key="fourth_item"): 
 				mui.AppBar(
-					mui.Toolbar()
+					position="static",
+					mui.Toolbar(variant="dense")
 				)
 				
 				def create_data(name, calories, fat, carbs, protein):
