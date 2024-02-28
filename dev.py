@@ -1179,8 +1179,8 @@ if selected3 == "Elements" :
 			                    "effects" : [{"on" : "hover", "style"  : {"itemTextColor" : "#000"}}]}])
 
 
-			with mui.Paper(key="third_item", sx={ "flexGrow" : 1 }):
-				with mui.AppBar(position="static"):
+			with mui.Paper(key="third_item"):
+				with mui.AppBar(position="contained"):
 					mui.Toolbar()
 					
 				nivo.Bar(
@@ -1227,7 +1227,7 @@ if selected3 == "Elements" :
 					  ('Cupcake', 305, 3.7, 67, 4.3),
 					  ('Gingerbread', 356, 16.0, 49, 3.9)]
 				
-				with mui.AppBar(position="static"):
+				with mui.AppBar(position="contained"):
 					mui.Toolbar()
 				
 				with mui.TableContainer():
