@@ -1184,15 +1184,15 @@ if selected3 == "Elements" :
 					  mui.Toolbar(
 						  mui.IconButton(
 							  size="small",
-							  sx={"borderRadius" : 2, "p" : 2, "aria-label" : "menu"},
-						  ),
+							  sx={"borderRadius" : 2, "p" : 2, "aria-label" : "menu"})
+						  mui.icon.ListIcon(),
 						  mui.Typography(
 							  "Menu",
 							  variant = "h6",
 							  component = "div",
 							  sx = {"flexGrow" : 1},
 						  ),
-						  mui.icon.ListIcon()
+						  
 					  )
 							  
 					
