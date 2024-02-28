@@ -1091,14 +1091,23 @@ if selected3 == "Elements" :
 
 
 	with elements("table"):
-		def main():
-			st.title("Tableau React dans Streamlit")
-			st.components.v1.iframe(
-				srcdoc=open("BasicTable.js").read(),
-				height=600
-			)
-		if __name__ == "__main__":
-			main()
+		df = pd.read_csv(url, delimiter=";")
+		st_mui_table(
+			df,
+    			enablePagination=True,
+    			customCss="",
+		    	paginationSizes = [5,10,25],
+		    	size="medium",
+		    	padding="normal",
+		    	showHeaders=True,
+		    	key="mui_table",
+		    	stickyHeader=True,
+		    	paperStyle={ "width": '100%',  "overflow": 'hidden',"paddingBottom": '1px', "border": '2px solid rgba(224, 224, 224, 1)'},
+		    	detailColumns=[],
+		    	detailColNum=1,
+		    	detailsHeader="Details",
+		    	showIndex=False
+		)
 
 
 	
