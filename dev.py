@@ -1259,7 +1259,7 @@ if selected3 == "Elements" :
 					                                mui.TableCell("Calories", align="center"),
 					                                mui.TableCell("Fat;(g)", align="center"),
 					                                mui.TableCell("Carbs (g)", align="center"),
-					                                mui.TableCell("Protein (g)", align="center)
+					                                mui.TableCell("Protein (g)", align="center")
 					                            ]
 					                        )
 					                    ]
