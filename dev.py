@@ -1181,7 +1181,12 @@ if selected3 == "Elements" :
 
 			with mui.Paper(key="third_item"):
 				with mui.AppBar(color = "primary"):
-					  mui.Toolbar()
+					  mui.Toolbar(
+						  mui.IconButton(
+							  size="small",
+							  sx={borderRadius:2, p:2, bgcolor:"background.paper"}
+						  ))
+							  
 					
 				nivo.Bar(
 			                data=data3,
