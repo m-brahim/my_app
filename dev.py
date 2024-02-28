@@ -1233,7 +1233,7 @@ if selected3 == "Elements" :
 
 			with mui.Paper(key="fourth_item"):
 				df = pd.read_csv(url, delimiter=";")
-				st_mui_table(
+				mui.Table(
 					df,
     					enablePagination=True,
     					customCss="",
