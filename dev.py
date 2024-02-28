@@ -1088,6 +1088,22 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements" :   
+
+
+	with elements("table"):
+		def main():
+			st.title("Tableau React dans Streamlit")
+			st.components.v1.iframe(
+				srcdoc=open("BasicTable.js").read(),
+				height=600
+			)
+		if __name__ == "__main__":
+			main()
+
+
+	
+
+	
 	layout = [dashboard.Item("first_item", 0, 0, 4, 4), dashboard.Item("second_item", 4, 0, 4, 4), dashboard.Item("third_item", 8, 0, 4, 4)]
 	with elements("dashboard"):
 		data1 = [{ "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
