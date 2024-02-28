@@ -1227,8 +1227,18 @@ if selected3 == "Elements" :
 					  ('Cupcake', 305, 3.7, 67, 4.3),
 					  ('Gingerbread', 356, 16.0, 49, 3.9)]
 				
-				with mui.AppBar(position="static"):
-					mui.Toolbar()
+				with mui.Box(sx={ flexGrow: 1 }):
+					with mui.AppBar(position="static"):
+						mui.Toolbar(
+							mui.IconButton(
+								size="large",
+								edge="start",
+								aria_label="menu",
+								sx={ "mr" : 2 }
+							)
+						mui.icon.IconButton()
+						)
+						
 				
 				with mui.TableContainer():
 					mui.Table(
