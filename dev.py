@@ -1180,11 +1180,11 @@ if selected3 == "Elements" :
 
 
 			with mui.Paper(key="third_item"):
-				with mui.AppBar(color = "primary"):
+				with mui.AppBar():
 					  mui.Toolbar(
 						  mui.IconButton(
 							  size="small",
-							  sx={"borderRadius" : 2, "p" : 2, "bgcolor" :"background.paper"}
+							  sx={"borderRadius" : 2, "p" : 2, "aria-label" : "menu"}
 						  ),
 						  mui.Typography(
 							  "Menu",
