@@ -1180,7 +1180,7 @@ if selected3 == "Elements" :
 
 
 			with mui.Paper(key="third_item", sx={ "flexGrow" : 1 }):
-				with mui.AppBar():
+				with mui.AppBar(position="static"):
 					mui.Toolbar()
 					
 				nivo.Bar(
@@ -1241,7 +1241,7 @@ if selected3 == "Elements" :
 					                            children=[
 					                                mui.TableCell("Dessert (100g serving)"),
 					                                mui.TableCell("Calories", align="center"),
-					                                mui.TableCell("Fat;(g)", align="center"),
+					                                mui.TableCell("Fat (g)", align="center"),
 					                                mui.TableCell("Carbs (g)", align="center"),
 					                                mui.TableCell("Protein (g)", align="center")
 					                            ]
