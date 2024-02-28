@@ -1088,7 +1088,7 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements" :   
-	layout = [dashboard.Item("first_item", 0, 0, 4, 4), dashboard.Item("second_item", 4, 0, 4, 4), dashboard.Item("third_item", 8, 0, 4, 4), dashboard.Item("fourth_item", 0, 0, 4, 4)]
+	layout = [dashboard.Item("first_item", 0, 0, 4, 4), dashboard.Item("second_item", 4, 0, 4, 4), dashboard.Item("third_item", 8, 0, 4, 4), dashboard.Item("fourth_item", 0, 0, 6, 4)]
 	with elements("dashboard"):
 		data1 = [{ "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
             	        { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
@@ -1256,10 +1256,10 @@ if selected3 == "Elements" :
 					                        mui.TableRow(
 					                            children=[
 					                                mui.TableCell("Dessert (100g serving)"),
-					                                mui.TableCell("Calories", align="right"),
-					                                mui.TableCell("Fat&nbsp;(g)", align="right"),
-					                                mui.TableCell("Carbs&nbsp;(g)", align="right"),
-					                                mui.TableCell("Protein&nbsp;(g)", align="right")
+					                                mui.TableCell("Calories", align="center"),
+					                                mui.TableCell("Fat;(g)", align="center"),
+					                                mui.TableCell("Carbs (g)", align="center"),
+					                                mui.TableCell("Protein (g)", align="center)
 					                            ]
 					                        )
 					                    ]
@@ -1271,10 +1271,10 @@ if selected3 == "Elements" :
 					                            sx={"&:last-child td, &:last-child th": {"border": 0}},
 					                            children=[
 					                                mui.TableCell(component="th", scope="row", children=row[0]),
-					                                mui.TableCell(align="right", children=row[1]),
-					                                mui.TableCell(align="right", children=row[2]),
-					                                mui.TableCell(align="right", children=row[3]),
-					                                mui.TableCell(align="right", children=row[4])
+					                                mui.TableCell(align="center", children=row[1]),
+					                                mui.TableCell(align="center", children=row[2]),
+					                                mui.TableCell(align="center", children=row[3]),
+					                                mui.TableCell(align="center", children=row[4])
 					                            ]
 					                        ) for row in rows
 					                    ]
