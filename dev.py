@@ -1130,7 +1130,7 @@ if selected3 == "Elements" :
 								aria_label="menu"
 							)
 							mui.Typography(
-								"Nivo Table"
+								"Nivo Radar"
 							)
 				
 				nivo.Radar(
