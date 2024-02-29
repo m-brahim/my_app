@@ -1088,7 +1088,7 @@ if selected3 == "Tests":
 
 
 if selected3 == "Elements" :   
-	layout = [dashboard.Item("first_item", 0, 0, 4, 5), dashboard.Item("second_item", 8, 0, 4, 3), dashboard.Item("third_item", 0, 15, 4, 5), dashboard.Item("fourth_item", 8, 15, 5, 3)]
+	layout = [dashboard.Item("first_item", 0, 0, 4, 3), dashboard.Item("second_item", 8, 0, 4, 3), dashboard.Item("third_item", 0, 15, 4, 5), dashboard.Item("fourth_item", 8, 15, 5, 3)]
 
 	with elements("dashboard"):
 		data1 = [{ "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
@@ -1141,7 +1141,7 @@ if selected3 == "Elements" :
 	                		    keys=[ "chardonay", "carmenere", "syrah" ],
 					    indexBy="taste",
 					    valueFormat=">-.2f",
-					    margin={ "top": 70, "right": 80, "bottom": 150, "left": 80 },
+					    margin={ "top": 40, "right": 80, "bottom": 130, "left": 80 },
 					    borderColor={ "from": "color" },   
 					    gridLabelOffset=36,
 					    dotSize=10,
