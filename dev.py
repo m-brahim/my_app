@@ -1147,6 +1147,8 @@ if selected3 == "Elements" :
 					    dotSize=10,
 					    dotColor={ "theme": "background" },
 					    dotBorderWidth=2,
+					    borderWidth=1,
+					    borderColor={"from": "color", "modifiers" : [["darker", 0.2]]},
 					    motionConfig="wobbly",
 					    legends=[
 			                    {
