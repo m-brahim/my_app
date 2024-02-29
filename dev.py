@@ -1229,7 +1229,6 @@ if selected3 == "Elements" :
 					indexBy="country",
 					margin={ "top" : 50, "right" : 50, "bottom" : 130, "left" : 60 },
 					padding=0.3,
-					sx={{ "height" : "50%"}},
 			        	valueScale={ "type" : "linear" },
 			        	indexScale={ "type" : "band"},
 			        	colors={ "scheme" : "nivo" },
