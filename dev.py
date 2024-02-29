@@ -1119,6 +1119,20 @@ if selected3 == "Elements" :
 		       "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"},]
 		
 		with dashboard.Grid(layout):
+			with mui.Box( sx={ "flexGrow" : 1 } ) :
+					with mui.AppBar(position = "static"):
+						with mui.Toolbar :
+							mui.IconButton(
+								mui.icon.Menu,
+								size="small",	
+								sx={ "mr" : 2 },
+								aria_label="menu"
+							)
+							mui.Typography(
+								"Nivo Table"
+							)
+
+			
 			with mui.Paper(key="first_item"):
 				nivo.Radar(
 					    data=data1,
@@ -1147,7 +1161,21 @@ if selected3 == "Elements" :
 			                	theme={"background": "#FFFFFF","textColor": "#31333F","tooltip": {"container": {"background": "#FFFFFF","color": "#31333F",}}})
 		    
 
+			
 			with mui.Paper(key="second_item"):
+				with mui.Box( sx={ "flexGrow" : 1 } ) :
+					with mui.AppBar(position = "static"):
+						with mui.Toolbar :
+							mui.IconButton(
+								mui.icon.Menu,
+								size="small",	
+								sx={ "mr" : 2 },
+								aria_label="menu"
+							)
+							mui.Typography(
+								"Nivo Table"
+							)
+
 				nivo.Pie(
 					    data=data2,
 			                    keys=[ "go", "scala", "css", "javascript", "erlang"],
@@ -1179,10 +1207,21 @@ if selected3 == "Elements" :
 			                    "symbolShape" : "circle",
 			                    "effects" : [{"on" : "hover", "style"  : {"itemTextColor" : "#000"}}]}])
 
+			
 
 			with mui.Paper(key="third_item"):
-				with mui.AppBar(position="sticky"):
-					mui.Toolbar()
+				with mui.Box( sx={ "flexGrow" : 1 } ) :
+					with mui.AppBar(position = "static"):
+						with mui.Toolbar :
+							mui.IconButton(
+								mui.icon.Menu,
+								size="small",	
+								sx={ "mr" : 2 },
+								aria_label="menu"
+							)
+							mui.Typography(
+								"Nivo Table"
+							)
 					
 				nivo.Bar(
 			                data=data3,
