@@ -1142,13 +1142,12 @@ if selected3 == "Elements" :
 					    indexBy="taste",
 					    valueFormat=">-.2f",
 					    margin={ "top": 70, "right": 80, "bottom": 130, "left": 80 },
-					    borderColor={ "from": "color" },        
+					    borderWidth=1,
+					    borderColor={"from": "color", "modifiers" : [["darker", 0.2]]},       
 					    gridLabelOffset=36,
 					    dotSize=10,
 					    dotColor={ "theme": "background" },
 					    dotBorderWidth=2,
-					    borderWidth=1,
-					    borderColor={"from": "color", "modifiers" : [["darker", 0.2]]},
 					    motionConfig="wobbly",
 					    legends=[
 			                    {
