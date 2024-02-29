@@ -1122,7 +1122,7 @@ if selected3 == "Elements" :
 			with mui.Paper(key="first_item"):
 				with mui.Box() :
 					with mui.AppBar(position = "static", sx={ "height" : "50%" } ):
-						with mui.Toolbar :
+						with mui.Toolbar(sx={ "height" : "50%" }) :
 							mui.IconButton(
 								mui.icon.Menu,
 								size="small",	
