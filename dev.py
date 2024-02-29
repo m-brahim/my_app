@@ -1233,7 +1233,8 @@ if selected3 == "Elements" :
 							mui.IconButton(
 								mui.icon.Menu,
 								size="small",
-								sx={ "mr" : 2 }
+								sx={ "mr" : 2 },
+								aria_label="menu"
 						)
 
 
