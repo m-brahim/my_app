@@ -1180,7 +1180,7 @@ if selected3 == "Elements" :
 				nivo.Pie(
 					    data=data2,
 			                    keys=[ "go", "scala", "css", "javascript", "erlang"],
-			                    margin={ "top": 40, "right": 80, "bottom": 80, "left": 80 },
+			                    margin={ "top": 40, "right": 80, "bottom": 130, "left": 80 },
 					    innerRadius=0.5,
 					    padAngle=0.7,
 					    cornerRadius=3,
