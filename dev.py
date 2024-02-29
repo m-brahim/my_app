@@ -1123,7 +1123,7 @@ if selected3 == "Elements" :
 		with dashboard.Grid(layout):
 
 			
-			with mui.Paper(key="first_item", variant = "contained"):
+			with mui.Box(key="first_item"):
 				with mui.Box :
 					with mui.AppBar(position = "static") :
 						with mui.Toolbar(variant = "dense") :
