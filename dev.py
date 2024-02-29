@@ -1123,10 +1123,10 @@ if selected3 == "Elements" :
 		with dashboard.Grid(layout):
 
 			
-			with mui.Paper(key="first_item", sx={"height" : "10%"} ):
+			with mui.Paper(key="first_item"):
 				with mui.Box() :
 					with mui.AppBar(position = "static") :
-						with mui.Toolbar() :
+						with mui.Toolbar(variant = "dense") :
 							mui.IconButton(
 								mui.icon.Menu,
 								size="small",	
@@ -1165,13 +1165,12 @@ if selected3 == "Elements" :
 
 			
 			with mui.Paper(key="second_item"):
-				with mui.Box( sx={ "flexGrow" : 1 } ) :
+				with mui.Box :
 					with mui.AppBar(position = "static"):
 						with mui.Toolbar :
 							mui.IconButton(
 								mui.icon.Menu,
 								size="small",	
-								sx={ "mr" : 2 },
 								aria_label="menu"
 							)
 							mui.Typography(
@@ -1212,13 +1211,12 @@ if selected3 == "Elements" :
 			
 
 			with mui.Paper(key="third_item"):
-				with mui.Box( sx={ "flexGrow" : 1 } ) :
+				with mui.Box() :
 					with mui.AppBar(position = "static"):
 						with mui.Toolbar :
 							mui.IconButton(
 								mui.icon.Menu,
 								size="small",	
-								sx={ "mr" : 2 },
 								aria_label="menu"
 							)
 							mui.Typography(
@@ -1269,13 +1267,12 @@ if selected3 == "Elements" :
 					  ('Cupcake', 305, 3.7, 67, 4.3),
 					  ('Gingerbread', 356, 16.0, 49, 3.9)]
 				
-				with mui.Box( sx={ "flexGrow" : 1 } ) :
+				with mui.Box( ) :
 					with mui.AppBar(position = "static"):
 						with mui.Toolbar :
 							mui.IconButton(
 								mui.icon.Menu,
 								size="small",	
-								sx={ "mr" : 2 },
 								aria_label="menu"
 							)
 							mui.Typography(
