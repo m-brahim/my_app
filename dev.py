@@ -1229,13 +1229,12 @@ if selected3 == "Elements" :
 					  ('Gingerbread', 356, 16.0, 49, 3.9)]
 				
 				with mui.Box( sx={ "flexGrow" : 1 } ) :
-					with mui.AppBar( position = "static" ):
-						with mui.Toolbar():
-							mui.IconButton(
-								mui.icon.Menu,
-								size="small",
-								sx={ "mr" : 2 },
-								aria_label="menu"
+					with mui.Toolbar(position = "static"):
+						mui.IconButton(
+							mui.icon.Menu,
+							size="small",	
+							sx={ "mr" : 2 },
+							aria_label="menu"
 						)
 
 
