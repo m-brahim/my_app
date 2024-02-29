@@ -1232,8 +1232,7 @@ if selected3 == "Elements" :
 					with mui.AppBar( position = "static" ):
 							mui.IconButton(
 								mui.icon.Menu,
-								size="large",
-								edge="start",
+								size="small",
 								sx={ "mr" : 2 }
 						)
 
