@@ -1121,12 +1121,11 @@ if selected3 == "Elements" :
 		with dashboard.Grid(layout):
 			with mui.Paper(key="first_item"):
 				with mui.Box() :
-					with mui.AppBar(position = "static", sx={ "width" : "20%" } ):
-						with mui.Toolbar(sx={ "width" : "20%" }) :
+					with mui.AppBar(position = "static", sx={ "height" : "10%" } ):
+						with mui.Toolbar(sx={ "height" : "10%" }) :
 							mui.IconButton(
 								mui.icon.Menu,
 								size="small",	
-								sx={ "mr" : 2 },
 								aria_label="menu"
 							)
 							mui.Typography(
