@@ -1119,7 +1119,8 @@ if selected3 == "Elements" :
 		       "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"},]
 		
 		with dashboard.Grid(layout):
-			with mui.Box( sx={ "flexGrow" : 1 } ) :
+			with mui.Paper(key="first_item"):
+				with mui.Box( sx={ "flexGrow" : 1 } ) :
 					with mui.AppBar(position = "static"):
 						with mui.Toolbar :
 							mui.IconButton(
@@ -1131,9 +1132,7 @@ if selected3 == "Elements" :
 							mui.Typography(
 								"Nivo Table"
 							)
-
-			
-			with mui.Paper(key="first_item"):
+				
 				nivo.Radar(
 					    data=data1,
 	                		    keys=[ "chardonay", "carmenere", "syrah" ],
@@ -1173,7 +1172,7 @@ if selected3 == "Elements" :
 								aria_label="menu"
 							)
 							mui.Typography(
-								"Nivo Table"
+								"Nivo Pie"
 							)
 
 				nivo.Pie(
@@ -1220,7 +1219,7 @@ if selected3 == "Elements" :
 								aria_label="menu"
 							)
 							mui.Typography(
-								"Nivo Table"
+								"Nivo Bar"
 							)
 					
 				nivo.Bar(
