@@ -1303,6 +1303,6 @@ if selected3 == "Elements" :
 					                        mui.TableCell(align="center", children=row[2]),
 					                        mui.TableCell(align="center", children=row[3]),
 					                        mui.TableCell(align="center", children=row[4])
-							) for row in rows
+							)
 						)
 					)
