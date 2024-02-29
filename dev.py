@@ -1125,7 +1125,7 @@ if selected3 == "Elements" :
 			
 			with mui.Paper(key="first_item"):
 				with mui.Box :
-					with mui.AppBar(position = "static") :
+					with mui.AppBar(position = "static"):
 						with mui.Toolbar(variant = "dense") :
 							mui.IconButton(
 								mui.icon.Menu,
