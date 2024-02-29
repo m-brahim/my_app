@@ -1131,7 +1131,7 @@ if selected3 == "Elements" :
 	                		    keys=[ "chardonay", "carmenere", "syrah" ],
 					    indexBy="taste",
 					    valueFormat=">-.2f",
-					    margin={ "top": 70, "right": 80, "bottom": 130, "left": 80 },
+					    margin={ "top": 80, "right": 80, "bottom": 130, "left": 80 },
 					    borderColor={ "from": "color" },   
 					    gridLabelOffset=36,
 					    dotSize=10,
