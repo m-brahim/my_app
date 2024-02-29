@@ -1124,14 +1124,24 @@ if selected3 == "Elements" :
 
 			
 			with mui.Paper(key="first_item"):
-			
+				with mui.Box :
+					with mui.AppBar(position = "static") :
+						with mui.Toolbar(variant = "dense") :
+							mui.IconButton(
+								mui.icon.Menu,
+								size="small",	
+								aria_label="menu"
+							)
+							mui.Typography(
+								"Nivo Radar"
+							)
 				
 				nivo.Radar(
 					    data=data1,
 	                		    keys=[ "chardonay", "carmenere", "syrah" ],
 					    indexBy="taste",
 					    valueFormat=">-.2f",
-					    margin={ "top": 80, "right": 80, "bottom": 130, "left": 80 },
+					    margin={ "top": 80, "right": 80, "bottom": 180, "left": 80 },
 					    borderColor={ "from": "color" },   
 					    gridLabelOffset=36,
 					    dotSize=10,
