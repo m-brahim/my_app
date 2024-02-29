@@ -1229,7 +1229,7 @@ if selected3 == "Elements" :
 					  ('Gingerbread', 356, 16.0, 49, 3.9)]
 				
 				with mui.Box(sx={ "flexGrow" : 1 }) :
-					with mui.AppBar:
+					with mui.AppBar(position="static"):
 							mui.IconButton(
 								mui.icon.DoubleArrow
 						)
