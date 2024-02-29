@@ -1227,8 +1227,8 @@ if selected3 == "Elements" :
 			                data=data3,
 					keys = ['hot dog','burger','sandwich','kebab','donut'],
 					indexBy="country",
-					
-			        	padding=0.3,
+					margin={ "top" : 50, "right" : 130, "bottom" : 50, "left" : 60 },
+
 			        	valueScale={ "type" : "linear" },
 			        	indexScale={ "type" : "band"},
 			        	colors={ "scheme" : "nivo" },
