@@ -1230,12 +1230,13 @@ if selected3 == "Elements" :
 				
 				with mui.Box( sx={ "flexGrow" : 1 } ) :
 					with mui.AppBar(position = "static"):
-						mui.IconButton(
-							mui.icon.Menu,
-							size="small",	
-							sx={ "mr" : 2 },
-							aria_label="menu"
-						)
+						with mui.Toolbar :
+							mui.IconButton(
+								mui.icon.Menu,
+								size="small",	
+								sx={ "mr" : 2 },
+								aria_label="menu"
+							)
 
 
 						
