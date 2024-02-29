@@ -1237,6 +1237,9 @@ if selected3 == "Elements" :
 								sx={ "mr" : 2 },
 								aria_label="menu"
 							)
+							mui.Typography(
+								"Nivo Table"
+							)
 
 
 						
