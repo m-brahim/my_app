@@ -1227,7 +1227,7 @@ if selected3 == "Elements" :
 			                data=data3,
 					keys = ['hot dog','burger','sandwich','kebab','donut'],
 					indexBy="country",
-					margin={ "top" : 50, "right" : 50, "bottom" : 130, "left" : 60 },
+					margin={ "top" : 50, "right" : 130, "bottom" : 130, "left" : 60 },
 					padding=0.3,
 			        	valueScale={ "type" : "linear" },
 			        	indexScale={ "type" : "band"},
