@@ -1120,9 +1120,8 @@ if selected3 == "Elements" :
 		
 		with dashboard.Grid(layout):
 			with mui.Paper(key="first_item"):
-				elevation = 3
-				with mui.Box( sx={ "width" : "50%" } ) :
-					with mui.AppBar(position = "static"):
+				with mui.Box() :
+					with mui.AppBar(position = "static", sx={ "width" : "50%" } ):
 						with mui.Toolbar :
 							mui.IconButton(
 								mui.icon.Menu,
