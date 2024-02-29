@@ -1089,13 +1089,7 @@ if selected3 == "Tests":
 
 if selected3 == "Elements" :   
 	layout = [dashboard.Item("first_item", 0, 0, 4, 4), dashboard.Item("second_item", 4, 0, 4, 4), dashboard.Item("third_item", 8, 0, 4, 4), dashboard.Item("fourth_item", 0, 0, 6, 3)]
-	
-	with elements("icons"):
-		with mui.Button:
-			mui.icon.DoubleArrow()
-			mui.icon.EmojiPeople()
 
-	
 	with elements("dashboard"):
 		data1 = [{ "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
             	        { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
@@ -1236,16 +1230,14 @@ if selected3 == "Elements" :
 				
 				with mui.Box(sx={ "flexGrow" : 1 }) :
 					with mui.AppBar(position="static"):
-						mui.Toolbar(
-							mui.IconButton(
-								mui.icon.MenuIcon,
-								size="large", 
-								edge="start", 
-								aria_label="menu", 
-								sx={"mr": 2}),
+						with mui.Toolbar :
+							mui.Button(
+								mui.icon.DoubleArrow
+
 						)
+
+
 						
-				
 				with mui.TableContainer():
 					mui.Table(
 						sx={"minWidth": 650},
