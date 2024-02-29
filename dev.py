@@ -1234,7 +1234,8 @@ if selected3 == "Elements" :
 								size="large", 
 								edge="start", 
 								aria_label="menu", 
-								sx={"mr": 2})	
+								sx={"mr": 2})
+								mui.icons.AdbIcon()
 						)
 						
 				
