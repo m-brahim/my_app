@@ -1117,14 +1117,16 @@ if selected3 == "Elements" :
 		       "fries": 105, "friesColor": "hsl(314, 70%, 50%)", "donut": 200, "donutColor": "hsl(65, 70%, 50%)"},
 		       {"country": "AM", "hot dog": 85, "hot dogColor": "hsl(161, 70%, 50%)", "burger": 97, "burgerColor": "hsl(23, 70%, 50%)", "sandwich": 5, "sandwichColor": "hsl(126, 70%, 50%)", "kebab": 190, "kebabColor": "hsl(258, 70%, 50%)",
 		       "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"},]
+
+
 		
 		with dashboard.Grid(layout):
-			with mui.Paper(key="first_item"):
+
+			
+			with mui.Paper(key="first_item", sx={"height" : "10%"} ):
 				with mui.Box() :
 					with mui.AppBar(position = "static") :
-						sx={"height" : "10%"} 
 						with mui.Toolbar() :
-							sx={ "height" : "10%" }
 							mui.IconButton(
 								mui.icon.Menu,
 								size="small",	
