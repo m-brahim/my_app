@@ -1121,7 +1121,7 @@ if selected3 == "Elements" :
 		with dashboard.Grid(layout):
 			with mui.Paper(key="first_item"):
 				with mui.Box() :
-					with mui.AppBar(position = "static", sx={ "width" : "50%" } ):
+					with mui.AppBar(position = "static", sx={ "height" : "50%" } ):
 						with mui.Toolbar :
 							mui.IconButton(
 								mui.icon.Menu,
