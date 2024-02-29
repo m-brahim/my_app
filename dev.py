@@ -1119,7 +1119,8 @@ if selected3 == "Elements" :
 		       "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"},]
 		
 		with dashboard.Grid(layout):
-			with mui.Paper("elevation" = {3}, key="first_item"):
+			with mui.Paper(key="first_item"):
+				"elevetation" = 3
 				with mui.Box( sx={ "width" : "50%" } ) :
 					with mui.AppBar(position = "static"):
 						with mui.Toolbar :
