@@ -1040,6 +1040,34 @@ if selected3 == "Tâches":
 
 
 if selected3 == "Tests":
+	# Création des données
+	data = pd.DataFrame({
+	    'Nom': ['Alice', 'Bob', 'Charlie', 'David'],
+	    'Âge': [25, 30, 35, 40],
+	    'Ville': ['Paris', 'New York', 'Londres', 'Paris']
+	})
+	
+	# Affichage du DataFrame
+	st.write("DataFrame original :")
+	st.write(data)
+	
+	# Création des filtres par colonne
+	filtres = {}
+	for col in data.columns:
+	    filtres[col] = st.multiselect(f"Choisir les valeurs de la colonne '{col}'", data[col].unique())
+	
+	# Filtrage des données en fonction des filtres sélectionnés
+	data_filtre = data
+	for col, valeurs in filtres.items():
+	    if valeurs:
+	        data_filtre = data_filtre[data_filtre[col].isin(valeurs)]
+	
+	# Affichage des données filtrées
+	st.write("DataFrame filtré :")
+	st.write(data_filtre)
+
+
+	
     st.header("1. Analyse client")
     st.subheader("")
     st.subheader("")
@@ -1079,7 +1107,7 @@ if selected3 == "Tests":
     },
     hide_index=True,
     )    
-    
+
 
 
 
