@@ -1067,7 +1067,9 @@ if selected3 == "Tests":
 	df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
 	    
 	df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
-	
+
+	df_filtered['Quantite'] = df_filtered['Quantite'].astype(int)
+
 	def ajouter_etoiles(quantite):
 	    if quantite > 10:
 	        return f"{quantite} ⭐"
