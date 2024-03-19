@@ -1068,13 +1068,13 @@ if selected3 == "Tests":
 	    
 	df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
 	
-	def ajouter_etoiles(quantite):
+	def ajouter_etoiles(ndc):
 	    if quantite > 10:
-	        return f"{quantite} ⭐"
+	        return f"{ndc} ⭐"
 	    else:
-	        return str(quantite)
+	        return str(ndc)
 
-	df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
+	df_filtered['Nom du client'] = df_filtered['Nom du client'].apply(ajouter_etoiles)
 
 	selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
 
