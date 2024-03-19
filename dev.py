@@ -1055,12 +1055,11 @@ if selected3 == "Tests":
 	colonnes_selectionnees = st.multiselect("Choisir les colonnes à afficher", data.columns)
 	
 	# Filtrage des données en fonction des colonnes sélectionnées
-	data_filtre = data.loc[:, colonnes_selectionnees]
+	data = data[colonnes_selectionnees]
 	
 	# Affichage du DataFrame filtré
 	st.write("DataFrame filtré :")
-	st.write(data_filtre)
-
+	st.write(data)
 
 
 	
