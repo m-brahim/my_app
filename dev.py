@@ -1068,7 +1068,7 @@ if selected3 == "Tests":
 	    
 	df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
 
-	df_filtered['Quantité'] = df_filtered['Quantite'].astype(int)
+	df_filtered['Quantité'] = df_filtered['Quantité'].astype(int)
 
 	def ajouter_etoiles(quantite):
 	    if quantite > 10:
