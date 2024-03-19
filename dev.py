@@ -1074,7 +1074,7 @@ if selected3 == "Tests":
 	    if quantite > 10:
 	        return f"{quantite} ⭐"
 	    else:
-	        return str(quantite)
+	        return quantite
 
 	df_filtered['Nom du client'] = df_filtered['Nom du client'].apply(ajouter_etoiles)
 
