@@ -1111,6 +1111,7 @@ if selected3 == "Tests":
 		},
 			
 		hide_index=True,
+		disabled=["Date de commande"]
 	)    
 
 
