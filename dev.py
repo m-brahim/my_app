@@ -1090,7 +1090,7 @@ if selected3 == "Tests":
 	    else:
 	        return str(quantite)
 
-	data['Quantité'] = data['Quantité'].apply(ajouter_etoiles)
+	df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
 	
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	    
