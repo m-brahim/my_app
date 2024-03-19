@@ -1040,22 +1040,6 @@ if selected3 == "Tâches":
 
 
 if selected3 == "Tests":
-	# Création des données
-	data = pd.DataFrame({
-	    'Nom': ['Alice', 'Bob', 'Charlie', 'David'],
-	    'Âge': [25, 30, 35, 40],
-	    'Ville': ['Paris', 'New York', 'Londres', 'Paris']
-	})
-
-	colonnes_selectionnees = st.multiselect("Choisir les colonnes à afficher", data.columns)
-	
-	data = data[colonnes_selectionnees]
-	
-	st.write("Votre sélection")
-	st.write(data)
-
-
-	
 	st.header("1. Analyse client")
 	st.subheader("")
 	st.subheader("")
