@@ -1084,8 +1084,14 @@ if selected3 == "Tests":
 	    
 	df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
 	
-	    
-	    
+	def ajouter_etoiles(quantite):
+	    if quantite > 10:
+	        return f"{quantite} ⭐"
+	    else:
+	        return str(quantite)
+
+	data['Quantité'] = data['Quantité'].apply(ajouter_etoiles)
+	
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	    
 	st.data_editor(
@@ -1103,6 +1109,7 @@ if selected3 == "Tests":
 		        step=1,
 			),
 		},
+			
 		hide_index=True,
 	)    
 
