@@ -1076,17 +1076,15 @@ if selected3 == "Tests":
 
 	df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
 
-	
-
 	selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
 
+	data_f = df_filtered[selected_columns]
+	
 	selection = False
 	
 	if selected_columns is not None :
 		selection = True
-
-	data_f = df_filtered[colonnes_selectionnees]
-	
+		
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	if selection :
 		st.data_editor(
