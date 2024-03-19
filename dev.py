@@ -1066,12 +1066,12 @@ if selected3 == "Tests":
 	# Sélectionner les colonnes à afficher dans le DataFrame
 	    
 	selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
+
 	
 	    
 	# Filtrer le DataFrame avec les colonnes sélectionnées
 	   
-	df_filtered = df_table[selected_columns_table].copy()  # Assurez-vous de copier le DataFrame pour éviter les modifications accidentelles
-	    
+	df_filtered = df_table[selected_columns_table].copy()
 	   
 	# Nettoyer la colonne "Ventes"
 	   
@@ -1091,28 +1091,35 @@ if selected3 == "Tests":
 	        return str(quantite)
 
 	df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
-	
+
+	selection_effectuee = False
+
+	colonnes_selectionnees = st.multiselect("Choisir les colonnes à afficher", df_filtered)
+
+	if colonnes_selectionnees is not None :
+		selection_effectuee = True
+		
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
-	    
-	st.data_editor(
-		df_filtered,
-		column_config={
-			"Ventes": st.column_config.ProgressColumn(
-		        "Volume des ventes",
-		        format="%f€",
-		        min_value=0,
-		        max_value=8000,
-		),
-			"Date de commande": st.column_config.DateColumn(
-		        "Date de commande",
-		        format="DD.MM.YYYY",
-		        step=1,
+
+	if selection_effectuee :
+		st.data_editor(
+			df_filtered,
+			column_config={
+				"Ventes": st.column_config.ProgressColumn(
+			        "Volume des ventes",
+			        format="%f€",
+			        min_value=0,
+			        max_value=8000,
 			),
-		},
-			
-		hide_index=True,
-		disabled=["Date de commande"]
-	)    
+				"Date de commande": st.column_config.DateColumn(
+			        "Date de commande",
+			        format="DD.MM.YYYY",
+			        step=1,
+				),
+			},
+			hide_index=True,
+			disabled=["Date de commande"]
+		)    
 
 
 
