@@ -1040,6 +1040,7 @@ if selected3 == "Tâches":
 
 
 if selected3 == "Tests":
+	# Création des données
 	data = pd.DataFrame({
 	    'Nom': ['Alice', 'Bob', 'Charlie', 'David'],
 	    'Âge': [25, 30, 35, 40],
@@ -1054,7 +1055,7 @@ if selected3 == "Tests":
 	colonnes_selectionnees = st.multiselect("Choisir les colonnes à afficher", data.columns)
 	
 	# Filtrage des données en fonction des colonnes sélectionnées
-	data_filtre = data[colonnes_selectionnees]
+	data_filtre = data.loc[:, colonnes_selectionnees]
 	
 	# Affichage du DataFrame filtré
 	st.write("DataFrame filtré :")
