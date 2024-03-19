@@ -1098,12 +1098,13 @@ if selected3 == "Tests":
 
 	if colonnes_selectionnees is not None :
 		selection_effectuee = True
-		
-	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 
+	data_f = df_filtered[colonnes_selectionnees]
+	
+	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	if selection_effectuee :
 		st.data_editor(
-			df_filtered,
+			data_f,
 			column_config={
 				"Ventes": st.column_config.ProgressColumn(
 			        "Volume des ventes",
