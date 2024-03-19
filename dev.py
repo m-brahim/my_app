@@ -1040,29 +1040,23 @@ if selected3 == "Tâches":
 
 
 if selected3 == "Tests":
-	# Création des données
 	data = pd.DataFrame({
 	    'Nom': ['Alice', 'Bob', 'Charlie', 'David'],
 	    'Âge': [25, 30, 35, 40],
 	    'Ville': ['Paris', 'New York', 'Londres', 'Paris']
 	})
 	
-	# Affichage du DataFrame
+	# Affichage du DataFrame original
 	st.write("DataFrame original :")
 	st.write(data)
 	
-	# Création des filtres par colonne
-	filtres = {}
-	for col in data.columns:
-	    filtres[col] = st.multiselect(f"Choisir les valeurs de la colonne '{col}'", data[col].unique())
+	# Sélection des colonnes à afficher
+	colonnes_selectionnees = st.multiselect("Choisir les colonnes à afficher", data.columns)
 	
-	# Filtrage des données en fonction des filtres sélectionnés
-	data_filtre = data
-	for col, valeurs in filtres.items():
-	    if valeurs:
-	        data_filtre = data_filtre[data_filtre[col].isin(valeurs)]
+	# Filtrage des données en fonction des colonnes sélectionnées
+	data_filtre = data[colonnes_selectionnees]
 	
-	# Affichage des données filtrées
+	# Affichage du DataFrame filtré
 	st.write("DataFrame filtré :")
 	st.write(data_filtre)
 
