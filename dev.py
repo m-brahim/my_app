@@ -1046,19 +1046,12 @@ if selected3 == "Tests":
 	    'Âge': [25, 30, 35, 40],
 	    'Ville': ['Paris', 'New York', 'Londres', 'Paris']
 	})
-	
-	# Affichage du DataFrame original
-	st.write("DataFrame original :")
-	st.write(data)
-	
-	# Sélection des colonnes à afficher
+
 	colonnes_selectionnees = st.multiselect("Choisir les colonnes à afficher", data.columns)
 	
-	# Filtrage des données en fonction des colonnes sélectionnées
 	data = data[colonnes_selectionnees]
 	
-	# Affichage du DataFrame filtré
-	st.write("DataFrame filtré :")
+	st.write("Votre sélection")
 	st.write(data)
 
 
