@@ -1094,7 +1094,7 @@ if selected3 == "Tests":
 
 	selection_effectuee = False
 
-	colonnes_selectionnees = st.multiselect("Choisir les colonnes à afficher", df_filtered)
+	colonnes_selectionnees = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
 
 	if colonnes_selectionnees is not None :
 		selection_effectuee = True
