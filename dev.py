@@ -1092,10 +1092,11 @@ if selected3 == "Tests":
 		st.data_editor(
 			data_f,
 			column_config={
-				"Ventes": st.column_config.LineChartColumn(
+				"Ventes": st.column_config.ProgressColumn(
 			       		"Ventes",
-			        	y_min=0,
-			        	y_max=8000,
+					format="%f€",
+			        	min_value=0,
+			        	max_value=8000,
 			),
 				"Date de commande": st.column_config.DateColumn(
 					"Date de commande",
