@@ -1085,7 +1085,7 @@ if selected3 == "Tests":
 	if selected_columns is not None :
 		selection = True
 
-	categories = ['Fournitures de bureau', 'Produits technologiques', 'Mobilier']
+	categories = df_filtered['Catégorie'].unique().tolist()
 
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	if selection :
