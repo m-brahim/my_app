@@ -1087,7 +1087,7 @@ if selected3 == "Tests":
 
 
 	def format_category_cell(category):
-		selected_category = st.selectbox('', ['Fournitures de bureau', 'Produits technologiques', 'Mobilier'], index=0)
+		selected_category = st.selectbox(f'Categorie {index}', ['Fournitures de bureau', 'Produits technologiques', 'Mobilier'], index=0)
 		return selected_category
 
 
