@@ -1053,21 +1053,14 @@ if selected3 == "Tests":
 	    
 	selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
 
-	
-	    
 	# Filtrer le DataFrame avec les colonnes sélectionnées
-	   
 	df_filtered = df_table[selected_columns_table].copy()
 	   
 	# Nettoyer la colonne "Ventes"
-	   
 	df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
-	   
-	df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
-	    
-	   
+	df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')	   
 	df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
-	    
+	
 	df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
 	
 	def ajouter_etoiles(quantite):
@@ -1089,8 +1082,6 @@ if selected3 == "Tests":
 
 	categories = df_filtered['Catégorie'].unique().tolist()
 	
-	df_filtered['Remise accordé'] = df_filtered['Remise'].apply(lambda x: x != '0%')
-
 	if selection :
 		st.data_editor(
 			data_f,
