@@ -1045,7 +1045,9 @@ if selected3 == "Tests":
 	st.subheader("")
 	# Collecte des données
 	df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
-	    
+	ull2 = "Financial_Data.csv"
+	df_table2 = pd.read_csv(url2, delimiter=";").reset_index(drop=True)
+
 
 	# Sélectionner les colonnes à afficher dans le DataFrame
 
@@ -1115,8 +1117,16 @@ if selected3 == "Tests":
 			column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
 		)    
 
+	
+	selected_months = ['Jan', 'Feb', 'Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 
 
+	st.data_editor(
+		df_table2,
+		column_config={
+			"Ventes": st.column_config.BarChartColumn(
+				label = selected_months,
+		}
 
 
 
