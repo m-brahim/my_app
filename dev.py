@@ -1050,12 +1050,6 @@ if selected3 == "Tests":
 	# Sélectionner les colonnes à afficher dans le DataFrame
 
 	df_table['Remise accordé'] = True
-
-	def determine_remise_accorde(remise):
-		if remise == '0%':
-			df_table['Remise accordé'] = True
-
-	df_table['Remise accordé'] = df_table['Remise'].apply(determine_remise_accorde)
 	    
 	selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
 
@@ -1087,6 +1081,12 @@ if selected3 == "Tests":
 		selection = True
 
 	categories = df_filtered['Catégorie'].unique().tolist()
+
+	def determine_remise_accorde(remise):
+		if remise == '0%':
+			df_filtered['Remise accordé'] = True
+
+	df_filtered['Remise accordé'] = df_filtered['Remise'].apply(determine_remise_accorde)
 	
 	if selection :
 		st.data_editor(
