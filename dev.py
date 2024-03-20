@@ -1118,7 +1118,19 @@ if selected3 == "Tests":
 		)    
 
 	
-	df['Ventes'] = df.apply(lambda row: ''.join([str(val) for val in row[['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']]]), axis=1)
+	df_table2['Jan'] = df_table2['Jan'].astype(int)
+	df_table2['Feb'] = df_table2['Feb'].astype(int)
+	df_table2['Mar'] = df_table2['Mar'].astype(int)
+	df_table2['Apr'] = df_table2['Apr'].astype(int)
+	df_table2['May'] = df_table2['May'].astype(int)
+	df_table2['Jun'] = df_table2['Jun'].astype(int)
+	df_table2['Jul'] = df_table2['Jul'].astype(int)
+	df_table2['Aug'] = df_table2['Aug'].astype(int)
+	df_table2['Sep'] = df_table2['Sep'].astype(int)
+	df_table2['Oct'] = df_table2['Oct'].astype(int)
+	df_table2['Nov'] = df_table2['Nov'].astype(int)
+	df_table2['Dec'] = df_table2['Dec'].astype(int)
+
 
 	st.data_editor(
 		df_table2,
