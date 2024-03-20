@@ -1092,9 +1092,9 @@ if selected3 == "Tests":
 	df_filtered.loc[df_filtered['Remise'] != '0%', 'Remise accordé'] = True
 
 	def render_checkbox(row):
-    		if row['Remise accordé']:
+		if row['Remise accordé']:
 			return True
-   		else:
+		else:
 			return False
 
 	if selection :
