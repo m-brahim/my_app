@@ -1131,6 +1131,8 @@ if selected3 == "Tests":
 	df_table2['Nov'] = df_table2['Nov'].astype(int)
 	df_table2['Dec'] = df_table2['Dec'].astype(int)
 
+	for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
+		df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
 
 	st.data_editor(
 		df_table2,
