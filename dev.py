@@ -1088,6 +1088,8 @@ if selected3 == "Tests":
 		selection = True
 
 	categories = df_filtered['Catégorie'].unique().tolist()
+
+	df_table.loc[df_table['Remise'] != '0%', 'Remise accordé'] = True
 	
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	if selection :
