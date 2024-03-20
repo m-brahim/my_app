@@ -1086,7 +1086,7 @@ if selected3 == "Tests":
 		if remise == '0%':
 			df_filtered['Remise accordé'] = True
 
-	df_filtered['Remise accordé'] = df_filtered['Remise'].apply(determine_remise_accorde)
+	df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
 	
 	if selection :
 		st.data_editor(
