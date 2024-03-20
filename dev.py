@@ -1087,10 +1087,9 @@ if selected3 == "Tests":
 
 	categories = ['Fournitures de bureau', 'Produits technologiques', 'Mobilier']
 
-	# Function to render a dropdown for each row in the DataFrame
 	def render_category_selectbox(index):
 		selected_category = st.selectbox("", categories)
-	    	return selected_category
+		return selected_category
 	
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	if selection :
