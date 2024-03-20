@@ -1111,9 +1111,6 @@ if selected3 == "Tests":
 			                "Catégorie",
                 			options=categories
             		),
-				"Remise accordé": st.column_config.CheckboxColumn(
-			                "Remise accordé",            		),
-			},
 			hide_index=True,
 			disabled=["Date de commande"],
 			column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
