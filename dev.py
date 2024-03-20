@@ -1110,7 +1110,7 @@ if selected3 == "Tests":
 				"Catégorie": st.column_config.SelectboxColumn(
 			                "Catégorie",
                 			options=categories
-            		)
+            		),
 		}
 			hide_index=True,
 			disabled=["Date de commande"],
