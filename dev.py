@@ -1085,13 +1085,12 @@ if selected3 == "Tests":
 	if selected_columns is not None :
 		selection = True
 
+	categories = ['Fournitures de bureau', 'Produits technologiques', 'Mobilier']
 
-	def format_category_cell(category):
-		selected_category = st.selectbox(f'Categorie {index}', ['Fournitures de bureau', 'Produits technologiques', 'Mobilier'], index=0)
-		return selected_category
-
-
-	data_f['Catégorie'] = data_f['Catégorie'].apply(format_category_cell)
+	# Function to render a dropdown for each row in the DataFrame
+	def render_category_selectbox(index):
+		selected_category = st.selectbox("", categories)
+	    	return selected_category
 	
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	if selection :
@@ -1099,16 +1098,20 @@ if selected3 == "Tests":
 			data_f,
 			column_config={
 				"Ventes": st.column_config.ProgressColumn(
-			        "Volume des ventes",
-			        format="%f€",
-			        min_value=0,
-			        max_value=8000,
+			       		"Volume des ventes",
+			        	format="%f€",
+			        	min_value=0,
+			        	max_value=8000,
 			),
 				"Date de commande": st.column_config.DateColumn(
-			        "Date de commande",
-			        format="DD.MM.YYYY",
-			        step=1,
-				),
+					"Date de commande",
+			        	format="DD.MM.YYYY",
+			        	step=1,
+			),
+				"Catégorie": st.column_config.SelectboxColumn(
+			                "Catégorie",
+			                render_func=render_category_selectbox
+            		),
 			},
 			hide_index=True,
 			disabled=["Date de commande"],
