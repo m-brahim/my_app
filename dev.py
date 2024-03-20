@@ -1110,7 +1110,7 @@ if selected3 == "Tests":
 				"Catégorie": st.column_config.SelectboxColumn(
 			                "Catégorie",
                 			options=categories
-            		),
+            		)
 			hide_index=True,
 			disabled=["Date de commande"],
 			column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
