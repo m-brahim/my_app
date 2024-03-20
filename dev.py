@@ -1089,7 +1089,8 @@ if selected3 == "Tests":
 
 	categories = df_filtered['Catégorie'].unique().tolist()
 
-	df_filtered.loc[df_filtered['Remise'] != '0%', 'Remise accordé'] = True
+	df_filtered['Remise accordé'] = df_filtered['Remise'] != '0%'
+
 
 	if selection :
 		st.data_editor(
@@ -1112,7 +1113,6 @@ if selected3 == "Tests":
             		),
 				"Remise accordé": st.column_config.CheckboxColumn(
 			                "Remise accordé",
-			                default_value=lambda row: row['Remise accordé'],
             		),
 			},
 			hide_index=True,
