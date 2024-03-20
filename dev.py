@@ -1126,8 +1126,9 @@ if selected3 == "Tests":
 		column_config={
 			"Ventes": st.column_config.BarChartColumn(
 				label = selected_months,
-			)
+			),
 		}
+	)
 
 
 
