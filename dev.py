@@ -1139,10 +1139,11 @@ if selected3 == "Tests":
 	st.data_editor(
 		df_table2,
 		column_config={
-			"Ventes": st.column_config.LineChartColumn(
+			"Ventes": st.column_config.BarChartColumn(
 				width = "medium",
 			),
-		}
+		},
+		hide_index=True,
 	)
 
 
