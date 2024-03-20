@@ -1118,14 +1118,13 @@ if selected3 == "Tests":
 		)    
 
 	
-	selected_months = ['Jan', 'Feb', 'Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-
+	selected_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	df_table2['Ventes'] = df_table2[selected_months].sum(axis=1)
 
 	st.data_editor(
 		df_table2,
 		column_config={
 			"Ventes": st.column_config.BarChartColumn(
-				label = selected_months,
 			),
 		}
 	)
