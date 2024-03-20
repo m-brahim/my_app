@@ -1094,8 +1094,8 @@ if selected3 == "Tests":
 			column_config={
 				"Ventes": st.column_config.LineChartColumn(
 			       		"Ventes",
-			        	min_value=0,
-			        	max_value=8000,
+			        	y_min=0,
+			        	y_max=8000,
 			),
 				"Date de commande": st.column_config.DateColumn(
 					"Date de commande",
