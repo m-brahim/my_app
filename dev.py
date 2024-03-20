@@ -1119,6 +1119,7 @@ if selected3 == "Tests":
 
 	
 	selected_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	df_table2[selected_months] = df_table2[selected_months].astype(int)
 	df_table2['Ventes'] = df_table2[selected_months].sum(axis=1)
 
 	st.data_editor(
