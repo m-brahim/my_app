@@ -1107,9 +1107,7 @@ if selected3 == "Tests":
 			                "Catégorie",
                 			options=categories
             		),
-				"Remise accordé": st.column_config.CheckboxColumn(
-					"Remise accordé"
-        		),
+
 
 		},
 			hide_index=True,
