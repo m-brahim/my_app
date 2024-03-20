@@ -1083,15 +1083,12 @@ if selected3 == "Tests":
 	categories = df_filtered['Catégorie'].unique().tolist()
 
 	def determine_remise_accorde(remise):
-		if remise == 0:
+		if remise not like '0%':
 			return False
 		else:
 			return True
 
 	df_filtered['Remise accordé'] = df_filtered['Remise'].apply(determine_remise_accorde)
-
-	if 'Remise' in selected_columns:
-		selected_columns.remove('Remise')
 
 	data_f = df_filtered[selected_columns]
 
