@@ -1084,7 +1084,15 @@ if selected3 == "Tests":
 	
 	if selected_columns is not None :
 		selection = True
-		
+
+
+	def format_category_cell(category):
+		selected_category = st.selectbox('', ['Fournitures de bureau', 'Produits technologiques', 'Mobilier'], index=0)
+		return selected_category
+
+
+	data_f['Catégorie'] = data_f['Catégorie'].apply(format_category_cell)
+	
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	if selection :
 		st.data_editor(
