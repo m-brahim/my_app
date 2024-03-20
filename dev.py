@@ -1037,7 +1037,7 @@ if selected3 == "Tâches":
         style_metric_cards()
 
 
-ull2 = "Financial_Data.csv"
+df2 = "Financial_Data.csv"
 
 if selected3 == "Tests":
 	st.header("1. Analyse client")
@@ -1045,7 +1045,8 @@ if selected3 == "Tests":
 	st.subheader("")
 	# Collecte des données
 	df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
-	df_table2 = pd.read_csv(url2, delimiter=";").reset_index(drop=True)
+	df2 = "Financial_Data.csv"
+	df_table2 = pd.read_csv(df2, delimiter=";").reset_index(drop=True)
 
 
 	# Sélectionner les colonnes à afficher dans le DataFrame
