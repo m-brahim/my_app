@@ -1049,7 +1049,7 @@ if selected3 == "Tests":
 
 	# Sélectionner les colonnes à afficher dans le DataFrame
 
-	df_table['Remise accordé'] = False 
+	df_table['Remise accordé'] = True
 	    
 	selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
 
@@ -1082,8 +1082,7 @@ if selected3 == "Tests":
 
 	categories = df_filtered['Catégorie'].unique().tolist()
 
-	df_filtered.loc[df_filtered['Remise'] != '0%', 'Remise accordé'] = True
-	df_filtered['Remise'] = df_filtered['Remise'].str.rstrip('%').astype(float)
+	df_filtered.loc[df_filtered['Remise'] = '0%', 'Remise accordé'] = False
 	
 	if selection :
 		st.data_editor(
