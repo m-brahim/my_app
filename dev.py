@@ -1088,8 +1088,8 @@ if selected3 == "Tests":
 		selection = True
 
 	categories = df_filtered['Catégorie'].unique().tolist()
-
-	if df_filtered['Remise accordé'] = df_filtered['Remise'] != '0%':
+	
+	if df_filtered['Remise'] != '0%' :
 		df_filtered['Remise accordé'] = True
 
 	if selection :
