@@ -1140,7 +1140,7 @@ if selected3 == "Tests":
 		df_table2,
 		column_config={
 			"Ventes": st.column_config.LineChartColumn(
-				width = "large",
+				width = "medium",
 			),
 		}
 	)
