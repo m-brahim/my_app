@@ -1134,7 +1134,8 @@ if selected3 == "Tests":
 	df_table2['Nov'] = df_table2['Nov'].astype(int)
 	df_table2['Dec'] = df_table2['Dec'].astype(int)
 
-	
+	df_table2['Ventes'] = df_table2.apply(lambda row: list(row[['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']]), axis=1)
+
 	st.data_editor(
 		df_table2,
 		column_config={
