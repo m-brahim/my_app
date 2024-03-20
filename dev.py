@@ -1087,6 +1087,8 @@ if selected3 == "Tests":
 
 	categories = df_filtered['Catégorie'].unique().tolist()
 
+	df_filtered['Remise accordé'] = None
+	
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	if selection :
 		st.data_editor(
