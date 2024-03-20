@@ -1113,6 +1113,7 @@ if selected3 == "Tests":
             		),
 				"Remise accordé": st.column_config.CheckboxColumn(
 			                "Remise accordé",
+					value = False,
             		),
 			},
 			hide_index=True,
