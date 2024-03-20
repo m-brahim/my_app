@@ -1091,12 +1091,6 @@ if selected3 == "Tests":
 
 	df_filtered.loc[df_filtered['Remise'] != '0%', 'Remise accordé'] = True
 
-	def render_checkbox(row):
-		if row['Remise accordé']:
-			return True
-		else:
-			return False
-
 	if selection :
 		st.data_editor(
 			data_f,
@@ -1116,11 +1110,10 @@ if selected3 == "Tests":
 			                "Catégorie",
                 			options=categories
             		),
-        
 				"Remise accordé": st.column_config.CheckboxColumn(
-					"Remise accordé",
-					render_func=render_checkbox
-        		),
+			                "Remise accordé",
+			                default_value=lambda row: row['Remise accordé'],
+            		),
 			},
 			hide_index=True,
 			disabled=["Date de commande"],
