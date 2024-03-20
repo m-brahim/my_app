@@ -1049,7 +1049,7 @@ if selected3 == "Tests":
 
 	# Sélectionner les colonnes à afficher dans le DataFrame
 
-	df_table['Remise accordé'] = None 
+	df_table['Remise accordé'] = False 
 	    
 	selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
 
@@ -1090,7 +1090,7 @@ if selected3 == "Tests":
 	categories = df_filtered['Catégorie'].unique().tolist()
 
 	df_table.loc[df_table['Remise'] != '0%', 'Remise accordé'] = True
-	
+
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	if selection :
 		st.data_editor(
