@@ -1081,6 +1081,9 @@ if selected3 == "Tests":
 		selection = True
 
 	categories = df_filtered['Catégorie'].unique().tolist()
+
+	df_filtered['Remise accordé'] = df_filtered['Remise'] != '0%'
+	df_filtered['Remise'] = df_filtered['Remise'].str.rstrip('%').astype(float)
 	
 	if selection :
 		st.data_editor(
@@ -1101,9 +1104,7 @@ if selected3 == "Tests":
 			                "Catégorie",
                 			options=categories
             		),
-				"Remise accordé": st.column_config.CheckboxColumn(
-                    			"Accordé",
-                	),
+
 		},
 			hide_index=True,
 			disabled=["Date de commande"],
