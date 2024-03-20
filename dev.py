@@ -1082,7 +1082,7 @@ if selected3 == "Tests":
 
 	categories = df_filtered['Catégorie'].unique().tolist()
 
-	df_filtered['Remise accordé'] = df_filtered['Remise'] != '0%'
+	df_filtered.loc[df_filtered['Remise'] != '0%', 'Remise accordé'] = True
 	df_filtered['Remise'] = df_filtered['Remise'].str.rstrip('%').astype(float)
 	
 	if selection :
