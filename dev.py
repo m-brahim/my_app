@@ -1120,19 +1120,8 @@ if selected3 == "Tests":
 	for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
 		df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
 
-	
-	df_table2['Jan'] = df_table2['Jan'].astype(int)
-	df_table2['Feb'] = df_table2['Feb'].astype(int)
-	df_table2['Mar'] = df_table2['Mar'].astype(int)
-	df_table2['Apr'] = df_table2['Apr'].astype(int)
-	df_table2['May'] = df_table2['May'].astype(int)
-	df_table2['Jun'] = df_table2['Jun'].astype(int)
-	df_table2['Jul'] = df_table2['Jul'].astype(int)
-	df_table2['Aug'] = df_table2['Aug'].astype(int)
-	df_table2['Sep'] = df_table2['Sep'].astype(int)
-	df_table2['Oct'] = df_table2['Oct'].astype(int)
-	df_table2['Nov'] = df_table2['Nov'].astype(int)
-	df_table2['Dec'] = df_table2['Dec'].astype(int)
+	for i in range(5, 16):
+		df_table2.iloc[:, i] = df_table2.iloc[:, i].astype(int)
 
 	df_table2['Ventes'] = df_table2.apply(lambda row: str(list(row[['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']])), axis=1)
 
