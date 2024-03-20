@@ -1117,6 +1117,9 @@ if selected3 == "Tests":
 			column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
 		)    
 
+	for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
+		df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
+
 	
 	df_table2['Jan'] = df_table2['Jan'].astype(int)
 	df_table2['Feb'] = df_table2['Feb'].astype(int)
@@ -1131,9 +1134,7 @@ if selected3 == "Tests":
 	df_table2['Nov'] = df_table2['Nov'].astype(int)
 	df_table2['Dec'] = df_table2['Dec'].astype(int)
 
-	for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
-		df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
-
+	
 	st.data_editor(
 		df_table2,
 		column_config={
