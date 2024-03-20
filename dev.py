@@ -1087,10 +1087,6 @@ if selected3 == "Tests":
 
 	categories = ['Fournitures de bureau', 'Produits technologiques', 'Mobilier']
 
-	def render_category_selectbox(index):
-		selected_category = st.selectbox("", categories)
-		return selected_category
-	
 	# Afficher le DataFrame dans Streamlit avec le ProgressColumn pour la colonne "Ventes"
 	if selection :
 		st.data_editor(
@@ -1109,7 +1105,7 @@ if selected3 == "Tests":
 			),
 				"Catégorie": st.column_config.SelectboxColumn(
 			                "Catégorie",
-			                render_func=render_category_selectbox
+                			options=categories
             		),
 			},
 			hide_index=True,
