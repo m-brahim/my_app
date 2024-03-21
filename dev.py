@@ -1143,7 +1143,7 @@ if selected3 == "Tests":
 	def convert_df_to_csv(df):
 		return df.to_csv(sep=';', index=False,encoding='utf-8').encode('utf-8')
 		
-	csv = convert_df_to_csv(my_df)
+	csv = convert_df_to_csv(df_filtered)
 	st.download_button(
 		label="Télécharger",
 		data=csv,
