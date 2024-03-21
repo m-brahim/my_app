@@ -1093,7 +1093,7 @@ if selected3 == "Tests":
 	
 	if selection :
 		st.data_editor(
-			data_f,
+			df_filtered,
 			column_config={
 				"Ventes": st.column_config.ProgressColumn(
 			       		"Ventes",
@@ -1137,7 +1137,7 @@ if selected3 == "Tests":
 	)
 
 	
-	my_df = pd.DataFrame(df_table2)
+	my_df = pd.DataFrame(df_filtered)
 
 	@st.cache
 	def convert_df_to_csv(df, delimiter):
