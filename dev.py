@@ -1037,107 +1037,108 @@ if selected3 == "Tâches":
         style_metric_cards()
 
 
-
-
-
-
-
-
-
-
-
-
+df2 = "Financial_Data.csv"
 
 if selected3 == "Tests":
-    st.header("1. Analyse client")
-    st.subheader("")
-    st.subheader("")
-
-    my_file = "Exemple - Hypermarché_Achats.csv"
-
-    def load_data(filename):
-        if filename in st.session_state:
-            return st.session_state[filename]
-        else:
-            return None
-    
-    def convert_df_to_csv(df):
-        return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
-    
-    df_table = load_data(my_file)
-
-    if df_table is not None:
-        df_table['Remise accordé'] = True
-        
-        selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
-        
-        df_filtered = df_table[selected_columns_table].copy()
-        
-        df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
-        df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')	   
-        df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
-        
-        df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
-        
-        def ajouter_etoiles(quantite):
-            if quantite > 10:
-                return f"{quantite} ⭐"
-            else:
-                return str(quantite)
-    
-        df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
-    
-        selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
-    
-        data_f = df_filtered[selected_columns]
-        
-        selection = False
-        
-        if selected_columns is not None :
-            selection = True
-    
-        categories = df_filtered['Catégorie'].unique().tolist()
-    
-        def determine_remise_accorde(remise):
-            if remise == '0%':
-                df_filtered['Remise accordé'] = True
-    
-        df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
-        
-        if selection :
-            st.data_editor(
-                data_f,
-                column_config={
-                    "Ventes": st.column_config.ProgressColumn(
-                            "Ventes",
-                            format="%f€",
-                            min_value=0,
-                            max_value=8000,
-                ),
-                    "Date de commande": st.column_config.DateColumn(
-                        "Date de commande",
-                        format="DD.MM.YYYY",
-                        step=1,
-                ),
-                    "Catégorie": st.column_config.SelectboxColumn(
-                                "Catégorie",
-                                options=categories
-                        ),
-    
-            },
-                hide_index=True,
-                disabled=["Date de commande"],
-                column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
-            )    
+	st.header("1. Analyse client")
+	st.subheader("")
+	st.subheader("")
+	# Collecte des données
+	df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
+	df2 = "Financial_Data.csv"
+	df_table2 = pd.read_csv(df2, delimiter=";").reset_index(drop=True)
 
 
+	# Sélectionner les colonnes à afficher dans le DataFrame
+
+	df_table['Remise accordé'] = True
+	    
+	selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
+
+	# Filtrer le DataFrame avec les colonnes sélectionnées
+	df_filtered = df_table[selected_columns_table].copy()
+	   
+	# Nettoyer la colonne "Ventes"
+	df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
+	df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')	   
+	df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
+	
+	df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
+	
+	def ajouter_etoiles(quantite):
+	    if quantite > 10:
+	        return f"{quantite} ⭐"
+	    else:
+	        return str(quantite)
+
+	df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
+
+	selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
+
+	data_f = df_filtered[selected_columns]
+	
+	selection = False
+	
+	if selected_columns is not None :
+		selection = True
+
+	categories = df_filtered['Catégorie'].unique().tolist()
+
+	def determine_remise_accorde(remise):
+		if remise == '0%':
+			df_filtered['Remise accordé'] = True
+
+	df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
+	
+	if selection :
+		st.data_editor(
+			data_f,
+			column_config={
+				"Ventes": st.column_config.ProgressColumn(
+			       		"Ventes",
+					format="%f€",
+			        	min_value=0,
+			        	max_value=8000,
+			),
+				"Date de commande": st.column_config.DateColumn(
+					"Date de commande",
+			        	format="DD.MM.YYYY",
+			        	step=1,
+			),
+				"Catégorie": st.column_config.SelectboxColumn(
+			                "Catégorie",
+                			options=categories
+            		),
 
 
+		},
+			hide_index=True,
+			disabled=["Date de commande"],
+			column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
+		)    
 
+	for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
+		df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
 
+	for i in range(5, 16):
+		df_table2.iloc[:, i] = df_table2.iloc[:, i].astype(int)
 
+	df_table2['Ventes'] = df_table2.apply(lambda row: str(list(row[['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']])), axis=1)
 
+	st.data_editor(
+		df_table2,
+		column_config={
+			"Ventes": st.column_config.BarChartColumn(
+				width = "medium",
+			),
+		},
+		hide_index=True,
+	)
 
+	if st.button('Exporter au format CSV'):
+		csv_file_name = 'Financial_Data.csv'
+		df.to_csv(csv_file_name, index=False)
+		st.success(f'Les données ont été exportées dans {csv_file_name}')
 
 
 
