@@ -1058,7 +1058,7 @@ if selected3 == "Tests":
 	st.subheader("")
 	st.subheader("")
 	# Collecte des données
-	df = st.session_state[filename]
+	df_table = st.session_state[filename]
 	df2 = "Financial_Data.csv"
 	df_table2 = pd.read_csv(df2, delimiter=";").reset_index(drop=True)
 
