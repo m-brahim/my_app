@@ -1139,6 +1139,8 @@ if selected3 == "Tests":
 	def convert_df(df):
 		return df.to_csv().encode('utf-8')
 
+	st.write(type(df2))
+	
 	csv = convert_df(df2)
 
 	st.download_button(
