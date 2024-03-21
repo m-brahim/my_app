@@ -1149,7 +1149,20 @@ if selected3 == "Tests":
 	)
 
 	
+	my_df = pd.DataFrame(df_filtered)
+	
+	@st.cache_data
+	def convert_df2(df):
+		return df.to_csv().encode('utf-8')
+	
+	csv = convert_df2(my_df)
 
+	st.download_button(
+	    label="Download",
+	    data=csv,
+	    file_name='my_df.csv',
+	    mime='text/csv',
+	)
 
 
 
