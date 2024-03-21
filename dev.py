@@ -1040,26 +1040,32 @@ if selected3 == "Tâches":
 
 df2 = "Financial_Data.csv"
 
+# Définition de la fonction pour charger les données
 def load_data(filename):
     if os.path.exists(filename):
         return pd.read_csv(filename, delimiter=";")
     else:
         return None
 
+# Définition de la fonction pour convertir DataFrame en CSV
 def convert_df_to_csv(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
 
+# Chargement des données au démarrage de l'application
 filename = "Exemple - Hypermarché_Achats.csv"
 if filename not in st.session_state:
     st.session_state[filename] = load_data(filename)
 
+# Utilisation de df_filtered dans votre application
 if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
     st.subheader("")
     
+    # Récupération des données depuis la session state
     df_table = st.session_state[filename]
     
+    # Vérification si les données ont été chargées avec succès
     if df_table is not None:
         df_table['Remise accordé'] = True
         selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
@@ -1074,25 +1080,20 @@ if selected3 == "Tests":
                 return f"{quantite} ⭐"
             else:
                 return str(quantite)
-		    
         df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
         
         selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
-	    
         data_f = df_filtered[selected_columns]
-        
-	selection = False
-        
-	if selected_columns is not None :
-		selection = True
+        selection = False
+        if selected_columns is not None :
+            selection = True
         
         categories = df_filtered['Catégorie'].unique().tolist()
         
         def determine_remise_accorde(remise):
             if remise == '0%':
                 df_filtered['Remise accordé'] = True
-        
-	df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
+        df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
         
         if selection :
             edited_df = st.data_editor(
