@@ -1140,8 +1140,8 @@ if selected3 == "Tests":
 
 	@st.cache
 	def convert_df_to_csv(df, delimiter):
-	    csv_data = df.to_csv(sep=delimiter, index=False, encoding='utf-8')
-	    return csv_data.encode('utf-8')
+	    csv_data = df.to_csv(sep=delimiter, index=False, encoding='UTF-8')
+	    return csv_data.encode('UTF-8')
 
 	delimiter = st.radio("Sélectionner le délimiteur :", [",", ";"])
 
