@@ -1135,34 +1135,29 @@ if selected3 == "Tests":
 		hide_index=True,
 	)
 
-	@st.cache_data
-	def convert_df(df):
-		return df.to_csv().encode('utf-8')
-	
-	csv = convert_df(df_filtered)
-
-	st.download_button(
-	    label="Download data as CSV",
-	    data=csv,
-	    file_name='large_df.csv',
-	    mime='text/csv',
-	)
-
 	
 	my_df = pd.DataFrame(df_filtered)
-	
-	@st.cache_data
-	def convert_df2(df):
-		return df.to_csv().encode('utf-8')
-	
-	csv = convert_df2(my_df)
 
-	st.download_button(
-	    label="Download",
-	    data=csv,
-	    file_name='my_df.csv',
-	    mime='text/csv',
-	)
+	@st.cache
+	def convert_df_to_csv(df, delimiter):
+	    csv_data = df.to_csv(sep=delimiter, index=False, encoding='utf-8')
+	    return csv_data.encode('utf-8')
+
+	delimiter = st.radio("Sélectionner le délimiteur :", [",", ";"])
+
+	if st.button('Télécharger le fichier CSV'):
+		csv = convert_df_to_csv(my_df, delimiter)
+		st.download_button(
+			label="Télécharger",
+			data=csv,
+			file_name='my_df.csv',
+			mime='text/csv',
+		)
+
+
+
+
+
 
 
 
