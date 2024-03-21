@@ -1070,25 +1070,23 @@ if selected3 == "Tests":
 
     df_table = st.session_state[filename]
 
-    df_table['Remise accordé'] = True
-    selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise' , 'Ventes']
-    df_filtered = df_table[selected_columns_table].copy()
-    df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
-    df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
-    df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
-    df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
+    
+    df_table['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
+    df_table['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
+    df_table['Ventes'] = df_filtered['Ventes'].astype(str)
+    df_table['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
 
-    selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
-    df_filtered = df_filtered[selected_columns]
+    selected_columns = st.multiselect("Choisir les colonnes à afficher", df_table.columns)
+    df_table = df_table[selected_columns]
     selection = False
     if selected_columns is not None:
         selection = True
 
-    categories = df_filtered['Catégorie'].unique().tolist()
+    categories = df_table['Catégorie'].unique().tolist()
 
     if selection:
         edited_df = st.data_editor(
-            df_filtered,
+            df_table,
             column_config={
                 "Ventes": st.column_config.ProgressColumn(
                     "Ventes",
