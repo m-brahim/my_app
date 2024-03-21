@@ -1136,7 +1136,7 @@ if selected3 == "Tests":
 	)
 
 	
-	my_df = pd.DataFrame(df2)
+	my_df = pd.DataFrame(df_table2)
 
 	@st.cache
 	def convert_df_to_csv(df, delimiter):
