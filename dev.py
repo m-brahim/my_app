@@ -1135,22 +1135,25 @@ if selected3 == "Tests":
 		hide_index=True,
 	)
 
-	@st.experimental_memo
-	def convert_df(df2):
-		return df2.to_csv(index=False).encode('utf-8')
+	@st.cache_data
+	def convert_df(df):
+		return df.to_csv().encode('utf-8')
 
 	csv = convert_df(df2)
 
 	st.download_button(
-		"Press to Download",
-   		csv,
-   		"file.csv",
-   		"text/csv",
-   		key='download-csv'
+	    label="Download data as CSV",
+	    data=csv,
+	    file_name='large_df.csv',
+	    mime='text/csv',
 	)
 
-
 	
+
+
+
+
+
 
 
 
