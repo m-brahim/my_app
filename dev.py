@@ -1140,9 +1140,9 @@ if selected3 == "Tests":
 
 	@st.cache
 	def convert_df_to_csv(df, delimiter):
-    		csv_buffer = pd.compat.StringIO()
+		csv_buffer = pd.compat.StringIO()
 		df.to_csv(csv_buffer, sep=delimiter, index=False, encoding='utf-8')
-    		csv_data = csv_buffer.getvalue().encode('utf-8')
+		csv_data = csv_buffer.getvalue().encode('utf-8')
 		return csv_data
 		
 	delimiter = st.radio("Sélectionner le délimiteur :", [",", ";"])
