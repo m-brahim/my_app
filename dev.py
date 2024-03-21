@@ -1140,7 +1140,7 @@ if selected3 == "Tests":
 	my_df = pd.DataFrame(df_filtered)
 
 	@st.cache
-	def convert_df_to_csv(df, delimiter):
+	def convert_df_to_csv(df):
 		df.to_csv(df_filtered, sep=';', index=False, encoding='utf-8')
 		return csv_data
 		
