@@ -1121,6 +1121,13 @@ if selected3 == "Tests":
 		)    
 
 
+	@st.cache(allow_output_mutation=True)
+        def update_df(new_df):
+            df_filtered[selected_columns] = new_df
+            return df_filtered
+
+        new_data = update_df(data_f)
+
 	def convert_df_to_csv(df):
 		return df.to_csv(sep=';', index=False,encoding='utf-8').encode('utf-8')
 	
