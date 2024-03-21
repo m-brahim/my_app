@@ -1057,30 +1057,29 @@ if filename not in st.session_state:
 
 # Utilisation de df_filtered dans votre application
 if selected3 == "Tests":
-	st.header("1. Analyse client")
-    	st.subheader("")
-    	st.subheader("")
+    st.header("1. Analyse client")
+    st.subheader("")
+    st.subheader("")
     
-    	# Récupération des données depuis la session state
-    	df_table = st.session_state[filename]
+    # Récupération des données depuis la session state
+    df_table = st.session_state[filename]
     
-    	# Vérification si les données ont été chargées avec succès
-    	if df_table is not None:
-	        df_table['Remise accordé'] = True
-	        selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
-	        df_filtered = df_table[selected_columns_table].copy()
-	        df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
-	        df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')	   
-	        df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
-	        df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
+    # Vérification si les données ont été chargées avec succès
+    if df_table is not None:
+        df_table['Remise accordé'] = True
+        selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
+        df_filtered = df_table[selected_columns_table].copy()
+        df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
+        df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')	   
+        df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
+        df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
         
         def ajouter_etoiles(quantite):
             if quantite > 10:
                 return f"{quantite} ⭐"
             else:
                 return str(quantite)
-        
-	df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
+        df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
         
         selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
         data_f = df_filtered[selected_columns]
