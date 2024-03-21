@@ -1056,16 +1056,15 @@ if selected3 == "Tests":
     st.subheader("")
     st.subheader("")
 
-    df_table = load_data()
+    df_table = load_data2()
     if df_table is not None:
         df_table['Remise accordé'] = True
-        print("Noms des colonnes dans df_table:", df_table.columns)
+        
         selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
-	df_filtered = df_table[selected_columns_table].copy()
-
+    	print("Noms des colonnes dans df_table:", df_table.columns)
         df_filtered = df_table[selected_columns_table].copy()
-           
-        df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
+
+	df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
         df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')       
         df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
         
@@ -1123,6 +1122,7 @@ if selected3 == "Tests":
                 column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
             )    
         
+        # Télécharger le fichier CSV
         st.download_button(
             label="Télécharger",
             data=convert_df_to_csv(df_filtered),
