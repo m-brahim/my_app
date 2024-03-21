@@ -1059,9 +1059,10 @@ if selected3 == "Tests":
     df_table = load_data()
     if df_table is not None:
         df_table['Remise accordé'] = True
-        
+        print("Noms des colonnes dans df_table:", df_table.columns)
         selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
-    
+	df_filtered = df_table[selected_columns_table].copy()
+
         df_filtered = df_table[selected_columns_table].copy()
            
         df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
