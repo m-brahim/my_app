@@ -1047,92 +1047,88 @@ if selected3 == "Tâches":
 
 
 
-df2 = "Financial_Data.csv"
 
 if selected3 == "Tests":
-	st.header("1. Analyse client")
-	st.subheader("")
-	st.subheader("")
+    st.header("1. Analyse client")
+    st.subheader("")
+    st.subheader("")
 
-	my_file = "Exemple - Hypermarché_Achats.csv"
+    my_file = "Exemple - Hypermarché_Achats.csv"
 
-	def load_data(filename):
-		if os.path.exists(filename):
-			return pd.read_csv(filename, delimiter=";")
-		else:
-			return None
-	
-	def convert_df_to_csv(df):
-		return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
-	
-	
-	if my_file not in st.session_state:
-		st.session_state[my_file] = load_data(my_file)
+    def load_data(filename):
+        if filename in st.session_state:
+            return st.session_state[filename]
+        else:
+            return None
+    
+    def convert_df_to_csv(df):
+        return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
+    
+    df_table = load_data(my_file)
 
-	
-	df_table['Remise accordé'] = True
-	
-	selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
-	
-	df_filtered = df_table[selected_columns_table].copy()
-	
-	df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
-	df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')	   
-	df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
-	
-	df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
-	
-	def ajouter_etoiles(quantite):
-	    if quantite > 10:
-	        return f"{quantite} ⭐"
-	    else:
-	        return str(quantite)
-
-	df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
-
-	selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
-
-	data_f = df_filtered[selected_columns]
-	
-	selection = False
-	
-	if selected_columns is not None :
-		selection = True
-
-	categories = df_filtered['Catégorie'].unique().tolist()
-
-	def determine_remise_accorde(remise):
-		if remise == '0%':
-			df_filtered['Remise accordé'] = True
-
-	df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
-	
-	if selection :
-		st.data_editor(
-			data_f,
-			column_config={
-				"Ventes": st.column_config.ProgressColumn(
-			       		"Ventes",
-					format="%f€",
-			        	min_value=0,
-			        	max_value=8000,
-			),
-				"Date de commande": st.column_config.DateColumn(
-					"Date de commande",
-			        	format="DD.MM.YYYY",
-			        	step=1,
-			),
-				"Catégorie": st.column_config.SelectboxColumn(
-			                "Catégorie",
-                			options=categories
-            		),
-
-
-		},
-			hide_index=True,
-			disabled=["Date de commande"],
-			column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
-		)    
+    if df_table is not None:
+        df_table['Remise accordé'] = True
+        
+        selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
+        
+        df_filtered = df_table[selected_columns_table].copy()
+        
+        df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
+        df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')	   
+        df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
+        
+        df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
+        
+        def ajouter_etoiles(quantite):
+            if quantite > 10:
+                return f"{quantite} ⭐"
+            else:
+                return str(quantite)
+    
+        df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
+    
+        selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
+    
+        data_f = df_filtered[selected_columns]
+        
+        selection = False
+        
+        if selected_columns is not None :
+            selection = True
+    
+        categories = df_filtered['Catégorie'].unique().tolist()
+    
+        def determine_remise_accorde(remise):
+            if remise == '0%':
+                df_filtered['Remise accordé'] = True
+    
+        df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
+        
+        if selection :
+            st.data_editor(
+                data_f,
+                column_config={
+                    "Ventes": st.column_config.ProgressColumn(
+                            "Ventes",
+                            format="%f€",
+                            min_value=0,
+                            max_value=8000,
+                ),
+                    "Date de commande": st.column_config.DateColumn(
+                        "Date de commande",
+                        format="DD.MM.YYYY",
+                        step=1,
+                ),
+                    "Catégorie": st.column_config.SelectboxColumn(
+                                "Catégorie",
+                                options=categories
+                        ),
+    
+            },
+                hide_index=True,
+                disabled=["Date de commande"],
+                column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
+            )    
 
 
 
