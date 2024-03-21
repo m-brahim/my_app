@@ -1140,19 +1140,20 @@ if selected3 == "Tests":
 
 	@st.cache
 	def convert_df_to_csv(df, delimiter):
-	    csv_data = df.to_csv(sep=delimiter, index=False, encoding='UTF-8')
-	    return csv_data.encode('UTF-8')
-
+    		csv_buffer = pd.compat.StringIO()
+		df.to_csv(csv_buffer, sep=delimiter, index=False, encoding='utf-8')
+    		csv_data = csv_buffer.getvalue().encode('utf-8')
+		return csv_data
+		
 	delimiter = st.radio("Sélectionner le délimiteur :", [",", ";"])
 
-	if st.button('Télécharger le fichier CSV'):
-		csv = convert_df_to_csv(my_df, delimiter)
-		st.download_button(
-			label="Télécharger",
-			data=csv,
-			file_name='my_df.csv',
-			mime='text/csv',
-		)
+	csv = convert_df_to_csv(my_df, delimiter)
+	st.download_button(
+		label="Télécharger",
+		data=csv,
+		file_name='my_df.csv',
+		mime='text/csv',
+	)
 
 
 
