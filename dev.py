@@ -1135,11 +1135,22 @@ if selected3 == "Tests":
 		hide_index=True,
 	)
 
-	if st.button('Exporter au format CSV'):
-		csv_file_name = 'Financial_Data.csv'
-		df.to_csv(csv_file_name, index=False)
-		st.success(f'Les données ont été exportées dans {csv_file_name}')
+	@st.experimental_memo
+	def convert_df(df2):
+		return df2.to_csv(index=False).encode('utf-8')
 
+	csv = convert_df(df2)
+
+	st.download_button(
+		"Press to Download",
+   		csv,
+   		"file.csv",
+   		"text/csv",
+   		key='download-csv'
+	)
+
+
+	
 
 
 
