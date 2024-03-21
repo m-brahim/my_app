@@ -1038,6 +1038,16 @@ if selected3 == "Tâches":
         style_metric_cards()
 
 
+
+
+
+
+
+
+
+
+
+
 df2 = "Financial_Data.csv"
 
 def load_data(filename):
@@ -1061,7 +1071,7 @@ if selected3 == "Tests":
     df_table = st.session_state[filename]
 
     df_table['Remise accordé'] = True
-    selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
+    selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise' , 'Ventes']
     df_filtered = df_table[selected_columns_table].copy()
     df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
     df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
@@ -1075,13 +1085,6 @@ if selected3 == "Tests":
         selection = True
 
     categories = df_filtered['Catégorie'].unique().tolist()
-
-    def determine_remise_accorde(remise):
-        if remise == '0%':
-            df_filtered['Remise accordé'] = True
-
-    if 'Remise accordé' in df_filtered.columns:
-        df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
 
     if selection:
         edited_df = st.data_editor(
@@ -1105,7 +1108,7 @@ if selected3 == "Tests":
             },
             hide_index=True,
             disabled=["Date de commande"],
-            column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
+            column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes')
         )
 
         st.session_state[filename] = edited_df
