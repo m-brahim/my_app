@@ -1069,7 +1069,7 @@ if selected3 == "Tests":
     df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
 
     selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
-    data_f = df_filtered[selected_columns]
+    df_filtered = df_filtered[selected_columns]
     selection = False
     if selected_columns is not None:
         selection = True
