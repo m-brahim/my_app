@@ -1090,10 +1090,20 @@ if selected3 == "Tests":
 			df_filtered['Remise accordé'] = True
 
 	df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
+
+	def load_data():
+		if os.path.exists("df_filtered.csv"):
+			return pd.read_csv("df_filtered.csv", delimiter=";")
+
+	def save_data(data):
+		data.to_csv("df_filtered.csv", index=False, sep=';')
+	
+	if "df_filtered" not in st.session_state:
+		st.session_state.df_filtered = load_data()
 	
 	if selection :
 		st.data_editor(
-			df_filtered,
+			st.session_state.df_filtered,
 			column_config={
 				"Ventes": st.column_config.ProgressColumn(
 			       		"Ventes",
@@ -1118,6 +1128,9 @@ if selected3 == "Tests":
 			column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
 		)    
 
+	save_data(st.session_state.df_filtered)
+
+	
 	for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
 		df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
 
@@ -1137,8 +1150,10 @@ if selected3 == "Tests":
 	)
 
 	
-	my_df = pd.DataFrame(df_filtered)
+	
 
+
+	
 	@st.cache
 	def convert_df_to_csv(df):
 		return df.to_csv(sep=';', index=False,encoding='utf-8').encode('utf-8')
