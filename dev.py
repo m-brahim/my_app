@@ -1055,10 +1055,18 @@ def save_data(data):
 def convert_df_to_csv(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
 
+# Charger ou initialiser les données de la session
+if "data" not in st.session_state:
+    st.session_state.data = load_data()
+
+# Page Streamlit
 if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
     st.subheader("")
+
+    # Afficher les données dans le data editor
+    edited_data = st.dataframe(st.session_state.data)
 
     # Charger les données
     df_table = load_data()
@@ -1127,6 +1135,10 @@ if selected3 == "Tests":
                 column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
             )    
         
+        # Bouton pour sauvegarder les modifications
+        if st.button("Sauvegarder les modifications"):
+            save_data(data_f)
+
         # Télécharger le fichier CSV avec les données modifiées
         st.download_button(
             label="Télécharger",
@@ -1134,7 +1146,6 @@ if selected3 == "Tests":
             file_name='my_df.csv',
             mime='text/csv'
         )
-
 
 
 
