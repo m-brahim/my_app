@@ -1076,7 +1076,12 @@ if selected3 == "Tests":
         selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
     
         df_filtered = df_table[selected_columns_table].copy()
-           
+        
+        # Nettoyage des colonnes
+        for col in df_filtered.columns:
+            if df_filtered[col].dtype == 'object':
+                df_filtered[col] = df_filtered[col].astype(str).str.strip()
+        
         df_filtered['Ventes'] = df_filtered['Ventes'].astype(str).str.replace('[^\d]', '', regex=True)
         
         df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
