@@ -1076,8 +1076,6 @@ if selected3 == "Tests":
 
 	selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
 
-	data_f = df_filtered[selected_columns]
-	
 	selection = False
 	
 	if selected_columns is not None :
@@ -1087,9 +1085,13 @@ if selected3 == "Tests":
 
 	def determine_remise_accorde(remise):
 		if remise == '0%':
-			df_filtered['Remise accordé'] = True
+			return True
+		else:
+			return False
 
 	df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
+
+	data_f = df_filtered[selected_columns]
 	
 	if selection :
 		st.data_editor(
