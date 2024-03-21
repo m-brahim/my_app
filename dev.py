@@ -23,6 +23,7 @@ from streamlit_elements import dashboard
 from streamlit_elements import editor
 from st_mui_table import st_mui_table
 from streamlit_elements import nivo
+import io
 
 
 #config du titre de la page
