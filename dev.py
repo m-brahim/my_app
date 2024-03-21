@@ -1071,10 +1071,10 @@ if selected3 == "Tests":
     df_table = st.session_state[filename]
 
     
-    df_table['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
-    df_table['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
-    df_table['Ventes'] = df_filtered['Ventes'].astype(str)
-    df_table['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
+    df_table['Ventes'] = df_table['Ventes'].str.replace('[^\d]', '', regex=True)
+    df_table['Ventes'] = pd.to_numeric(df_table['Ventes'], errors='coerce', downcast='integer')
+    df_table['Ventes'] = df_table['Ventes'].astype(str)
+    df_table['Date de commande'] = pd.to_datetime(df_table['Date de commande'], format='%d/%m/%Y')
 
     selected_columns = st.multiselect("Choisir les colonnes à afficher", df_table.columns)
     df_table = df_table[selected_columns]
