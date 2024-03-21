@@ -1057,59 +1057,57 @@ if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
     st.subheader("")
-    
+
     df_table = st.session_state[filename]
-    
+
     df_table['Remise accordé'] = True
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
     df_filtered = df_table[selected_columns_table].copy()
     df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
-    df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')	   
+    df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')
     df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
     df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
-        
-        
+
     selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
     data_f = df_filtered[selected_columns]
     selection = False
-    if selected_columns is not None :
-	    selection = True
-        
-    categories = df_filtered['Catégorie'].unique().tolist()
-        
-    def determine_remise_accorde(remise):
-	    if remise == '0%':
-		    df_filtered['Remise accordé'] = True
-    
-    df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
-        
-    if selection :
-	    edited_df = st.data_editor(
-		    df_filtered,
+    if selected_columns is not None:
+        selection = True
 
-		    column_config={
-                    "Ventes": st.column_config.ProgressColumn(
-			    "Ventes",
-			    format="%f€",
-			    min_value=0,
-			    max_value=8000,
-		    ),
-                    "Date de commande": st.column_config.DateColumn(
-			    "Date de commande",
-			    format="DD.MM.YYYY",
-			    step=1,
-                    ),
-                    "Catégorie": st.column_config.SelectboxColumn(
-			    "Catégorie",
-			    options=categories
-                    ),
-		    },
-		    hide_index=True,
-		    disabled=["Date de commande"],
-		    column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
-	    )
-            
-            st.session_state[filename] = edited_df
+    categories = df_filtered['Catégorie'].unique().tolist()
+
+    def determine_remise_accorde(remise):
+        if remise == '0%':
+            df_filtered['Remise accordé'] = True
+
+    df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
+
+    if selection:
+        edited_df = st.data_editor(
+            df_filtered,
+            column_config={
+                "Ventes": st.column_config.ProgressColumn(
+                    "Ventes",
+                    format="%f€",
+                    min_value=0,
+                    max_value=8000,
+                ),
+                "Date de commande": st.column_config.DateColumn(
+                    "Date de commande",
+                    format="DD.MM.YYYY",
+                    step=1,
+                ),
+                "Catégorie": st.column_config.SelectboxColumn(
+                    "Catégorie",
+                    options=categories
+                ),
+            },
+            hide_index=True,
+            disabled=["Date de commande"],
+            column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
+        )
+
+        st.session_state[filename] = edited_df
 
 
     df_table2 = pd.read_csv(df2, delimiter=";").reset_index(drop=True)
