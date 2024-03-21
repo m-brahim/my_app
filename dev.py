@@ -1095,8 +1095,8 @@ if selected3 == "Tests":
 		if os.path.exists("df_filtered.csv"):
 			return pd.read_csv("df_filtered.csv", delimiter=";")
 
-	def save_data(data):
-		data.to_csv("df_filtered.csv", index=False, sep=';')
+	def convert_df_to_csv(df):
+		return df.to_csv(sep=';', index=False,encoding='utf-8').encode('utf-8')
 	
 	if "df_filtered" not in st.session_state:
 		st.session_state.df_filtered = load_data()
@@ -1128,8 +1128,13 @@ if selected3 == "Tests":
 			column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
 		)    
 
-	save_data(st.session_state.df_filtered)
+	convert_df_to_csv(st.session_state.df_filtered)
 
+
+
+
+
+	
 	
 	for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
 		df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
@@ -1154,9 +1159,7 @@ if selected3 == "Tests":
 
 
 	
-	@st.cache
-	def convert_df_to_csv(df):
-		return df.to_csv(sep=';', index=False,encoding='utf-8').encode('utf-8')
+	
 		
 	csv = convert_df_to_csv(df_filtered)
 	st.download_button(
