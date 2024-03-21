@@ -1037,28 +1037,29 @@ if selected3 == "Tâches":
         style_metric_cards()
 
 
-df2 = "Financial_Data.csv"
+
+
+
+
+
+
+
 
 if selected3 == "Tests":
 	st.header("1. Analyse client")
 	st.subheader("")
 	st.subheader("")
-	# Collecte des données
+
 	df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
 	df2 = "Financial_Data.csv"
 	df_table2 = pd.read_csv(df2, delimiter=";").reset_index(drop=True)
-
-
-	# Sélectionner les colonnes à afficher dans le DataFrame
 
 	df_table['Remise accordé'] = True
 	    
 	selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
 
-	# Filtrer le DataFrame avec les colonnes sélectionnées
 	df_filtered = df_table[selected_columns_table].copy()
 	   
-	# Nettoyer la colonne "Ventes"
 	df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
 	df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')	   
 	df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
@@ -1117,6 +1118,30 @@ if selected3 == "Tests":
 			column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
 		)    
 
+
+	def convert_df_to_csv(df):
+		return df.to_csv(sep=';', index=False,encoding='utf-8').encode('utf-8')
+	
+	csv = convert_df_to_csv(df_filtered)
+	st.download_button(
+		label="Télécharger",
+		data=csv,
+		file_name='my_df.csv',
+		mime='text/csv'
+	)
+
+
+
+
+
+
+
+
+
+
+	
+
+	
 	for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
 		df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
 
@@ -1135,10 +1160,20 @@ if selected3 == "Tests":
 		hide_index=True,
 	)
 
-	if st.button('Exporter au format CSV'):
-		csv_file_name = 'Financial_Data.csv'
-		df.to_csv(csv_file_name, index=False)
-		st.success(f'Les données ont été exportées dans {csv_file_name}')
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
