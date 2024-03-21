@@ -1074,20 +1074,25 @@ if selected3 == "Tests":
                 return f"{quantite} ⭐"
             else:
                 return str(quantite)
+		    
         df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
         
         selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
+	    
         data_f = df_filtered[selected_columns]
-        selection = False
-        if selected_columns is not None :
-            selection = True
+        
+	selection = False
+        
+	if selected_columns is not None :
+		selection = True
         
         categories = df_filtered['Catégorie'].unique().tolist()
         
         def determine_remise_accorde(remise):
             if remise == '0%':
                 df_filtered['Remise accordé'] = True
-        df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
+        
+	df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
         
         if selection :
             edited_df = st.data_editor(
