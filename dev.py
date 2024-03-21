@@ -1077,11 +1077,7 @@ if selected3 == "Tests":
     
         df_filtered = df_table[selected_columns_table].copy()
            
-        # Vérifier et convertir les données de la colonne 'Ventes' en chaînes de caractères si nécessaire
-        if pd.api.types.is_numeric_dtype(df_filtered['Ventes']):
-            df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
-        
-        df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
+        df_filtered['Ventes'] = df_filtered['Ventes'].astype(str).str.replace('[^\d]', '', regex=True)
         
         df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
         
