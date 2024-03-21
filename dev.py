@@ -1042,29 +1042,39 @@ if selected3 == "Tâches":
 
 
 
-def load_data2():
+def load_data():
     if os.path.exists(url):
         return pd.read_csv(url, delimiter=";").reset_index(drop=True)
     else:
         st.error("Le fichier spécifié n'existe pas.")
 
-def save_data2(data):
+# Fonction pour sauvegarder les données dans le fichier CSV
+def save_data(data):
     data.to_csv(url, sep=';', index=False, encoding='utf-8')
+
+def convert_df_to_csv(df):
+    return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
 
 if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
     st.subheader("")
 
-    df_table = load_data2()
+    df_table = load_data()
     if df_table is not None:
         df_table['Remise accordé'] = True
         
         selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
-	    print("Noms des colonnes dans df_table:", df_table.columns)
+    
+        # Avant la sélection des colonnes
+        print("Noms des colonnes dans df_table:", df_table.columns)
+    
         df_filtered = df_table[selected_columns_table].copy()
 
-	df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
+        # Après la sélection des colonnes
+        print("Noms des colonnes dans df_filtered:", df_filtered.columns)
+           
+        df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
         df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')       
         df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
         
@@ -1129,6 +1139,8 @@ if selected3 == "Tests":
             file_name='my_df.csv',
             mime='text/csv'
         )
+
+
 
 
 
