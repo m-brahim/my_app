@@ -1141,7 +1141,7 @@ if selected3 == "Tests":
 
 	@st.cache
 	def convert_df_to_csv(df):
-		df.to_csv(df_filtered, sep=';', index=False, encoding='utf-8')
+		df.to_csv(df, sep=';', index=False, encoding='utf-8')
 		return csv_data
 		
 	csv = convert_df_to_csv(my_df)
