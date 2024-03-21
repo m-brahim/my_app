@@ -1094,6 +1094,8 @@ if selected3 == "Tests":
 	def load_data():
 		if os.path.exists("df_filtered.csv"):
 			return pd.read_csv("df_filtered.csv", delimiter=";")
+		else:
+			return None
 
 	def convert_df_to_csv(df):
 		return df.to_csv(sep=';', index=False,encoding='utf-8').encode('utf-8')
