@@ -1141,16 +1141,14 @@ if selected3 == "Tests":
 
 	@st.cache
 	def convert_df_to_csv(df):
-		csv_data = df.to_csv(sep=';', index=False, encoding='utf-8')
-		return csv_data.encode('utf-8')
+		return df.to_csv(sep=';', index=False).encode('utf-8')
 		
 	csv = convert_df_to_csv(my_df)
 	st.download_button(
 		label="Télécharger",
 		data=csv,
 		file_name='my_df.csv',
-		mime='text/csv',
-		encoding='utf-8',
+		mime='text/csv'
 	)
 
 
