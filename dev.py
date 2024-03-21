@@ -1138,10 +1138,8 @@ if selected3 == "Tests":
 	@st.cache_data
 	def convert_df(df):
 		return df.to_csv().encode('utf-8')
-
-	st.write(type(df2))
 	
-	csv = convert_df(df2)
+	csv = convert_df(df_filtered)
 
 	st.download_button(
 	    label="Download data as CSV",
