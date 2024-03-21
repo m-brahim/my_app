@@ -1079,7 +1079,8 @@ if selected3 == "Tests":
         
     def determine_remise_accorde(remise):
 	    if remise == '0%':
-    df_filtered['Remise accordé'] = True
+		    df_filtered['Remise accordé'] = True
+    
     df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
         
     if selection :
