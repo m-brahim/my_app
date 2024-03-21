@@ -1046,25 +1046,20 @@ def load_data(filename):
     else:
         return None
 
-# Définition de la fonction pour convertir DataFrame en CSV
 def convert_df_to_csv(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
 
-# Chargement des données au démarrage de l'application
 filename = "Exemple - Hypermarché_Achats.csv"
 if filename not in st.session_state:
     st.session_state[filename] = load_data(filename)
 
-# Utilisation de df_filtered dans votre application
 if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
     st.subheader("")
     
-    # Récupération des données depuis la session state
     df_table = st.session_state[filename]
     
-    # Vérification si les données ont été chargées avec succès
     if df_table is not None:
         df_table['Remise accordé'] = True
         selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
@@ -1122,32 +1117,32 @@ if selected3 == "Tests":
             st.session_state[filename] = edited_df
 
 
-	for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
-		df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
+    for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
+	    df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
 
-	for i in range(5, 16):
-		df_table2.iloc[:, i] = df_table2.iloc[:, i].astype(int)
+    for i in range(5, 16):
+	    df_table2.iloc[:, i] = df_table2.iloc[:, i].astype(int)
 
-	df_table2['Ventes'] = df_table2.apply(lambda row: str(list(row[['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']])), axis=1)
+    df_table2['Ventes'] = df_table2.apply(lambda row: str(list(row[['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']])), axis=1)
 
-	st.data_editor(
-		df_table2,
-		column_config={
-			"Ventes": st.column_config.BarChartColumn(
-				width = "medium",
-			),
-		},
-		hide_index=True,
-	)
+    st.data_editor(
+	    df_table2,
+	    column_config={
+		    "Ventes": st.column_config.BarChartColumn(
+			    width = "medium",
+		    ),
+	    },
+	    hide_index=True,
+    )
 
 			
-	csv = convert_df_to_csv(df_filtered)
-	st.download_button(
-		label="Télécharger",
-		data=csv,
-		file_name='my_df.csv',
-		mime='text/csv'
-	)
+    csv = convert_df_to_csv(df_filtered)
+    st.download_button(
+	    label="Télécharger",
+	    data=csv,
+	    file_name='my_df.csv',
+	    mime='text/csv'	
+    )
 
 
 
