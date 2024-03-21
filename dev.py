@@ -1142,7 +1142,6 @@ if selected3 == "Tests":
 	    hide_index=True,
     )
 
-			
     csv = convert_df_to_csv(df_filtered)
     st.download_button(
 	    label="Télécharger",
