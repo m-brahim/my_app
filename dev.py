@@ -1117,6 +1117,8 @@ if selected3 == "Tests":
             st.session_state[filename] = edited_df
 
 
+    df_table2 = pd.read_csv(df2, delimiter=";").reset_index(drop=True)
+	
     for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
 	    df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
 
