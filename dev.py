@@ -1081,9 +1081,9 @@ if selected3 == "Tests":
                 return str(quantite)
     	
         df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
-    
-        selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
-    
+
+
+
         selection = False
         
         if selected_columns is not None:
@@ -1098,12 +1098,12 @@ if selected3 == "Tests":
                 return False
     
         df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
-    
-        data_f = df_filtered[selected_columns]
+
+	    
         
         if selection:
             edited_data = st.data_editor(
-		    data_f,
+		    df_filtered,
 		    column_config={
 			    "Ventes": st.column_config.ProgressColumn(
 				    "Ventes",
