@@ -988,7 +988,7 @@ if selected3 == "OpenAI":
 
 def load_data():
     if os.path.exists("tasks_data.csv"):
-        return pd.read_csv("tasks_data.csv")
+        return pd.read_csv("tasks_data.csv", sep=";")
     else:
         return pd.DataFrame([
             {"Tâches": "Chargement des données sur Snowflake", "Personnes Assignées": 2, "Durée": "4h", "Statut": "en cours",
