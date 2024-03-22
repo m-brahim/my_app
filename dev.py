@@ -1048,7 +1048,7 @@ def load_data(url2):
     else:
         st.error("Le fichier spécifié n'existe pas.")
 
-def save_data(data):
+def save_data(data,url2):
     data.to_csv(url2, sep=';', index=False, encoding='utf-8')
 
 def convert_df_to_csv(df):
