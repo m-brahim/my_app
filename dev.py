@@ -988,7 +988,7 @@ if selected3 == "OpenAI":
 
 def load_data():
     if os.path.exists("tasks_data.csv"):
-        return pd.read_csv("tasks_data.csv", sep=";")
+        return pd.read_csv("tasks_data.csv", sep=';')
     else:
         return pd.DataFrame([
             {"Tâches": "Chargement des données sur Snowflake", "Personnes Assignées": 2, "Durée": "4h", "Statut": "en cours",
@@ -1009,7 +1009,7 @@ if selected3 == "Tâches":
     edited_df = st.data_editor(st.session_state.tasks_df, width=1426, height=600, num_rows="dynamic")
     st.session_state.tasks_df = edited_df
     save_data(edited_df)
-    
+
     if "Personnes Assignées" in edited_df.columns and "Statut" in edited_df.columns:
         #Initialisation de Personnes Assignées à 0 pour une nouvelle ligne 
         edited_df["Personnes Assignées"].fillna(0, inplace=True)
@@ -1049,18 +1049,17 @@ if selected3 == "Tâches":
 
 
 
+url2 = "Exemple - Hypermarché_Achats.csv"
 
-
-
-def load_data():
-    if os.path.exists(url):
-        return pd.read_csv(url, delimiter=";").reset_index(drop=True)
+def load_data2():
+    if os.path.exists(url2):
+        return pd.read_csv(url2, delimiter=";").reset_index(drop=True)
     else:
         st.error("Le fichier spécifié n'existe pas.")
 
 # Fonction pour sauvegarder les données dans le fichier CSV
-def save_data(data):
-    data.to_csv(url, sep=';', index=False, encoding='utf-8')
+def save_data2(data):
+    data.to_csv(url2, sep=';', index=False, encoding='utf-8')
 
 def convert_df_to_csv(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
