@@ -1084,10 +1084,9 @@ if selected3 == "Tests":
 
 
 
-        selection = False
         
-        if selected_columns is not None:
-            selection = True
+        
+        
     
         categories = df_filtered['Catégorie'].unique().tolist()
     
@@ -1101,30 +1100,30 @@ if selected3 == "Tests":
 
 	    
         
-        if selection:
-            edited_data = st.data_editor(
-		    df_filtered,
-		    column_config={
-			    "Ventes": st.column_config.ProgressColumn(
-				    "Ventes",
-				    format="%f€",
-				    min_value=0,
-				    max_value=8000,
-			    ),
-			    "Date de commande": st.column_config.DateColumn(
-				    "Date de commande",
-				    format="DD.MM.YYYY",
-				    step=1,
-			    ),
-			    "Catégorie": st.column_config.SelectboxColumn(
-				    "Catégorie",
-				    options=categories
-			    ),
-		    },
-		    hide_index=True,
-		    disabled=["Date de commande"],
-		    column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
-	    )
+        
+        edited_data = st.data_editor(
+		df_filtered,
+		column_config={
+			"Ventes": st.column_config.ProgressColumn(
+				"Ventes",
+				format="%f€",
+				min_value=0,
+				max_value=8000,
+			),
+			"Date de commande": st.column_config.DateColumn(
+				"Date de commande",
+				format="DD.MM.YYYY",
+				step=1,
+			),
+			"Catégorie": st.column_config.SelectboxColumn(
+				"Catégorie",
+				options=categories
+			),
+		},
+		hide_index=True,
+		disabled=["Date de commande"],
+		column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
+	)
 		
         if edited_data is not None :
             save_data(edited_data, url2)
