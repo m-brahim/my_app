@@ -1049,6 +1049,11 @@ if selected3 == "Tâches":
 
 
 
+
+
+
+
+
 url2 = "Exemple - Hypermarché_Achats.csv"
 
 def load_data2():
@@ -1070,7 +1075,7 @@ if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
     st.subheader("")
-	
+    
     edited_df2 = st.data_editor(
                 st.session_state.url2,
                 column_config={
@@ -1094,11 +1099,11 @@ if selected3 == "Tests":
                 disabled=["Date de commande"],
                 column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
             )    
-	
+    
     edited_df2['Remise accordé'] = True
         
     selected_columns = st.multiselect("Choisir les colonnes à afficher", edited_df2.columns)
-	
+    
     df_filtered = edited_df2[selected_columns]
            
     df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
@@ -1108,10 +1113,10 @@ if selected3 == "Tests":
     df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
         
     def ajouter_etoiles(quantite):
-    	if quantite > 10:
+        if quantite > 10:
             return f"{quantite} ⭐"
         else:
-	    return str(quantite)
+            return str(quantite)
     
     df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
     
@@ -1128,10 +1133,13 @@ if selected3 == "Tests":
     df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
     
     data_f = df_filtered[selected_columns]
-            
+
+    st.session_state.url2 = edited_df2
+    save_data(edited_df2)
+    
     st.download_button(
             label="Télécharger",
-            data=convert_df_to_csv(data_f),
+            data=convert_df_to_csv2(edited_df2),
             file_name='my_df.csv',
             mime='text/csv'
     )
