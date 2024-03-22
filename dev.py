@@ -996,7 +996,10 @@ def load_data():
         ])
 
 def save_data(d):
-    d.to_csv("tasks_data.csv", sep=';', index=False, encoding='utf-8')
+    d.to_csv("tasks_data.csv", index=False, encoding='utf-8')
+
+def convert_df_to_csv1(df):
+    return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
 
 if "tasks_df" not in st.session_state:
     st.session_state.tasks_df = load_data()
@@ -1038,7 +1041,7 @@ if selected3 == "Tâches":
 
     st.download_button(
 	    label="Télécharger",
-            data=edited_df.to_csv(index=False, sep=';').encode(),
+            data=convert_df_to_csv1(edited_df),
             file_name='my_df.csv',
             mime='text/csv'
         )
