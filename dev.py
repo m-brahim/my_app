@@ -1040,18 +1040,18 @@ if selected3 == "Tâches":
 
 
 
+url2 = "Exemple - Hypermarché_Achats.csv"
 
-
-def load_data(url):
-    if os.path.exists(url):
-        return pd.read_csv(url, delimiter=";").reset_index(drop=True)
+def load_data(url2):
+    if os.path.exists(url2):
+        return pd.read_csv(url2, delimiter=";").reset_index(drop=True)
     else:
         st.error("Le fichier spécifié n'existe pas.")
 
 def save_data(data):
-    data.to_csv(url, sep=';', index=False, encoding='utf-8')
+    data.to_csv(url2, sep=';', index=False, encoding='utf-8')
 
-if "url" not in st.session_state:
+if "url2" not in st.session_state:
     st.session_state.tasks_df = load_data(url)
 
 if selected3 == "Tests":
