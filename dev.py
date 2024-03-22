@@ -1053,98 +1053,24 @@ url2 = "Exemple - Hypermarché_Achats.csv"
 
 def load_data2():
     if os.path.exists(url2):
-        return pd.read_csv(url2, delimiter=";").reset_index(drop=True)
+        return pd.read_csv(url2, sep=';')
     else:
         st.error("Le fichier spécifié n'existe pas.")
+	    
+def save_data2(d2):
+    d2.to_csv(url2, index=False, encoding='utf-8')
 
-# Fonction pour sauvegarder les données dans le fichier CSV
-def save_data2(data):
-    data.to_csv(url2, sep=';', index=False, encoding='utf-8')
-
-def convert_df_to_csv(df):
+def convert_df_to_csv1(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
 
+if url2 not in st.session_state:
+    st.session_state.url2 = load_data()
+
 if selected3 == "Tests":
-    st.header("1. Analyse client")
-    st.subheader("")
-    st.subheader("")
-
-    # Charger les données
-    df_table = load_data()
-    if df_table is not None:
-        df_table['Remise accordé'] = True
-        
-        selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
-    
-        df_filtered = df_table[selected_columns_table].copy()
-           
-        df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
-        df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')       
-        df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
-        
-        df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
-        
-        def ajouter_etoiles(quantite):
-            if quantite > 10:
-                return f"{quantite} ⭐"
-            else:
-                return str(quantite)
-    
-        df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
-    
-        selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
-    
-        selection = False
-        
-        if selected_columns is not None:
-            selection = True
-    
-        categories = df_filtered['Catégorie'].unique().tolist()
-    
-        def determine_remise_accorde(remise):
-            if remise == '0%':
-                return True
-            else:
-                return False
-    
-        df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
-    
-        data_f = df_filtered[selected_columns]
-        
-        if selection:
-            st.data_editor(
-                data_f,
-                column_config={
-                    "Ventes": st.column_config.ProgressColumn(
-                            "Ventes",
-                        format="%f€",
-                            min_value=0,
-                            max_value=8000,
-                ),
-                    "Date de commande": st.column_config.DateColumn(
-                        "Date de commande",
-                        format="DD.MM.YYYY",
-                        step=1,
-                ),
-                    "Catégorie": st.column_config.SelectboxColumn(
-                                "Catégorie",
-                                options=categories
-                        ),
-                },
-                hide_index=True,
-                disabled=["Date de commande"],
-                column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
-            )    
-        
-        # Télécharger le fichier CSV avec les données modifiées
-        st.download_button(
-            label="Télécharger",
-            data=convert_df_to_csv(data_f),
-            file_name='my_df.csv',
-            mime='text/csv'
-        )
-
-
+    st.title("1. Analyse client")
+    edited_df2 = st.data_editor(st.session_state.url2, width=1426, height=600, num_rows="dynamic")
+    st.session_state.url2 = edited_df2
+    save_data(edited_df2)
 
 
 
