@@ -1126,8 +1126,8 @@ if selected3 == "Tests":
 		    column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
 	    )
 		
-		if edited_data is not None :
-			save_data(edited_data, url2)
+        if edited_data is not None :
+            save_data(edited_data, url2)
         
         # Télécharger le fichier CSV avec les données modifiées
         st.download_button(
