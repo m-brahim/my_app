@@ -1040,55 +1040,56 @@ if selected3 == "Tâches":
 
 
 
-url2 = "Exemple - Hypermarché_Achats.csv"
 
-def load_data(url2):
-    if os.path.exists(url2):
-        return pd.read_csv(url2, delimiter=";").reset_index(drop=True)
+
+def load_data(url):
+    if os.path.exists(url):
+        return pd.read_csv(url, delimiter=";").reset_index(drop=True)
     else:
         st.error("Le fichier spécifié n'existe pas.")
 
-def save_data(data,url2):
-    data.to_csv(url2, sep=';', index=False, encoding='utf-8')
+def save_data(data):
+    data.to_csv(url, sep=';', index=False, encoding='utf-8')
 
-def convert_df_to_csv(df):
-    return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
-
-df_table = load_data(url2)
+if "url" not in st.session_state:
+    st.session_state.tasks_df = load_data()
 
 if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
     st.subheader("")
 
+    # Charger les données
+    df_table = load_data(url)
     if df_table is not None:
         df_table['Remise accordé'] = True
         
         selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
     
-        df_filtered = df_table[selected_columns_table].copy()
+        df_table = df_table[selected_columns_table]
            
-        df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
-        df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')       
-        df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
+        df_table['Ventes'] = df_table['Ventes'].str.replace('[^\d]', '', regex=True)
+        df_table['Ventes'] = pd.to_numeric(df_table['Ventes'], errors='coerce', downcast='integer')       
+        df_table['Ventes'] = df_table['Ventes'].astype(str)
         
-        df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
+        df_table['Date de commande'] = pd.to_datetime(df_table['Date de commande'], format='%d/%m/%Y')
         
         def ajouter_etoiles(quantite):
             if quantite > 10:
                 return f"{quantite} ⭐"
             else:
                 return str(quantite)
-    	
-        df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
-
-
-
-        
-        
-        
     
-        categories = df_filtered['Catégorie'].unique().tolist()
+        df_table['Quantité'] = df_table['Quantité'].apply(ajouter_etoiles)
+    
+        selected_columns = st.multiselect("Choisir les colonnes à afficher", df_table.columns)
+    
+        selection = False
+        
+        if selected_columns is not None:
+            selection = True
+    
+        categories = df_table['Catégorie'].unique().tolist()
     
         def determine_remise_accorde(remise):
             if remise == '0%':
@@ -1096,42 +1097,41 @@ if selected3 == "Tests":
             else:
                 return False
     
-        df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
+        df_table['Remise accordé'] = df_table['Remise accordé'].apply(determine_remise_accorde)
+    
+        data_f = df_table[selected_columns]
+        
+        if selection:
+            edited_df = st.data_editor(
+		    data_f,
+		    column_config={
+			    "Ventes": st.column_config.ProgressColumn(
+				    "Ventes",
+				    format="%f€",
+				    min_value=0,
+				    max_value=8000,
+			    ),
+			    "Date de commande": st.column_config.DateColumn(
+				    "Date de commande",
+				    format="DD.MM.YYYY",
+				    step=1,
+			    ),
+			    "Catégorie": st.column_config.SelectboxColumn(
+				    "Catégorie",
+				    options=categories
+			    ),
+		    },
+		    hide_index=True,
+		    disabled=["Date de commande"],
+		    column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
+	    )    
 
-	    
-        
-        
-        edited_data = st.data_editor(
-		df_filtered,
-		column_config={
-			"Ventes": st.column_config.ProgressColumn(
-				"Ventes",
-				format="%f€",
-				min_value=0,
-				max_value=8000,
-			),
-			"Date de commande": st.column_config.DateColumn(
-				"Date de commande",
-				format="DD.MM.YYYY",
-				step=1,
-			),
-			"Catégorie": st.column_config.SelectboxColumn(
-				"Catégorie",
-				options=categories
-			),
-		},
-		hide_index=True,
-		disabled=["Date de commande"],
-		column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
-	)
-		
-        if edited_data is not None :
-            save_data(edited_data, url2)
-        
-        # Télécharger le fichier CSV avec les données modifiées
+	st.session_state.url = edited_df
+	save_data(edited_df)
+	
         st.download_button(
             label="Télécharger",
-            data=convert_df_to_csv(df_filtered),
+            data=save_data(edited_df),
             file_name='my_df.csv',
             mime='text/csv'
         )
