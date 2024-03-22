@@ -1146,7 +1146,26 @@ if selected3 == "Tests":
         )
 
 
+        df2 = "Financial_Data.csv"
+	df_table2 = pd.read_csv(df2, delimiter=";").reset_index(drop=True)
+	
+	for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
+		df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
 
+	for i in range(5, 16):
+		df_table2.iloc[:, i] = df_table2.iloc[:, i].astype(int)
+
+	df_table2['Ventes'] = df_table2.apply(lambda row: str(list(row[['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']])), axis=1)
+
+	st.data_editor(
+		df_table2,
+		column_config={
+			"Ventes": st.column_config.BarChartColumn(
+				width = "medium",
+			),
+		},
+		hide_index=True,
+	)
 
 
 
