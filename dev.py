@@ -1052,7 +1052,7 @@ def save_data(data):
     data.to_csv(url, sep=';', index=False, encoding='utf-8')
 
 if "url" not in st.session_state:
-    st.session_state.tasks_df = load_data()
+    st.session_state.tasks_df = load_data(url)
 
 if selected3 == "Tests":
     st.header("1. Analyse client")
@@ -1103,38 +1103,39 @@ if selected3 == "Tests":
         
         if selection:
             edited_df = st.data_editor(
-		    data_f,
-		    column_config={
-			    "Ventes": st.column_config.ProgressColumn(
-				    "Ventes",
-				    format="%f€",
-				    min_value=0,
-				    max_value=8000,
-			    ),
-			    "Date de commande": st.column_config.DateColumn(
-				    "Date de commande",
-				    format="DD.MM.YYYY",
-				    step=1,
-			    ),
-			    "Catégorie": st.column_config.SelectboxColumn(
-				    "Catégorie",
-				    options=categories
-			    ),
-		    },
-		    hide_index=True,
-		    disabled=["Date de commande"],
-		    column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
-	    )    
+                data_f,
+                column_config={
+                    "Ventes": st.column_config.ProgressColumn(
+                        "Ventes",
+                        format="%f€",
+                        min_value=0,
+                        max_value=8000,
+                    ),
+                    "Date de commande": st.column_config.DateColumn(
+                        "Date de commande",
+                        format="DD.MM.YYYY",
+                        step=1,
+                    ),
+                    "Catégorie": st.column_config.SelectboxColumn(
+                        "Catégorie",
+                        options=categories
+                    ),
+                },
+                hide_index=True,
+                disabled=["Date de commande"],
+                column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
+            )    
 
-	st.session_state.url = edited_df
-	save_data(edited_df)
-	
-        st.download_button(
-            label="Télécharger",
-            data=save_data(edited_df),
-            file_name='my_df.csv',
-            mime='text/csv'
-        )
+            if edited_df is not None:
+                st.session_state.url = edited_df
+                save_data(edited_df)
+            
+                st.download_button(
+                    label="Télécharger",
+                    data=save_data(edited_df),
+                    file_name='my_df.csv',
+                    mime='text/csv'
+                )
 
 
 
