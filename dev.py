@@ -1036,23 +1036,30 @@ if selected3 == "Tâches":
     
         style_metric_cards()
 
+	st.download_button(
+            label="Télécharger",
+            data=save_data(edited_df),
+            file_name='my_df.csv',
+            mime='text/csv'
+        )
 
 
 
 
-url2 = "Exemple - Hypermarché_Achats.csv"
 
-def load_data(url2):
-    if os.path.exists(url2):
-        return pd.read_csv(url2, delimiter=";").reset_index(drop=True)
+
+def load_data():
+    if os.path.exists(url):
+        return pd.read_csv(url, delimiter=";").reset_index(drop=True)
     else:
         st.error("Le fichier spécifié n'existe pas.")
 
+# Fonction pour sauvegarder les données dans le fichier CSV
 def save_data(data):
-    data.to_csv(url2, sep=';', index=False, encoding='utf-8')
+    data.to_csv(url, sep=';', index=False, encoding='utf-8')
 
-if "url2" not in st.session_state:
-    st.session_state.tasks_df = load_data(url)
+def convert_df_to_csv(df):
+    return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
 
 if selected3 == "Tests":
     st.header("1. Analyse client")
@@ -1060,19 +1067,19 @@ if selected3 == "Tests":
     st.subheader("")
 
     # Charger les données
-    df_table = load_data(url)
+    df_table = load_data()
     if df_table is not None:
         df_table['Remise accordé'] = True
         
         selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
     
-        df_table = df_table[selected_columns_table]
+        df_filtered = df_table[selected_columns_table].copy()
            
-        df_table['Ventes'] = df_table['Ventes'].str.replace('[^\d]', '', regex=True)
-        df_table['Ventes'] = pd.to_numeric(df_table['Ventes'], errors='coerce', downcast='integer')       
-        df_table['Ventes'] = df_table['Ventes'].astype(str)
+        df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
+        df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')       
+        df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
         
-        df_table['Date de commande'] = pd.to_datetime(df_table['Date de commande'], format='%d/%m/%Y')
+        df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
         
         def ajouter_etoiles(quantite):
             if quantite > 10:
@@ -1080,16 +1087,16 @@ if selected3 == "Tests":
             else:
                 return str(quantite)
     
-        df_table['Quantité'] = df_table['Quantité'].apply(ajouter_etoiles)
+        df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
     
-        selected_columns = st.multiselect("Choisir les colonnes à afficher", df_table.columns)
+        selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
     
         selection = False
         
         if selected_columns is not None:
             selection = True
     
-        categories = df_table['Catégorie'].unique().tolist()
+        categories = df_filtered['Catégorie'].unique().tolist()
     
         def determine_remise_accorde(remise):
             if remise == '0%':
@@ -1097,45 +1104,42 @@ if selected3 == "Tests":
             else:
                 return False
     
-        df_table['Remise accordé'] = df_table['Remise accordé'].apply(determine_remise_accorde)
+        df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
     
-        data_f = df_table[selected_columns]
+        data_f = df_filtered[selected_columns]
         
         if selection:
-            edited_df = st.data_editor(
+            st.data_editor(
                 data_f,
                 column_config={
                     "Ventes": st.column_config.ProgressColumn(
-                        "Ventes",
+                            "Ventes",
                         format="%f€",
-                        min_value=0,
-                        max_value=8000,
-                    ),
+                            min_value=0,
+                            max_value=8000,
+                ),
                     "Date de commande": st.column_config.DateColumn(
                         "Date de commande",
                         format="DD.MM.YYYY",
                         step=1,
-                    ),
+                ),
                     "Catégorie": st.column_config.SelectboxColumn(
-                        "Catégorie",
-                        options=categories
-                    ),
+                                "Catégorie",
+                                options=categories
+                        ),
                 },
                 hide_index=True,
                 disabled=["Date de commande"],
                 column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
             )    
-
-            if edited_df is not None:
-                st.session_state.url = edited_df
-                save_data(edited_df)
-            
-                st.download_button(
-                    label="Télécharger",
-                    data=save_data(edited_df),
-                    file_name='my_df.csv',
-                    mime='text/csv'
-                )
+        
+        # Télécharger le fichier CSV avec les données modifiées
+        st.download_button(
+            label="Télécharger",
+            data=convert_df_to_csv(data_f),
+            file_name='my_df.csv',
+            mime='text/csv'
+        )
 
 
 
