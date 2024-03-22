@@ -1036,12 +1036,12 @@ if selected3 == "Tâches":
     
         style_metric_cards()
 
-	st.download_button(
-            label="Télécharger",
-            data=save_data(edited_df),
-            file_name='my_df.csv',
-            mime='text/csv'
-        )
+    st.download_button(
+	    label="Télécharger",
+	    data=save_data(edited_df),
+	    file_name='my_df.csv',
+	    mime='text/csv'
+    )
 
 
 
