@@ -996,7 +996,7 @@ def load_data():
         ])
 
 def save_data(d):
-    d.to_csv("tasks_data.csv", index=False)
+    d.to_csv("tasks_data.csv", sep=';', index=False, encoding='utf-8')
 
 if "tasks_df" not in st.session_state:
     st.session_state.tasks_df = load_data()
