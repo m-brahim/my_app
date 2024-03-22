@@ -1042,7 +1042,7 @@ if selected3 == "Tâches":
 
 url2 = "Exemple - Hypermarché_Achats.csv"
 
-def load_data():
+def load_data(url2):
     if os.path.exists(url2):
         return pd.read_csv(url2, delimiter=";").reset_index(drop=True)
     else:
