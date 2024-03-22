@@ -1040,28 +1040,27 @@ if selected3 == "Tâches":
 
 
 
-
+url2 = "Exemple - Hypermarché_Achats.csv"
 
 def load_data():
-    if os.path.exists(url):
-        return pd.read_csv(url, delimiter=";").reset_index(drop=True)
+    if os.path.exists(url2):
+        return pd.read_csv(url2, delimiter=";").reset_index(drop=True)
     else:
         st.error("Le fichier spécifié n'existe pas.")
 
-# Fonction pour sauvegarder les données dans le fichier CSV
 def save_data(data):
-    data.to_csv(url, sep=';', index=False, encoding='utf-8')
+    data.to_csv(url2, sep=';', index=False, encoding='utf-8')
 
 def convert_df_to_csv(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
+
+df_table = load_data(url2)
 
 if selected3 == "Tests":
     st.header("1. Analyse client")
     st.subheader("")
     st.subheader("")
 
-    # Charger les données
-    df_table = load_data()
     if df_table is not None:
         df_table['Remise accordé'] = True
         
@@ -1080,7 +1079,7 @@ if selected3 == "Tests":
                 return f"{quantite} ⭐"
             else:
                 return str(quantite)
-    
+    	
         df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
     
         selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
@@ -1103,29 +1102,32 @@ if selected3 == "Tests":
         data_f = df_filtered[selected_columns]
         
         if selection:
-            st.data_editor(
-                data_f,
-                column_config={
-                    "Ventes": st.column_config.ProgressColumn(
-                            "Ventes",
-                        format="%f€",
-                            min_value=0,
-                            max_value=8000,
-                ),
-                    "Date de commande": st.column_config.DateColumn(
-                        "Date de commande",
-                        format="DD.MM.YYYY",
-                        step=1,
-                ),
-                    "Catégorie": st.column_config.SelectboxColumn(
-                                "Catégorie",
-                                options=categories
-                        ),
-                },
-                hide_index=True,
-                disabled=["Date de commande"],
-                column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
-            )    
+            edited_data = st.data_editor(
+		    data_f,
+		    column_config={
+			    "Ventes": st.column_config.ProgressColumn(
+				    "Ventes",
+				    format="%f€",
+				    min_value=0,
+				    max_value=8000,
+			    ),
+			    "Date de commande": st.column_config.DateColumn(
+				    "Date de commande",
+				    format="DD.MM.YYYY",
+				    step=1,
+			    ),
+			    "Catégorie": st.column_config.SelectboxColumn(
+				    "Catégorie",
+				    options=categories
+			    ),
+		    },
+		    hide_index=True,
+		    disabled=["Date de commande"],
+		    column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
+	    )
+
+	if edited_data is not None :
+		save_data(edited_data, url2)
         
         # Télécharger le fichier CSV avec les données modifiées
         st.download_button(
