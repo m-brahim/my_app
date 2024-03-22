@@ -1065,7 +1065,7 @@ def convert_df_to_csv(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
 
 if url not in st.session_state:
-    st.session_state.url = load_data()
+    st.session_state.url = load_data2()
 
 if selected3 == "Tests":
     st.header("1. Analyse client")
