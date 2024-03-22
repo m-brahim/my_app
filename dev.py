@@ -1131,7 +1131,7 @@ if selected3 == "Tests":
         # Télécharger le fichier CSV avec les données modifiées
         st.download_button(
             label="Télécharger",
-            data=convert_df_to_csv(data_f),
+            data=convert_df_to_csv(df_filtered),
             file_name='my_df.csv',
             mime='text/csv'
         )
