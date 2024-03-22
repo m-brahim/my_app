@@ -1041,17 +1041,17 @@ if selected3 == "Tâches":
 
 
 
+url2 = "Exemple - Hypermarché_Achats.csv"
 
-
-def load_data():
-    if os.path.exists(url):
-        return pd.read_csv(url, delimiter=";").reset_index(drop=True)
+def load_data2():
+    if os.path.exists(url2):
+        return pd.read_csv(url2, delimiter=";").reset_index(drop=True)
     else:
         st.error("Le fichier spécifié n'existe pas.")
 
 # Fonction pour sauvegarder les données dans le fichier CSV
-def save_data(data):
-    data.to_csv(url, sep=';', index=False, encoding='utf-8')
+def save_data2(data):
+    data.to_csv(url2, sep=';', index=False, encoding='utf-8')
 
 def convert_df_to_csv(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
