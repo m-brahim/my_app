@@ -1038,7 +1038,7 @@ if selected3 == "Tâches":
 
     st.download_button(
 	    label="Télécharger",
-            data=save_data(edited_df),
+            data=edited_df.to_csv(index=False).encode(),
             file_name='my_df.csv',
             mime='text/csv'
         )
