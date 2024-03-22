@@ -995,8 +995,8 @@ def load_data():
              "Durée restante": "2h"},
         ])
 
-def save_data(data):
-    data.to_csv("tasks_data.csv", index=False)
+def save_data(d):
+    d.to_csv("tasks_data.csv", index=False)
 
 if "tasks_df" not in st.session_state:
     st.session_state.tasks_df = load_data()
