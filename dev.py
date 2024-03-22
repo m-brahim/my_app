@@ -1052,18 +1052,20 @@ if selected3 == "Tâches":
 
 
 
-def load_data():
+def load_data2():
     if os.path.exists(url):
         return pd.read_csv(url, delimiter=";").reset_index(drop=True)
     else:
         st.error("Le fichier spécifié n'existe pas.")
 
-# Fonction pour sauvegarder les données dans le fichier CSV
-def save_data(data):
+def save_data2(data):
     data.to_csv(url, sep=';', index=False, encoding='utf-8')
 
 def convert_df_to_csv(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
+
+if url not in st.session_state:
+    st.session_state.url = load_data()
 
 if selected3 == "Tests":
     st.header("1. Analyse client")
@@ -1114,33 +1116,36 @@ if selected3 == "Tests":
         
         if selection:
             st.data_editor(
-                data_f,
-                column_config={
-                    "Ventes": st.column_config.ProgressColumn(
-                            "Ventes",
-                        format="%f€",
-                            min_value=0,
-                            max_value=8000,
-                ),
-                    "Date de commande": st.column_config.DateColumn(
-                        "Date de commande",
-                        format="DD.MM.YYYY",
-                        step=1,
-                ),
-                    "Catégorie": st.column_config.SelectboxColumn(
-                                "Catégorie",
-                                options=categories
-                        ),
-                },
-                hide_index=True,
-                disabled=["Date de commande"],
-                column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
-            )    
-        
+                edited_df2 = st.session_state.data_f,
+		    column_config={
+			    "Ventes": st.column_config.ProgressColumn(
+				    "Ventes",
+				    format="%f€",
+				    min_value=0,
+				    max_value=8000,
+			    ),
+			    "Date de commande": st.column_config.DateColumn(
+				    "Date de commande",
+				    format="DD.MM.YYYY",
+				    step=1,
+			    ),
+			    "Catégorie": st.column_config.SelectboxColumn(
+				    "Catégorie",
+				    options=categories
+			    ),
+		    },
+		    hide_index=True,
+		    disabled=["Date de commande"],
+		    column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
+	    )    
+		
+        st.session_state.url = edited_df2
+        save_data2(edited_df2)
+	    
         # Télécharger le fichier CSV avec les données modifiées
         st.download_button(
             label="Télécharger",
-            data=convert_df_to_csv(data_f),
+            data=convert_df_to_csv(edited_df2),
             file_name='my_df.csv',
             mime='text/csv'
         )
