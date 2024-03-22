@@ -1070,7 +1070,7 @@ if selected3 == "Tests":
     st.title("1. Analyse client")
     edited_df2 = st.data_editor(st.session_state.url2, width=1426, height=600, num_rows="dynamic")
     st.session_state.url2 = edited_df2
-    save_data(edited_df2)
+    save_data2(edited_df2)
 
 
 
