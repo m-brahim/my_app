@@ -1430,13 +1430,20 @@ if selected3 == "Elements" :
 
 
 
-
-
+conn = snowflake.connector.connect(
+	account = "synergy.eu-west-1"
+	user = "BMEGDOUD@SYNERGY.FR"
+	password = "Azert2609*"
+	role = "DEMODB_GEO_ADM"
+	warehouse = "SYNERGY"
+	database = "DEMODB"
+	schema = "VENTES"
+	client_session_keep_alive = true
+)
 
 
 if selected3 == "Snowflake":
 	st.connection(
-	conn = snowflake.connector.connect("snowflake")
 	cursor = conn.cursor()
 	cursor.execute("SELECT * FROM COMMANDES")
 	results = cursor.fetchall()
