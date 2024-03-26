@@ -16,3 +16,4 @@ duckdb
 openai
 streamlit-elements
 st_mui_table
+snowflake-connector-python
