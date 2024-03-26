@@ -1431,7 +1431,6 @@ if selected3 == "Elements" :
 if selected3 == "Snowflake":
     conn = st.connection("snowflake")
     snow_df = conn.query("select * from COMMANDES")
-    snow_copy = snow_df.copy()
-    selected_columns = st.multiselect('Sélectionnez les colonnes à observer', snow_copy.columns)
-    st.dataframe(snow_copy[selected_columns])
+    selected_columns = st.multiselect('Sélectionnez les colonnes à observer', snow_df.columns)
+    st.dataframe(snow_df[selected_columns])
 	
