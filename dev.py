@@ -23,6 +23,7 @@ from streamlit_elements import dashboard
 from streamlit_elements import editor
 from st_mui_table import st_mui_table
 from streamlit_elements import nivo
+import snowflake.connector
 
 
 #config du titre de la page
@@ -1435,11 +1436,8 @@ if selected3 == "Elements" :
 
 if selected3 == "Snowflake":
 	st.connection(
-	conn = st.connection("snowflake")
-	@st.cache_data
-	def load_table():
-		session=conn.session()
-		return session.table("COMMANDES").to_pandas()
-
-	df = load_table()
-	st.write(df)
+	conn = snowflake.connector.connect("snowflake")
+	cursor = conn.cursor()
+	cursor.execute("SELECT * FROM COMMANDES")
+	results = cursor.fetchall()
+	st.write(results)
