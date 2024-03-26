@@ -1434,5 +1434,5 @@ if selected3 == "Snowflake":
 	selected_columns_table = ['ID_LIGNE', 'CLIENT_NOM', 'PAYS', 'REGION', 'VILLE', 'CATEGORIE', 'SOUSCATEGORIE', 'PRODUIT_NOM', 'QUANTITE', 'REMISE', 'VENTES', 'BENEFICES']
 	df_filtered = snow_df[selected_columns_table].copy()
 	selected_columns = st.multiselect('Sélectionnez les colonnes à observer', df_filtered.columns)
-	st.data_editor(df_filtered)
+	st.data_editor(selected_columns)
 	
