@@ -1431,7 +1431,7 @@ if selected3 == "Elements" :
 if selected3 == "Snowflake":
 	conn = st.connection("snowflake")
 	snow_df = conn.query("select * from COMMANDES")
-	selected_columns = st.multiselect('Sélectionnez les colonnes à observer', snow_df)
+	selected_columns = st.multiselect('Sélectionnez les colonnes à observer', snow_df.columns)
 	filtered_df = df[selected_columns]
 	st.data_editor(filtered_df)
-
+	
