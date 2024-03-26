@@ -1436,4 +1436,4 @@ if selected3 == "Elements" :
 if selected3 == "Snowflake":
 	conn = st.connection("snowflake")
 	df = conn.query("select * from COMMANDES")
-	st.dataframe(df)
+	st.data_editor(df)
