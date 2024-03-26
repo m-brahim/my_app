@@ -1434,6 +1434,12 @@ if selected3 == "Elements" :
 
 
 if selected3 == "Snowflake":
+	st.connection(
 	conn = st.connection("snowflake")
-	df = conn.query("SELECT * from COMMANDES;", ttl=600)
-	st.dataframe(df)
+	@st.cache_data
+	def load_table():
+		session=conn.session()
+		return session.table("COMMANDES").to_pandas()
+
+	df = load_table()
+	st.write(df)
