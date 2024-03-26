@@ -1430,7 +1430,7 @@ if selected3 == "Elements" :
 
 
 
-conn = snowflake.connector.connect(
+cnn = snowflake.connector.connect(
 	account = "synergy.eu-west-1"
 	user = "BMEGDOUD@SYNERGY.FR"
 	password = "Azert2609*"
@@ -1443,8 +1443,8 @@ conn = snowflake.connector.connect(
 
 
 if selected3 == "Snowflake":
-	st.connection(
-	cursor = conn.cursor()
-	cursor.execute("SELECT * FROM COMMANDES")
+	cs = cnn.cursor()
+	try:
+		cursor.execute("SELECT * FROM COMMANDES")
 	results = cursor.fetchall()
 	st.write(results)
