@@ -1433,4 +1433,6 @@ if selected3 == "Snowflake":
     snow_df = conn.query("select * from COMMANDES")
     selected_columns = st.multiselect('Sélectionnez les colonnes à observer', snow_df.columns)
     st.dataframe(snow_df[selected_columns])
-	
+    test = "test.csv"
+    df = pd.read_csv(test, delimiter=";")
+    st.data_editor(df)
