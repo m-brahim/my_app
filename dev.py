@@ -47,8 +47,10 @@ df['Ventes'] = pd.to_numeric(df['Ventes'], errors='coerce', downcast='integer')
 df['Année'] = pd.to_datetime(df['Date de commande'], format='%d/%m/%Y').dt.year
 df['Mois'] = pd.to_datetime(df['Date de commande'], format='%d/%m/%Y').dt.month_name()
 
+#tri des mois
 df = df.sort_values(by=['Année', 'Mois'])
 
+#gestion de l'index
 df = df.reset_index(drop=True)
 
 #tri dans l'ordre des années
@@ -57,10 +59,11 @@ sorted_years_2 = sorted(df['Année'].unique())
 
 
 #création de colonnes
+#une colonne pour le titre & une pour le logo
 col_title, col_logo = st.columns([3, 0.5])
 
-#une colonne pour le titre & une pour les listes déroulantes
 
+#création d'un menu latéral et de plusieurs pages
 with st.sidebar:
     selected3 = option_menu("Menu", ["Accueil", "Import", "OpenAI", "Tâches", 'Tests', 'Elements', 'Snowflake'], 
     icons=['house', 'cloud-upload', 'lightbulb', 'list-task', 'gear', '', ''], 
@@ -78,70 +81,57 @@ with st.sidebar:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#page1
 if selected3 == "Accueil" :
-    #1) analyse client
+#le titre
     with col_title:
         st.title("Suivi des ventes de la société")
         
-        
+    #le logo      
     with col_logo:
         logo = "Kiloutou_logo.jpg"
         st.image(logo, width=73)
 
-    
+    #h1
     st.header("1. Analyse client")
     
     
-    # tableau
+    #création du tableau
     
-    # Collecte des données
+    #collecte des données
     df_table = pd.read_csv(url, delimiter=";").reset_index(drop=True)
     
-    # Créer des colonnes pour les listes déroulantes
+    #créer des colonnes pour les listes déroulantes
     col_space, col_country, col_space, col_category, col_space, col_client, col_space = st.columns([0.5, 1, 0.5, 1, 0.5, 1, 0.5])
     
-    # Liste déroulante pour le pays
+    #liste déroulante pour le pays
     with col_country:
         selected_country = st.selectbox('Sélectionnez le pays', df_table['Pays/Région'].unique(), index=None, placeholder="Choisir un pays",)
     
-    # Liste déroulante pour la catégorie
+    #liste déroulante pour la catégorie
     with col_category:
         selected_category = st.selectbox('Sélectionnez la catégorie', df_table['Catégorie'].unique(), index=None, placeholder="Choisir une catégorie",)
     
-    # Liste déroulante pour le client
+    #liste déroulante pour le client
     with col_client:
         selected_client = st.selectbox('Sélectionnez le client', df_table['Nom du client'].unique(), index=None, placeholder="Choisir un client",)
     
-    # Sélectionner les colonnes à afficher dans le DataFrame
+    #sélectionner les colonnes à afficher dans le DataFrame
     selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise', 'Ventes']
     
-    # Appliquer les filtres
+    #appliquer les filtres sur les listes déroulantes
     df_filtre = df_table[(df_table['Pays/Région'] == selected_country) & (df_table['Catégorie'] == selected_category) & (df_table['Nom du client'] == selected_client)]
     
     df_filtre.reset_index(drop=True, inplace=True)
     
-    # Définir une variable pour vérifier si les listes déroulantes ont été sélectionnées
+    #définir une variable pour vérifier si les listes déroulantes ont été sélectionnées
     selection_effectuee = False
     
-    # Condition pour vérifier si les éléments nécessaires sont sélectionnés
+    #condition pour vérifier si les éléments nécessaires sont sélectionnés
     if selected_country is not None and selected_category is not None and selected_client is not None:
         selection_effectuee = True
     
-    # Condition pour afficher le tableau uniquement si la sélection a été effectuée
+    #condition pour afficher le tableau uniquement si la sélection a été effectuée
     if selection_effectuee:
         # Afficher un graphique (vous pouvez ajuster le style selon vos préférences)
         fig = go.Figure(data=[go.Table(
@@ -163,25 +153,28 @@ if selected3 == "Accueil" :
                 fill_color='#f3f2f2',
                 height=30))
         ])
-        
+
+        #configuration
         fig.update_layout(height=400, margin=dict(t=0, b=30))
-        
+
+        #affichage
         st.plotly_chart(fig, use_container_width=True)
     
     
     
     
-    
+    #création de colonnes
     col_gauge1, col_gauge2, col_gauge3 = st.columns([1,1,1])
-    
+
+    #instruction conditionnelle sur les jauges	
     if selection_effectuee:
         with col_gauge1:
             df_filtre['Remise'] = df_filtre['Remise'].str.replace('[^\d.]', '', regex=True).astype(float)
     
-            # Calcul de la somme des remises accordées à un client
+            #calcul de la somme des remises accordées à un client
             somme_remises_client = df_filtre['Remise'].sum()
     
-            # Formater la valeur de la jauge pour inclure le symbole de pourcentage
+            #formater la valeur de la jauge pour inclure le symbole de pourcentage
             valeur_jauge_formatee = f"{somme_remises_client:.2f}%"
     
             couleur_jauge = "red" 
@@ -190,7 +183,7 @@ if selected3 == "Accueil" :
                 couleur_jauge = "green"
                 
     
-            # Création d'une jauge dynamique avec Plotly
+            #création d'une jauge dynamique avec Plotly
             fig_gauge = go.Figure(go.Indicator(
                 mode="gauge+number",
                 value=somme_remises_client,
@@ -215,7 +208,7 @@ if selected3 == "Accueil" :
                 margin=dict(l=10, r=10, t=60, b=10, pad=8),
             )
     
-            # Affichage de la jauge sous le tableau existant
+            #affichage de la jauge
             st.plotly_chart(fig_gauge, use_container_width=True)
     
     
@@ -231,7 +224,7 @@ if selected3 == "Accueil" :
                     couleur_jauge = "green"
     
                 
-                # Création d'une jauge dynamique avec Plotly
+                #création d'une jauge dynamique avec Plotly
                 fig_gauge = go.Figure(go.Indicator(
                     mode="gauge+number",
                     value=somme_quantites_client,
@@ -256,7 +249,7 @@ if selected3 == "Accueil" :
                     margin=dict(l=10, r=10, t=60, b=10, pad=8),
                 )
                 
-                # Affichage de la jauge sous le tableau existant
+                #affichage de la jauge sous le tableau existant
                 st.plotly_chart(fig_gauge, use_container_width=True)
     
     
@@ -267,10 +260,10 @@ if selected3 == "Accueil" :
             with col_gauge3:
                 df_filtre['Ventes'] = df_filtre['Ventes'].astype(str)
     
-                # Appliquer la modification sur la colonne 'Ventes'
+                #appliquer la modification sur la colonne 'Ventes'
                 df_filtre['Ventes'] = df_filtre['Ventes'].str.replace('[^\d]', '', regex=True)
             
-                # Convertir la colonne 'Ventes' en type numérique
+                #convertir la colonne 'Ventes' en type numérique
                 df_filtre['Ventes'] = pd.to_numeric(df_filtre['Ventes'], errors='coerce', downcast='integer')
                 
                 somme_ventes_client = df_filtre['Ventes'].sum()
@@ -281,7 +274,7 @@ if selected3 == "Accueil" :
                     couleur_jauge = "green"
                 
     
-                # Création d'une jauge dynamique avec Plotly
+                #création d'une jauge dynamique avec Plotly
                 fig_gauge = go.Figure(go.Indicator(
                     mode="gauge+number",
                     value=somme_ventes_client,
@@ -306,7 +299,7 @@ if selected3 == "Accueil" :
                     margin=dict(l=10, r=10, t=60, b=10, pad=8),
                 )
                 
-                # Affichage de la jauge sous le tableau existant
+                #affichage de la jauge sous le tableau existant
                 st.plotly_chart(fig_gauge, use_container_width=True)
     
     
@@ -326,15 +319,18 @@ if selected3 == "Accueil" :
     
     #création de colonnes et attribution de dimensions
     col_dd1, col_sp1, cold_dd2, col_sp2, col_mlt = st.columns([0.5,0.5,0.5,0.5,2])
-    
+
+    #liste déroulante pour l'année N
     with col_dd1:
         selected_year = st.selectbox("Sélectionnez N", sorted_years, index=3, placeholder="Choisir N")
-    
+
+    #liste déroulante pour l'année N-*
     with cold_dd2:
         if selected_year in sorted_years_2:
             sorted_years_2.remove(selected_year)
             selected_comparison_year = st.selectbox("Sélectionnez N-*", [year for year in sorted_years_2 if year < selected_year])
-    
+
+    #filtre sur les mois
     with col_mlt:
         available_months = sorted(df['Mois'].unique())
         selected_months = st.multiselect("", available_months, default=available_months)
@@ -366,32 +362,32 @@ if selected3 == "Accueil" :
     
     #affiche le chiffre d'affaires selon l'année + comparatif avec N-*
     col_ca.metric(label=f"Chiffre d'affaires", value=f"{int(ca_by_year)} €", delta=f"{int(diff_ca)} €")
-    
+
+    #ajout d'un style aux métriques
     style_metric_cards()
     
     #graphique qui permet d'observer l'évolution du nombre de clients selon N et N-*
-    
     col_v1, col_space, col_v2 = st.columns([2,0.5,2])
     
     with col_v1:
-        # Agréger le nombre de clients par mois pour l'année sélectionnée
+        #agréger le nombre de clients par mois pour l'année sélectionnée
         monthly_clients_selected_year = filtered_df[filtered_df['Année'] == selected_year].drop_duplicates('ID client').groupby(
         'Mois')['ID client'].count().reset_index()
     
-        # Tri des mois dans l'ordre
+        #tri des mois dans l'ordre
         sorted_months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         monthly_clients_selected_year['Mois'] = pd.Categorical(monthly_clients_selected_year['Mois'], categories=sorted_months, ordered=True)
         monthly_clients_selected_year = monthly_clients_selected_year.sort_values('Mois')
     
-        # Agréger le nombre de clients par mois pour l'année de comparaison
+        #agréger le nombre de clients par mois pour l'année de comparaison
         monthly_clients_comparison_year = filtered_df[filtered_df['Année'] == selected_comparison_year].drop_duplicates(
         'ID client').groupby('Mois')['ID client'].count().reset_index()
     
-        # Tri des mois dans l'ordre
+        #tri des mois dans l'ordre
         monthly_clients_comparison_year['Mois'] = pd.Categorical(monthly_clients_comparison_year['Mois'], categories=sorted_months, ordered=True)
         monthly_clients_comparison_year = monthly_clients_comparison_year.sort_values('Mois')
     
-        # Affiche l'évolution du nombre de clients pour N
+        #affiche l'évolution du nombre de clients pour N
         fig_clients_evolution = go.Figure()
         fig_clients_evolution.add_trace(go.Scatter(
             x=monthly_clients_selected_year['Mois'],
@@ -402,7 +398,7 @@ if selected3 == "Accueil" :
             marker=dict(symbol='square', size=8, color='#fcc200')
         ))
          
-        # Affiche l'évolution du nombre de clients pour N-*
+        #affiche l'évolution du nombre de clients pour N-*
         fig_clients_evolution.add_trace(go.Scatter(
             x=monthly_clients_comparison_year['Mois'],
             y=monthly_clients_comparison_year['ID client'],
@@ -411,7 +407,8 @@ if selected3 == "Accueil" :
             line=dict(color='#9b870c'),
             marker=dict(symbol='square', size=8, color='#9b870c')
         ))
-    
+
+	#ajout d'un seuil      
         target_value = 80
         fig_clients_evolution.add_shape(
             go.layout.Shape(
@@ -424,7 +421,7 @@ if selected3 == "Accueil" :
             )
         )
         
-        # Mise en forme
+        #mise en forme
         fig_clients_evolution.update_layout(title=f"Évolution du nombre de clients en {selected_year} et {selected_comparison_year}",
                                            xaxis=dict(title='Mois', tickfont=dict(size=12), title_font=dict(size=12)),
                                            yaxis=dict(title='Nombre de clients', tickfont=dict(size=12), title_font=dict(size=12)),
@@ -433,35 +430,32 @@ if selected3 == "Accueil" :
                                            height=500,
                                            width=500)
         
-        # Affichage
+        #affichage
         st.plotly_chart(fig_clients_evolution, use_container_width=True)
     
     
-    #graphique qui permet d'observer l'évolution du nombre de clients selon N et N-*
-    
+    #graphique qui permet d'observer l'évolution du nombre de commandes selon N et N-*
     fig_orders_evolution = go.Figure()
-    
-    # Graphique qui permet d'observer l'évolution du nombre de commandes selon N et N-*
-    
+        
     with col_v2:
-        # Agréger le nombre de commandes par mois pour l'année sélectionnée
+        #aréger le nombre de commandes par mois pour l'année sélectionnée
         monthly_orders_selected_year = filtered_df[filtered_df['Année'] == selected_year].groupby('Mois')['ID commande'].count().reset_index()
     
-        # Tri des mois dans l'ordre croissant
+        #tri des mois dans l'ordre croissant
         monthly_orders_selected_year['Mois'] = pd.Categorical(monthly_orders_selected_year['Mois'], categories=sorted_months, ordered=True)
         monthly_orders_selected_year = monthly_orders_selected_year.sort_values('Mois')
     
-        # Agréger le nombre de commandes par mois pour l'année de comparaison
+        #agréger le nombre de commandes par mois pour l'année de comparaison
         monthly_orders_comparison_year = filtered_df[filtered_df['Année'] == selected_comparison_year].groupby('Mois')['ID commande'].count().reset_index()
     
-        # Tri des mois dans l'ordre croissant
+        #tri des mois dans l'ordre croissant
         monthly_orders_comparison_year['Mois'] = pd.Categorical(monthly_orders_comparison_year['Mois'], categories=sorted_months, ordered=True)
         monthly_orders_comparison_year = monthly_orders_comparison_year.sort_values('Mois')
         
-        # Ajustez la taille des barres ici
+        #ajustez la taille des barres ici
         bar_width = 0.3
     
-        # Affiche l'évolution du nombre de commandes pour N-*
+        #affiche l'évolution du nombre de commandes pour N-*
         fig_orders_evolution.add_trace(go.Bar(
             x=monthly_orders_comparison_year['Mois'],
             y=monthly_orders_comparison_year['ID commande'],
@@ -472,7 +466,7 @@ if selected3 == "Accueil" :
             width=bar_width,
         ))
     
-        # Affiche l'évolution du nombre de commandes pour N
+        #affiche l'évolution du nombre de commandes pour N
         fig_orders_evolution.add_trace(go.Bar(
             x=monthly_orders_selected_year['Mois'],
             y=monthly_orders_selected_year['ID commande'],
@@ -482,8 +476,9 @@ if selected3 == "Accueil" :
             marker=dict(color='#fcc200', line=dict(width=2, color='black')),
             width=bar_width,
         ))
-    
-        target_value = 150  # Remplacez cela par la valeur cible souhaitée
+
+	#ajout d'un seuil  
+        target_value = 150 
         fig_orders_evolution.add_shape(
             go.layout.Shape(
                 type="line",
@@ -495,7 +490,7 @@ if selected3 == "Accueil" :
             )
         )
     
-        # Mise à jour de la mise en forme
+        #mise en forme
         fig_orders_evolution.update_layout(barmode='group', title=f"Évolution du nombre de commandes en {selected_year} et {selected_comparison_year}",
                                            xaxis=dict(title='Nombre de commandes', tickfont=dict(size=12), title_font=dict(size=12)),
                                            yaxis=dict(title='Mois', tickfont=dict(size=12), title_font=dict(size=12)),
@@ -504,17 +499,10 @@ if selected3 == "Accueil" :
                                            height=500,
                                            width=500)
     
-        # Affichage
+        #affichage
         st.plotly_chart(fig_orders_evolution, use_container_width=True)
     
        
-    
-    
-    
-    
-    
-    
-    
     
     
     st.header("3. Analyses géographiques")
@@ -522,10 +510,11 @@ if selected3 == "Accueil" :
     
     col_country, col_space = st.columns([0.5, 1])
     
-    # Liste déroulante pour le pays
+    #liste déroulante pour le pays
     with col_country:
         selected_pays = st.selectbox('Sélectionnez le pays', df['Pays/Région'].unique(), index=None, placeholder=" ")
-    
+
+    #instruction conditionnelle d'affichage
     selection = False
     
     if selected_pays is not None:
@@ -533,21 +522,24 @@ if selected3 == "Accueil" :
     
     data_f = df[df['Pays/Région'] == selected_pays]
     
-    # Colonne pour le classement par pays des 5 produits les plus achetés
+    #colonne pour le classement par pays des 5 produits les plus achetés
     col_class, col_pie = st.columns([1, 1])
     
     with col_class:
         if selection:
-            # Grouper par produit et calculer la quantité totale achetée
+            #grouper par produit et calculer la quantité totale achetée
             top_products = data_f.groupby('Nom du produit')['Quantité'].sum().reset_index()
     
-            # Trier par quantité croissante et sélectionner les 5 premiers produits
+            #trier par quantité croissante et sélectionner les 5 premiers produits
             top_products = top_products.sort_values(by='Quantité', ascending=True).tail(5)
-    
+
+	    #ajout d'un seuil
             target_value = top_products['Quantité'].mean()
-            
+
+	    #ajout de couleurs
             colors = ['#faf1b7', '#f7e888', '#ffdd1a', '#ffd54d', '#fcc200']
-    
+
+	    #graphiques en barres avec classement
             fig = go.Figure()
     
             fig.add_trace(go.Bar(
@@ -580,10 +572,11 @@ if selected3 == "Accueil" :
                 width=300,
                 margin=dict(t=40, b=40)
             )
-            
+
+	    #affichage
             st.plotly_chart(fig, use_container_width=True)
     
-    
+    #graphique en secteur
     with col_pie :
 	    if selection :
 		    quantity_by_category = data_f.groupby('Catégorie')['Quantité'].sum().reset_index()
@@ -600,27 +593,28 @@ if selected3 == "Accueil" :
     
     
     if selection:
-	    # agréger le nombre de clients par pays
+	    #agréger le nombre de clients par pays
 	    clients_by_country = df.drop_duplicates(subset=['ID client', 'Pays/Région']).groupby('Pays/Région')['ID client'].count().reset_index()
 	    
-	    # récupérer le nombre de clients pour le pays sélectionné
+	    #récupérer le nombre de clients pour le pays sélectionné
 	    num_clients = clients_by_country[clients_by_country['Pays/Région'] == selected_pays]['ID client'].values[0]
 	    
-	    # fusionner les données agrégées avec les données filtrées
+	    #fusionner les données agrégées avec les données filtrées
 	    merged_data = pd.merge(data_f, clients_by_country, how='left', on='Pays/Région')
 	    
-	    # icône personnalisée pour représenter un client (ici l'exemple c'est Kiloutou)
+	    #icône personnalisée pour représenter un client (ici l'exemple c'est Kiloutou)
 	    icon_path = 'Kiloutou_logo.jpg'
 	    client_icon = folium.CustomIcon(icon_image=icon_path, icon_size=(20, 20))
 	    
-	    # définition d'une localisation initiale
+	    #définition d'une localisation initiale
 	    my_map = folium.Map(location=[merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]], zoom_start=5.5)
 	    
-	    # ajoutez un seul marqueur pour représenter le pays avec le nombre de clients dans l'infobulle
+	    #ajoutez un seul marqueur pour représenter le pays avec le nombre de clients dans l'infobulle
 	    folium.Marker([merged_data['Latitude'].iloc[0], merged_data['Longitude'].iloc[0]],
 			  popup=f"Nombre de clients: {num_clients}",
 			  icon=client_icon).add_to(my_map)
-	    
+
+	    #affichage de la carte
 	    st_folium(my_map, width=1410, height=600)
     
 
@@ -630,30 +624,36 @@ if selected3 == "Accueil" :
 
 
 
-
+#page2
 if selected3 == "Import":
+    #import d'un fichier + mettre dans la session streamlit
     @st.cache_data
     def load_data(file):
         dfo = pd.read_csv(file, delimiter=";")
         return dfo
 
+    #widget pour l'import d'un fichier
     uploaded_file = st.file_uploader("Choisir un fichier")
 
+    #instruction conditionnelle
     if uploaded_file is None:
         st.info("Veuillez choisir un fichier à importer")
         st.stop()
-    
+
+    #la fonction load_data charge le fichier
     dfo = load_data(uploaded_file)
-    
+
+    #lecture du fichier dans un df
     st.dataframe(dfo, 
                  width=1426,
                  column_config={
                     "ID ligne" : st.column_config.NumberColumn(format="%d")
                  },
                 )
-
+	
     col_metric, col_space, col_bar = st.columns([1,0.2,1])
-    
+
+    #création d'élément visuel pour compléter le tableau
     with col_metric:
         
         def plot_metric(label, value, prefix="", suffix="", show_graph=False, color_graph=""):
