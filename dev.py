@@ -66,7 +66,7 @@ col_title, col_logo = st.columns([3, 0.5])
 #création d'un menu latéral et de plusieurs pages
 with st.sidebar:
     selected3 = option_menu("Menu", ["Accueil", "Import", "OpenAI", "Tâches", 'Tests', 'Elements', 'Snowflake'], 
-    icons=['house', 'cloud-upload', 'lightbulb', 'list-task', 'gear', '', ''], 
+    icons=['house', 'cloud-upload', 'lightbulb', 'list-task', 'gear', '', 'snowflake'], 
     menu_icon="cast", default_index=0,
     styles={
         "container": {"border": "1px solid #CCC", "border-left": "0.5rem solid #000000", "border-radius": "5px", "box-shadow": "0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15)", "height" : "800px"},
@@ -92,7 +92,7 @@ if selected3 == "Accueil" :
         logo = "Kiloutou_logo.jpg"
         st.image(logo, width=73)
 
-    #h1
+    #1) analyse client
     st.header("1. Analyse client")
     
     
@@ -314,7 +314,6 @@ if selected3 == "Accueil" :
     
     #2) analyse temporelle
     
-    
     st.header("2. Analyses temporelles")
     
     #création de colonnes et attribution de dimensions
@@ -504,16 +503,15 @@ if selected3 == "Accueil" :
     
        
     
-    
+    # analyse géographique
     st.header("3. Analyses géographiques")
-    
     
     col_country, col_space = st.columns([0.5, 1])
     
     #liste déroulante pour le pays
     with col_country:
         selected_pays = st.selectbox('Sélectionnez le pays', df['Pays/Région'].unique(), index=None, placeholder=" ")
-
+    
     #instruction conditionnelle d'affichage
     selection = False
     
@@ -734,31 +732,31 @@ if selected3 == "Import":
         
 
         with col_bar:
-            # Trier les données par quantité décroissante
+            #trier les données par quantité décroissante
             dfo = dfo.sort_values(by=['Quantité'], ascending=False)
 
-            # Grouper les quantités vendues par pays et trier en ordre décroissant
+            #grouper les quantités vendues par pays et trier en ordre décroissant
             data = dfo.groupby('Pays/Région')['Quantité'].sum().reset_index()
             data = data.sort_values(by='Quantité', ascending=False)
 
-            # Créer le graphique en barres avec Plotly
+            #créer le graphique en barres avec Plotly
             fig = px.bar(data, x='Pays/Région', y='Quantité', color='Quantité', color_continuous_scale=['#ffe680', '#fcc200'], labels={'Quantité': 'Quantité vendue', 'Pays/Région': 'Pays'})
 
             fig.update_layout(yaxis_tickformat='%d')
             fig.update_layout(title='Quantités vendues par pays', title_x = 0.3)
             
-            # Afficher le graphique avec Streamlit
+            #afficher le graphique
             st.plotly_chart(fig)
 
 
 
 
 
-
+#page3
 if selected3 == "OpenAI":
     
     #######################################
-    # PREREQUISITES
+    # prérequis
     #######################################
 
 
@@ -782,7 +780,7 @@ if selected3 == "OpenAI":
     user_msg_input_key = "input_user_msg"
 
     #######################################
-    # SESSION STATE SETUP
+    # session streamlit
     #######################################
 
     if (assistant_state not in st.session_state) or (thread_state not in st.session_state):
@@ -806,7 +804,7 @@ if selected3 == "OpenAI":
         st.session_state[markers_state] = None
 
     #######################################
-    # TOOLS SETUP
+    # fonctions
     #######################################
 
 
@@ -838,7 +836,7 @@ if selected3 == "OpenAI":
     }
 
     #######################################
-    # HELPERS
+    # assistant openAI
     #######################################
 
 
@@ -872,7 +870,6 @@ if selected3 == "OpenAI":
     
         completed = False
     
-        # Polling
         with status_placeholder.status("Computing Assistant answer") as status_container:
             st.write(f"Launching run {get_run_id()}")
     
@@ -926,7 +923,7 @@ if selected3 == "OpenAI":
         st.session_state[last_openai_run_state] = None
     
     #######################################
-    # MAIN
+    # interface page openAI
     #######################################
 
     st.title('Assistant OpenAI')
@@ -985,8 +982,9 @@ if selected3 == "OpenAI":
 
 
 
+#page4
 
-
+#chargement des données en session
 def load_data():
     if os.path.exists("tasks_data.csv"):
         return pd.read_csv("tasks_data.csv", sep=';')
@@ -996,12 +994,15 @@ def load_data():
              "Durée restante": "2h"},
         ])
 
+#sauvegarde des données
 def save_data(d):
     d.to_csv("tasks_data.csv", index=False, encoding='utf-8')
 
+#téléchargement des données
 def convert_df_to_csv1(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
 
+#instruction conditionnelle
 if "tasks_df" not in st.session_state:
     st.session_state.tasks_df = load_data()
 
@@ -1010,7 +1011,8 @@ if selected3 == "Tâches":
     edited_df = st.data_editor(st.session_state.tasks_df, width=1426, height=600, num_rows="dynamic")
     st.session_state.tasks_df = edited_df
     save_data(edited_df)
-    
+
+#utilisation de métriques pour compléter l'éditeur de données	
     if "Personnes Assignées" in edited_df.columns and "Statut" in edited_df.columns:
         #Initialisation de Personnes Assignées à 0 pour une nouvelle ligne 
         edited_df["Personnes Assignées"].fillna(0, inplace=True)
@@ -1040,6 +1042,7 @@ if selected3 == "Tâches":
     
         style_metric_cards()
 
+    #téléchargement des données
     st.download_button(
 	    label="Télécharger",
             data=convert_df_to_csv1(edited_df),
@@ -1051,17 +1054,20 @@ if selected3 == "Tâches":
 
 
 
+#page5
 
+#principe identique à la page4
 def load_data():
     if os.path.exists(url):
         return pd.read_csv(url, delimiter=";").reset_index(drop=True)
     else:
         st.error("Le fichier spécifié n'existe pas.")
 
-# Fonction pour sauvegarder les données dans le fichier CSV
+#sauvegarde des données
 def save_data(data):
     data.to_csv(url, sep=';', index=False, encoding='utf-8')
 
+#téléchargement des données
 def convert_df_to_csv(df):
     return df.to_csv(sep=';', index=False, encoding='utf-8').encode('utf-8')
 
@@ -1070,38 +1076,45 @@ if selected3 == "Tests":
     st.subheader("")
     st.subheader("")
 
-    # Charger les données
+    #chargement
     df_table = load_data()
     if df_table is not None:
         df_table['Remise accordé'] = True
-        
+
+	#filtre des colonnes
         selected_columns_table = ['Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité' , 'Remise accordé' , 'Remise' , 'Ventes']
-    
+
+	#copie des données
         df_filtered = df_table[selected_columns_table].copy()
-           
+
+	#modifs sur ventes & date de commande
         df_filtered['Ventes'] = df_filtered['Ventes'].str.replace('[^\d]', '', regex=True)
         df_filtered['Ventes'] = pd.to_numeric(df_filtered['Ventes'], errors='coerce', downcast='integer')       
         df_filtered['Ventes'] = df_filtered['Ventes'].astype(str)
-        
         df_filtered['Date de commande'] = pd.to_datetime(df_filtered['Date de commande'], format='%d/%m/%Y')
-        
+
+	#ajout d'une étoile si Q>10
         def ajouter_etoiles(quantite):
             if quantite > 10:
                 return f"{quantite} ⭐"
             else:
                 return str(quantite)
-    
+
+	#application de la fonction
         df_filtered['Quantité'] = df_filtered['Quantité'].apply(ajouter_etoiles)
-    
+
+	#utilisation d'un multiselect pour choisir les colonnes de l'éditeur de données
         selected_columns = st.multiselect("Choisir les colonnes à afficher", df_filtered.columns)
-    
+
+	#instruction conditionnelle
         selection = False
         
         if selected_columns is not None:
             selection = True
-    
+
         categories = df_filtered['Catégorie'].unique().tolist()
-    
+
+	#fonction sur les remises
         def determine_remise_accorde(remise):
             if remise == '0%':
                 return True
@@ -1109,35 +1122,37 @@ if selected3 == "Tests":
                 return False
     
         df_filtered['Remise accordé'] = df_filtered['Remise accordé'].apply(determine_remise_accorde)
-    
+
+	#filtre du df en fonction des colonnes choisies
         data_f = df_filtered[selected_columns]
-        
+
+	#si l'utilisateur choisi des colonnes, alors affiche l'éditeur de données
         if selection:
             st.data_editor(
                 data_f,
-                column_config={
-                    "Ventes": st.column_config.ProgressColumn(
+                column_config={ #configuration des colonnes
+                    "Ventes": st.column_config.ProgressColumn( #ajout d'une jauge pour les ventes
                             "Ventes",
                         format="%f€",
                             min_value=0,
                             max_value=8000,
                 ),
-                    "Date de commande": st.column_config.DateColumn(
+                    "Date de commande": st.column_config.DateColumn( #ajout d'un calendrier pour les dates de commandes
                         "Date de commande",
                         format="DD.MM.YYYY",
                         step=1,
                 ),
-                    "Catégorie": st.column_config.SelectboxColumn(
+                    "Catégorie": st.column_config.SelectboxColumn( #ajout d'une liste déroulante pour les catégories
                                 "Catégorie",
                                 options=categories
                         ),
                 },
-                hide_index=True,
-                disabled=["Date de commande"],
+                hide_index=True, #cacher l'index
+                disabled=["Date de commande"], #modification de la colonne date de commande désactiver
                 column_order=('Catégorie', 'Date de commande', 'ID client', 'Nom du client', 'Nom du produit', 'Pays/Région', 'Segment', 'Statut des expéditions', 'Ville', 'Quantité', 'Remise accordé', 'Remise', 'Ventes')
-            )    
+            )   #ordre des colonnes après séléction
         
-        # Télécharger le fichier CSV avec les données modifiées
+        #téléchargement des données
         st.download_button(
             label="Télécharger",
             data=convert_df_to_csv(data_f),
@@ -1145,22 +1160,23 @@ if selected3 == "Tests":
             mime='text/csv'
         )
 
-
-        df2 = "Financial_Data.csv"
-        df_table2 = pd.read_csv(df2, delimiter=";").reset_index(drop=True)
+	#deuxième éditeur de données (principe identique)
+        df2 = "Financial_Data.csv" #nouveau fichier
+        df_table2 = pd.read_csv(df2, delimiter=";").reset_index(drop=True) #stockage dans un df
         
-        for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
+        for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']: #conversion valeurs des mois en int
             df_table2[month] = df_table2[month].str.replace(' ', '').astype(int)
 
-        for i in range(5, 16):
+        for i in range(5, 16): #deuxième possibilité de conversion
             df_table2.iloc[:, i] = df_table2.iloc[:, i].astype(int)
 
-        df_table2['Ventes'] = df_table2.apply(lambda row: str(list(row[['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']])), axis=1)
+        df_table2['Ventes'] = df_table2.apply(lambda row: str(list(row[['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']])), axis=1) #crée une liste des valeurs des différents mois dans la colonne Ventes
 
+	#création d'un éditeur de données
         st.data_editor(
             df_table2,
             column_config={
-                "Ventes": st.column_config.BarChartColumn(
+                "Ventes": st.column_config.BarChartColumn( #configuration de la colonne ventes en un graphique en barres
                     width = "medium",
                 ),
             },
@@ -1194,10 +1210,12 @@ if selected3 == "Tests":
 
 
 
-
-if selected3 == "Elements" :   
+#page6
+if selected3 == "Elements" : 
+	#création d'élément item qui sont déplaçables et redimensionnables
 	layout = [dashboard.Item("first_item", 0, 0, 4, 3), dashboard.Item("second_item", 8, 0, 4, 3), dashboard.Item("third_item", 0, 15, 4, 5), dashboard.Item("fourth_item", 8, 15, 5, 3)]
 
+	#import ou création de données
 	with elements("dashboard"):
 		data1 = [{ "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
             	        { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
@@ -1227,11 +1245,12 @@ if selected3 == "Elements" :
 		       "fries": 115, "friesColor": "hsl(182, 70%, 50%)", "donut": 30, "donutColor": "hsl(54, 70%, 50%)"},]
 
 
-		
+		#tableau de bord
 		with dashboard.Grid(layout):
 
-			
+			#création d'une surface sur laquelle la visualisation est affiché
 			with mui.Paper(key="first_item"):
+				#création d'une barre d'en-tête
 				with mui.Box :
 					with mui.AppBar(position = "static"):
 						with mui.Toolbar(variant = "dense") :
@@ -1243,7 +1262,7 @@ if selected3 == "Elements" :
 							mui.Typography(
 								"Nivo Radar"
 							)
-				
+				#création d'un graphique radar
 				nivo.Radar(
 					    data=data1,
 	                		    keys=[ "chardonay", "carmenere", "syrah" ],
@@ -1271,7 +1290,7 @@ if selected3 == "Elements" :
 			                	theme={"background": "#FFFFFF","textColor": "#31333F","tooltip": {"container": {"background": "#FFFFFF","color": "#31333F",}}})
 		    
 
-			
+			#création d'une surface sur laquelle la visualisation est affiché
 			with mui.Paper(key="second_item"):
 				with mui.Box :
 					with mui.AppBar(position = "static"):
@@ -1284,7 +1303,7 @@ if selected3 == "Elements" :
 							mui.Typography(
 								"Nivo Pie"
 							)
-
+				#création d'un graphique en secteur
 				nivo.Pie(
 					    data=data2,
 			                    keys=[ "go", "scala", "css", "javascript", "erlang"],
@@ -1317,7 +1336,7 @@ if selected3 == "Elements" :
 			                    "effects" : [{"on" : "hover", "style"  : {"itemTextColor" : "#000"}}]}])
 
 			
-
+			#création d'une surface sur laquelle la visualisation est affiché
 			with mui.Paper(key="third_item"):
 				with mui.Box() :
 					with mui.AppBar(position = "static"):
@@ -1330,7 +1349,8 @@ if selected3 == "Elements" :
 							mui.Typography(
 								"Nivo Bar"
 							)
-					
+
+				#création d'un graphique en barres
 				nivo.Bar(
 			                data=data3,
 					keys = ['hot dog','burger','sandwich','kebab','donut'],
@@ -1364,7 +1384,7 @@ if selected3 == "Elements" :
 
 
 
-			
+			#création d'une surface sur laquelle la visualisation est affiché
 			with mui.Paper(key="fourth_item"): 
 				def create_data(name, calories, fat, carbs, protein):
 					return {"name": name, "calories": calories, "fat": fat, "carbs": carbs, "protein": protein}
@@ -1388,7 +1408,7 @@ if selected3 == "Elements" :
 							)
 
 
-						
+				#création d'un tableau	
 				with mui.TableContainer():
 					mui.Table(
 						sx={"minWidth": 650},
@@ -1427,12 +1447,13 @@ if selected3 == "Elements" :
 
 
 
-
+#page6
 if selected3 == "Snowflake":
+    #connexion à snowflake
     conn = st.connection("snowflake")
+    #requête pour récupérer les données de la table commandes
     snow_df = conn.query("select * from COMMANDES")
+    #création d'un multiselect pour choisir les colonnes
     selected_columns = st.multiselect('Sélectionnez les colonnes à observer', snow_df.columns)
+    #affiche un df à partir des colonnes choisies
     st.dataframe(snow_df[selected_columns])
-    test = "test.csv"
-    df = pd.read_csv(test, delimiter=";")
-    st.data_editor(df)
